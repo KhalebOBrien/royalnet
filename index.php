@@ -25,10 +25,10 @@
               </a> 
               <ul class="nav justify-content-end">
                   <li class="nav-item">
-                    <a class="nav-link" href="sign-up.html">Sign Up</a>
+                    <a class="nav-link" href="register">Sign Up</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="sign-in.html">Sign In</a>
+                    <a class="nav-link" href="login">Sign In</a>
                   </li>
               </ul>
             </div>
@@ -38,7 +38,7 @@
                 <div class="hero-text">
                     <h1>Earn from performing online task</h1>
                     <p>And I'm a Photographer</p>
-                    <a href="sign-up.html"><button type="button" class="btn get-started">Get started</button></a>
+                    <a href="register"><button type="button" class="btn get-started">Get started</button></a>
                 </div>
             </div>
 
