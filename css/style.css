@@ -1,5 +1,8 @@
+.sign-body{
+    background-color: #F8EBFF;
+}
 .hero{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/hero.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/hero.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -45,4 +48,34 @@
 }
 .nav-item{
     color: white;
+}
+.form-input{
+    width: 100%;
+    background-color: #F8EBFF;
+}
+.form-wrap{
+    background-color: white;
+    margin: auto;
+    padding: 10px;
+    margin-top: 100px;
+    box-shadow: 0px 10px 26px 0px rgba(0,0,0,0.58);
+    -webkit-box-shadow: 0px 10px 26px 0px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 10px 26px 0px rgba(0,0,0,0.58);
+    /* border: 2px solid; */
+}
+.submit-form{
+    width: 40%;
+    border: 1px solid;
+    padding: 8px 13px;
+    color: green;
+    background-color: white;
+    border-radius: 4px; 
+}
+.submit-form:hover{
+    color: white;
+    background-color: green;
+    border-color: green;
+}
+a{
+    text-decoration: none;
 }
