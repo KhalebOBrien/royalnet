@@ -17,12 +17,14 @@
             
             <h4 class="pt-3">Sign in to Royal Network</h4>
             <hr>
+            <form action="" method="post">
+                <input type="text" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Enter e-mail or password">
+                <input type="password" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Password"> 
+                <a href="forgot-password">Forgot password?</a> <br>
 
-            <input type="text" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Enter e-mail or password">
-            <input type="password" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Password"> 
-            <a href="forgot-password">Forgot password?</a> <br>
-
-            <button class="submit-form mt-4 mb-2">Sign In</button> <br>
+                <button class="submit-form mt-4 mb-2">Sign In</button>
+            </form>
+            <br>
             <a href="register">Create a new account?</a>
         </div>
 

@@ -22,3 +22,5 @@ class Authenticate extends DatabaseConnetion {
 		return $this->authenticated;
 	}
 }
+
+?>

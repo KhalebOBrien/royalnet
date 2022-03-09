@@ -1,3 +1,10 @@
+<?php
+    require_once './app/Controllers/AuthController.php';
+
+    $auth = new AuthController();
+    $auth->register($_POST);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +36,7 @@
 
                 <p class="mt-1" style="font-size: 12px;">By signing up you agree to our <a href="privacy-policy"> Privacy Policy</a></p>
 
-                <button class="submit-form mt-4 mb-2">Sign Up</button>
+                <button name="btnRegister" class="submit-form mt-4 mb-2">Sign Up</button>
             </form> <br>
             <a href="login">Already have an account?</a>
         </div>
