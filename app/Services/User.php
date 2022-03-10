@@ -122,6 +122,34 @@ class User extends DatabaseConnetion
     }
 
     /**
+     * This function is used to find a user by referral code
+     * @param  string $email
+     * @return $user
+     */
+    public function getUserByRefferalCode($code)
+    {
+        $sql = "SELECT * FROM users WHERE referral_code = '".$code."'";
+        $q = $this->dbconn->query($sql);
+        $user = $q->fetch(\PDO::FETCH_ASSOC);
+
+        return $user;
+    }
+
+    /**
+     * This function is used to find a users referrals
+     * @param  string $code
+     * @return array $users
+     */
+    public function getUsersRefferals($code)
+    {
+        $sql = "SELECT * FROM users WHERE referrers_code = '".$code."'";
+        $q = $this->dbconn->query($sql);
+        $users = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $users;
+    }
+
+    /**
      * This function is used to reset a users password
      * @param  array $account
      * @param  array $data
