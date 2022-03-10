@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    require_once './app/Services/Helpers.php';
+    if (!isset($_SESSION['CSRF'])) {
+        $_SESSION['CSRF'] = Helpers::generateRandomToken();
+    }
+
+    require_once './app/Controllers/AuthController.php';
+
+    $auth = new AuthController();
+    $auth->passwordResetTokenRequest($_POST);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +33,10 @@
             <hr>
             
             <form action="" method="post">
-                <input type="email" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Enter e-mail">
+                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                <input type="email" name="txtEmail" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Email">
 
-                <button class="submit-form mt-4 mb-2">Send Reset Link</button>
+                <button name="btnSendResetToken" class="submit-form mt-4 mb-2">Send Reset Link</button>
             </form>
             
             <br>

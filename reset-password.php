@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    require_once './app/Services/Helpers.php';
+    if (!isset($_SESSION['CSRF'])) {
+        $_SESSION['CSRF'] = Helpers::generateRandomToken();
+    }
+
+    require_once './app/Controllers/AuthController.php';
+
+    $auth = new AuthController();
+    $auth->passwordReset($_REQUEST);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +32,12 @@
             <h4 class="pt-3">Reset password</h4>
             <hr>
             <form action="" method="post">
-                <input type="password" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Enter new password">
-                <input type="password" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Re-enter new password">
+                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                <input type="text" name="txtEmail" class="form-control mt-2 form-input" disabled value="<?= $_GET['email'] ?>">
+                <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Enter new password">
+                <input type="password" name="txtConfirmPassword" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Re-enter new password">
 
-                <button class="submit-form mt-4 mb-2">Reset password</button>
+                <button name="btnResetPassword" class="submit-form mt-4 mb-2">Reset password</button>
             </form>
             <br>
         </div>

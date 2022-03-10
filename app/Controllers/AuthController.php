@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\User;
+use App\Services\Helpers;
 
 require_once 'app/Services/Helpers.php';
 require_once 'app/Services/User.php';
@@ -21,17 +22,15 @@ class AuthController
 	public function register($data)
 	{
 		if(isset($data['btnRegister'])){
-			if ($_SESSION['CSRF'] !== $data['csrfToken']) {
-				session_unset();
-				session_destroy();
-				header('Location: 419');
-			}
+			$this->validateSession($data['csrfToken']);
 
 			$data['referral_code'] = Helpers::randomString(8);
 			$data['txtPassword'] = password_hash($data['txtPassword'], PASSWORD_DEFAULT);
 
 			if ($this->user->create($data)) {
-				header('Location: login');
+				// send email
+
+				$_SESSION['success'] = 'You have successfully registered. Please check your email to activate your account.';
 			}
 		}
 
@@ -46,21 +45,67 @@ class AuthController
 	public function login($data)
 	{
 		if(isset($data['btnLogin'])){
-			var_dump($data);
-			exit;
+			$this->validateSession($data['csrfToken']);
+
 			if($this->user->authenticate($data['txtEmail'], $data['txtPassword'])){
 				echo "welcome";
 				exit;
 
-				header('Location: login');
+				header('Location: dashboard');
 			}
 			else {
-				echo "get away";
+				echo "invalid username or password";
 				exit;
 			}
 		}
 		
 		return null;
+	}
+
+	public function passwordResetTokenRequest($data)
+	{
+		if(isset($_POST['btnSendResetToken'])){
+			$this->validateSession($data['csrfToken']);
+
+			if($this->user->sendPasswordResetToken($data['txtEmail'])){
+				header('Location: password-reset-link-sent');
+			}
+		}
+
+		return null;
+	}
+
+	public function passwordReset($data)
+	{
+		// retrieve user data
+		$user = $this->user->getUserByEmail($data['email']);
+		if (empty($user) && $user['pwd_reset_token'] !== $data['token']) {
+			header('Location: password-reset-link-expired');
+		}
+
+		if(isset($_POST['btnResetPassword'])){
+			$this->validateSession($data['csrfToken']);
+
+			$data['txtPassword'] = password_hash($data['txtPassword'], PASSWORD_DEFAULT);
+
+			if($this->user->resetPassword($user, $data)){
+				header('Location: login');
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * This function is used to validate user session token
+	 */
+	private function validateSession($token)
+	{
+		if ($_SESSION['CSRF'] !== $token) {
+			session_unset();
+			session_destroy();
+			header('Location: 419');
+		}
 	}
 }
 

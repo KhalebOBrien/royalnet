@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    require_once './app/Services/Helpers.php';
+    if (!isset($_SESSION['CSRF'])) {
+        $_SESSION['CSRF'] = Helpers::generateRandomToken();
+    }
+
+    require_once './app/Controllers/AuthController.php';
+
+    $auth = new AuthController();
+    $auth->login($_POST);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +30,13 @@
             
             <h4 class="pt-3">Sign in to Royal Network</h4>
             <hr>
-            <form action="" method="post">
-                <input type="text" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Enter e-mail or password">
-                <input type="password" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Password"> 
+            <form action="" method="post" name="login-form">
+                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                <input type="text" name="txtEmail" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Email">
+                <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Password"> 
                 <a href="forgot-password">Forgot password?</a> <br>
 
-                <button class="submit-form mt-4 mb-2">Sign In</button>
+                <button name="btnLogin" class="submit-form mt-4 mb-2">Sign In</button>
             </form>
             <br>
             <a href="register">Create a new account?</a>

@@ -15,7 +15,7 @@ CREATE TABLE `users` (
     `is_suspended` tinyint(1) NULL DEFAULT 0,
     `email` varchar(255) NOT NULL,
     `password` varchar(255) NOT NULL,
-    `pwd_rest_token` varchar(255) NULL,
+    `pwd_reset_token` varchar(255) NULL,
     `token_created_at` datetime NULL DEFAULT NULL,
     `created_at` datetime NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
