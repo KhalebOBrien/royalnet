@@ -7,7 +7,7 @@ Class DatabaseConnetion {
 	public function __Construct()
 	{
 		// local
-	    $dbhost = "royalnet";
+	    $dbhost = "localhost";
 	    $dbname = "royalnet";
 	    $dbuser = "root";
 	    $dbpass = "";
@@ -18,10 +18,10 @@ Class DatabaseConnetion {
 	    // $dbpass = "";
 		
 		try {
-			$this->dbconn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
-		    $this->dbconn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$this->dbconn = new \PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+		    $this->dbconn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		}
-		catch(PDOException $e)
+		catch(\PDOException $e)
 		{
 			echo "Invalid Credentials ".$e->getMessage();
 			$e_msg = 'e';

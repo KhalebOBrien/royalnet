@@ -1,4 +1,10 @@
 <?php
+    session_start();
+    require_once './app/Services/Helpers.php';
+    if (!isset($_SESSION['CSRF'])) {
+        $_SESSION['CSRF'] = Helpers::generateRandomToken();
+    }
+
     require_once './app/Controllers/AuthController.php';
 
     $auth = new AuthController();
@@ -26,7 +32,8 @@
             <p style="color: gray;">It's fast and easy</p>
             <hr>
             <form action="" method="post" name="register-form">
-                <input type="hidden" name="csrfToken" value="">
+                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                <input type="hidden" name="referrers_code" value="<?= isset($_GET['r'])?$_GET['r']:'' ?>">
                 <input type="text" name="txtSurname" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Surname">
                 <input type="text" name="txtOtherNames" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Other names">
                 <input type="email" name="txtEmail" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="E-mail">
