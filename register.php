@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once './app/Services/Helpers.php';
+    use App\Services\Helpers;
     if (!isset($_SESSION['CSRF'])) {
         $_SESSION['CSRF'] = Helpers::generateRandomToken();
     }
@@ -21,13 +22,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="icon" href="/images/logo.png">
     <link rel="stylesheet" href="css/style.css">
-    <title>Sign Up - Royal Network</title>
+    <title>Sign Up - <?php Helpers::APPLICATION_NAME ?></title>
 </head>
 <body class="sign-body">
 
     <div class="container">
         <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-6">
-            <h2>Royal Network</h2>
+            <h2><?php Helpers::APPLICATION_NAME ?></h2>
             <h4>Sign up to get started</h4>
             <p style="color: gray;">It's fast and easy</p>
             <hr>
@@ -49,7 +50,7 @@
         </div>
 
         <footer>
-            <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> Royal Network </div>
+            <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> <?php Helpers::APPLICATION_NAME ?> </div>
         </footer>
 
     </div>

@@ -19,7 +19,7 @@
         </div>
 
         <footer>
-            <div class="text-center mt-5" id="cpright">© <span id="copyrightYear">2022</span> Royal Network </div>
+            <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> Royal Network </div>
         </footer>
 
 

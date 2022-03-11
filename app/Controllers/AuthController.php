@@ -48,9 +48,6 @@ class AuthController
 			$this->validateSession($data['csrfToken']);
 
 			if($this->user->authenticate($data['txtEmail'], $data['txtPassword'])){
-				echo "welcome";
-				exit;
-
 				header('Location: dashboard');
 			}
 			else {
