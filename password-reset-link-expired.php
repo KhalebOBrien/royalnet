@@ -8,21 +8,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="icon" href="/images/logo.png">
     <link rel="stylesheet" href="css/style.css">
-    <title>Reset Password - Royal Network</title>
+    <title>Reset Link Expired - Royal Network</title>
 </head>
 <body>
     
     <div class="container">
 
         <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-6">
-            
-            <h4 class="pt-3">Reset password</h4>
-            <hr>
-
-            <input type="password" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Enter new password">
-            <input type="password" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Re-enter new password">
-
-            <a href="password-reset-link-sent.html"><button class="submit-form mt-4 mb-2">Reset password</button></a> <br>
+            <p>This link has expired and has therefore seized to exist. Request for another.</p>
         </div>
 
         <footer>
@@ -31,6 +24,7 @@
 
 
     </div>
+ 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
