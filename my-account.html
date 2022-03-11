@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>My Account - Royal Network</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="icon" href="/images/logo.png">
+    <link href="css/dashboard-temp.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/user-dashboard.css">
+
+</head>
+
+<body id="page-top">
+
+    <div id="wrapper">
+
+        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Navigation</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+
+            <hr class="sidebar-divider">
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="user-dashboard.html" >
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="task.html" >
+                    <span>Tasks</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="withdraw.html">
+                    <span>Withdraw</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Profile
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="my-account.html">
+                    <span>My Account</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <span>Logout</span></a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+          
+        </ul>
+        <!-- End of Sidebar -->
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="bi bi-list text-success"></i> 
+                        
+                    </button>
+                    <span class="brand-name">Royal Net</span>
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <div class="navbar-wrapper">
+                            <nav class="navbar ">
+                              <ul class="nav justify-content-end">
+                                  <li class="nav-item"> 
+                                    <div class="btn-group dropdown">
+                                      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span><i>User name</i></span>
+                                        <i class="bi bi-person" style="width: 500px;"></i>
+                                      </button>
+                                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">My Account</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">Log Out</a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                              </ul>
+                          </nav>
+                        </div>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">My Account</h1>
+                </div>
+
+                
+                <div class="card border-left-warning shadow mb-3">
+                    <span class="referral-link">Referral link: <span>link goes here</span></span>
+                </div>
+
+                <!-- Profile info -->
+                <div class="row justify-content-around">
+                    <div class="card col-lg-4 col-12 mt-2">
+                        <div class="card-body  profile">
+                        <h5 class="card-title mb-4"><span>Users Full Name</span></h5>
+                        <h6 class="card-text">
+                            <i class="bi bi-envelope"></i>
+                            E-mail   
+                            <span class="text-muted float-end">users E-mail</span>
+                        </h6>
+
+                        <h6 class="card-text">
+                            <i class="bi bi-phone"></i>
+                            Phone   
+                            <span class="text-muted float-end">users phone number</span>
+                        </h6>
+
+                        <div class="row mt-4">
+                            <p class="card-text col-6">
+                                <strike>N</strike> <span>0</span> <br>
+                                Total Earnings
+                            </p>
+                            <p class="card-text col-6"><span>0</span> <br>
+                            Referrals
+                            </p>
+                        </div>
+
+                        <hr>
+                        <div class="d-grid gap-2">
+                            <button class="btn bg-gray-600" type="button"><a href="change-password.html" class="card-link change-password"><i class="bi bi-lock"></i> Change Password</a></button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Set up account -->
+                    <div class="card shadow mb-4 col-lg-7 col-12 mt-2">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Set up account</h6>
+                        </div>
+                        <div class="card-body">
+                          <h6><strong> Account Details</strong></h6>
+                          <form action="">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Select bank</option>
+                                <option value="access">Access Bank</option>
+                                <option value="citibank">Citibank</option>
+                                <option value="diamond">Diamond Bank</option>
+                                <option value="ecobank">Ecobank</option>
+                                <option value="fidelity">Fidelity Bank</option>
+                                <option value="firstbank">First Bank</option>
+                                <option value="fcmb">First City Monument Bank (FCMB)</option>
+                                <option value="gtb">Guaranty Trust Bank (GTB)</option>
+                                <option value="heritage">Heritage Bank</option>
+                                <option value="keystone">Keystone Bank</option>
+                                <option value="polaris">Polaris Bank</option>
+                                <option value="providus">Providus Bank</option>
+                                <option value="stanbic">Stanbic IBTC Bank</option>
+                                <option value="standard">Standard Chartered Bank</option>
+                                <option value="sterling">Sterling Bank</option>
+                                <option value="suntrust">Suntrust Bank</option>
+                                <option value="union">Union Bank</option>
+                                <option value="uba">United Bank for Africa (UBA)</option>
+                                <option value="unity">Unity Bank</option>
+                                <option value="wema">Wema Bank</option>
+                                <option value="zenith">Zenith Bank</option>
+                              </select>
+                              <input type="number" class="form-control mt-3" placeholder="Account number">
+                              <input type="text" class="form-control mt-3" placeholder="Account name">
+
+                              
+                            <h6 class="mt-4"><strong> Socoal Media Links</strong></h6>
+                            Enter the link of your social media where you will be posting your tasks.
+                            <div class="mb-3 mt-3"> 
+                                <div class="input-group mb-3">
+                                  <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-facebook text-light"></i></span>
+                                  <input type="text" class="form-control" placeholder="https://m.facebook.com/username" aria-describedby="basic-addon1">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-twitter text-light"></i></span>
+                                    <input type="text" class="form-control" placeholder="https://twitter.com/username"aria-describedby="basic-addon1">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-danger" id="basic-addon1"><i class="bi bi-instagram text-light"></i></span>
+                                    <input type="text" class="form-control" placeholder="https://instagram.com/username" aria-describedby="basic-addon1">
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-danger" id="basic-addon1"><i class="bi bi-youtube text-light"></i></span>
+                                    <input type="text" class="form-control" placeholder="https://youtube.com/username" aria-describedby="basic-addon1">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-success float-end">Update</button>
+                            </div>
+                          </form>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- delete account section -->
+                <div class="card shadow mt-3 mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-danger">Delete Account</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <i class="bi bi-exclamation-triangle col-1"></i> 
+                            <div class="col-11">
+                                By deleting your account, you will loose every data. This action is irreversible.
+                            </div>
+                        </div>
+
+                        <form action="">
+                            <input type="password" class="form-control mt-3" placeholder="Enter password">
+                            <button type="submit" class="btn btn-danger mt-3 float-end">Delete account</button>
+                        </form>
+
+                        </div>
+                  </div>
+                    </div>
+                </div> 
+
+                    <!--Logout Modal -->
+                    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to leave?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Select "Logout" below if you are ready to end your current session.
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">
+                              <a href="sign-in.html" class="log-out-modal"> Logout</a>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="js/dashboard-temp.js"></script>
+
+
+</body>
+
+</html>

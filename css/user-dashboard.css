@@ -1,0 +1,19 @@
+.log-out-modal{
+    text-decoration: none;
+    color: white;
+}
+.log-out-modal:hover{
+    text-decoration: none;
+}
+.referral-link{
+    padding: 3px 0px 3px 5px;
+}
+.profile{
+    color: black;
+}
+.change-password{
+    color: white;
+}
+.change-password:hover{
+    color: white;
+}
