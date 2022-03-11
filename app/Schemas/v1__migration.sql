@@ -22,3 +22,8 @@ CREATE TABLE `users` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE `users` 
+    ADD `fb_link` VARCHAR(255) NULL DEFAULT NULL AFTER `token_created_at`, 
+    ADD `ig_link` VARCHAR(255) NULL DEFAULT NULL AFTER `fb_link`, 
+    ADD `tw_link` VARCHAR(255) NULL DEFAULT NULL AFTER `ig_link`, 
+    ADD `yt_link` VARCHAR(255) NULL DEFAULT NULL AFTER `tw_link`;

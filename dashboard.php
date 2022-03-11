@@ -27,11 +27,12 @@
 
 <body id="page-top">
     <div id="wrapper">
+
         <?php include_once './partials/__dashboard-sidenav.php' ?>
 
         <div id="content-wrapper" class="d-flex flex-column">
-
             <div id="content">
+
                 <?php include_once './partials/__dashboard-topnav.php' ?>
 
                 <div class="container-fluid">
@@ -101,9 +102,9 @@
                         </div>
                     </div>
                 </div>
-
-                <?php include_once './partials/__logout-modal.php' ?>
             </div>
+            
+            <?php include_once './partials/__logout-modal.php' ?>
         </div>
     </div>
 

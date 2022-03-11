@@ -38,7 +38,7 @@ use App\Services\Helpers;
     </div>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="my-account.html">
+        <a class="nav-link collapsed" href="my-account">
             <span>My Account</span>
         </a>
     </li>

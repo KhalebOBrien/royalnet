@@ -16,13 +16,13 @@
                                 <i class="bi bi-person" style="width: 500px;"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="my-account.html">My Account</a></li>
+                                <li><a class="dropdown-item" href="my-account">My Account</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
                             </ul>
                         </div>
                     </li>
-                </ul>
+                </ul>   
             </nav>
         </div>
     </ul>
