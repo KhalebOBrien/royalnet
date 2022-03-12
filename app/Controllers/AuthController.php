@@ -39,7 +39,7 @@ class AuthController
 
 	/**
 	 * This function is used to login users
-	 * @param  array $data
+	 * @param array $data
 	 * @return boolean
 	 */
 	public function login($data)
@@ -59,6 +59,11 @@ class AuthController
 		return null;
 	}
 
+	/**
+	 * This function is used to request for password reset token
+	 * @param array $data
+	 * @return boolean
+	 */
 	public function passwordResetTokenRequest($data)
 	{
 		if(isset($_POST['btnSendResetToken'])){
@@ -72,6 +77,12 @@ class AuthController
 		return null;
 	}
 
+	/**
+	 * This function is used to reset users 
+	 * password after the request link have been verified
+	 * @param array $data
+	 * @return boolean
+	 */
 	public function passwordReset($data)
 	{
 		// retrieve user data
@@ -94,7 +105,30 @@ class AuthController
 	}
 
 	/**
+	 * This function is used to change a logged in users password
+	 * @param array $data
+	 * @return boolean
+	 */
+	public function changePassword($data)
+	{
+		if(isset($_POST['btnChangePassword'])){
+			$this->validateSession($data['csrfToken']);
+
+			$data['txtPassword'] = password_hash($data['txtNewPassword'], PASSWORD_DEFAULT);
+
+			if(($data['txtNewPassword'] === $data['txtConfirmNewPassword']) && password_verify($data['txtOldPassword'], $_SESSION['user']['password'])){
+				if($this->user->resetPassword($_SESSION['user'], $data)){
+					header('Location: dashboard');
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * This function is used to validate user session token
+	 * @param string $token
 	 */
 	private function validateSession($token)
 	{

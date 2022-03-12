@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="icon" href="/images/logo.png">
     <link rel="stylesheet" href="css/style.css">
-    <title>Forgotten Password - <?php Helpers::APPLICATION_NAME ?></title>
+    <title>Forgotten Password - <?= Helpers::APPLICATION_NAME ?></title>
 </head>
 <body>
     
@@ -45,7 +45,7 @@
         </div>
 
         <footer>
-            <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> <?php Helpers::APPLICATION_NAME ?> </div>
+            <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> <?= Helpers::APPLICATION_NAME ?> </div>
         </footer>
 
 
