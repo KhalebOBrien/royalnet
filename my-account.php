@@ -6,6 +6,11 @@
     if (!isset($_SESSION['user'])) {
         header('location: login');
     }
+    
+    require_once './app/Controllers/PackageController.php';
+
+    $package = new PackageController();
+    $userPackage = $package->getPackage($_SESSION['user']['package']);
 ?>
 
 <!DOCTYPE html>
@@ -60,8 +65,9 @@
                                 <h6 class="card-text">
                                     <i class="bi bi-briefcase"></i>
                                     Package   
-                                    <span class="text-muted float-end"><?= $_SESSION['user']['package'] ?></span>
+                                    <span class="text-muted float-end"><?= $userPackage['name'] ?></span>
                                 </h6>
+                                <hr>
                                 <div class="row mt-4">
                                     <p class="card-text col-6">
                                         <strike>N</strike> <span>0</span> <br>

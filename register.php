@@ -7,9 +7,13 @@
     }
 
     require_once './app/Controllers/AuthController.php';
+    require_once './app/Controllers/PackageController.php';
 
     $auth = new AuthController();
     $auth->register($_POST);
+
+    $package = new PackageController();
+    $packages = $package->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -39,16 +43,15 @@
                 <input type="text" name="txtOtherNames" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Other names">
                 <select name="slPackage" class="form-control mt-2 form-select" required>
                     <option selected disabled>Select a Package</option>
-                    <option value="Member - N3,000">Member - N3,000</option>
-                    <option value="Agent - N5,000">Agent - N5,000</option>
-                    <option value="VIP 1 - N10,000">VIP 1 - N10,000</option>
-                    <option value="VIP 2 - N25,000">VIP 2 - N25,000</option>
-                    <option value="VIP 3 - N60,000">VIP 3 - N60,000</option>
-                    <option value="Deputy Manager - N150,000">Deputy Manager - N150,000</option>
-                    <option value="Manager - N250,000">Manager - N250,000</option>
-                    <option value="Assistant Director - N500,000">Assistant Director - N500,000</option>
-                    <option value="Director - N1,000,000">Director - N1,000,000</option>
-                    <option value="Shareholder - N2,000,000">Shareholder - N2,000,000</option>
+                    <?php
+                        if (!empty($packages)) :
+                            foreach ($packages as $pac) :
+                    ?>
+                    <option value="<?= $pac['id'] ?>"><?= $pac['name'] ?></option>
+                    <?php
+                            endforeach;
+                        endif;
+                    ?>
                 </select>
                 <input type="email" name="txtEmail" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="E-mail">
                 <input type="number" name="txtPhone" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Phone number">
