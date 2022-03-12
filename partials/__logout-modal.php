@@ -11,9 +11,7 @@
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">
-            <a href="logout" class="log-out-modal"> Logout</a>
-        </button>
+        <a href="logout" class="btn btn-primary log-out-modal"> Logout</a>
         </div>
     </div>
     </div>

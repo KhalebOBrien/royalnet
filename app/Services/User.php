@@ -47,12 +47,13 @@ class User extends DatabaseConnetion
     public function create($data)
     {
 		try {
-            $sql = "INSERT INTO users (surname, other_names, phone, referral_code, referrers_code, email, password, created_at, updated_at) VALUES (:surname, :otherNames, :phone, :referral_code,:referrers_code, :email, :password, NOW(), NOW())";
+            $sql = "INSERT INTO users (surname, other_names, phone, package, referral_code, referrers_code, email, password, created_at, updated_at) VALUES (:surname, :otherNames, :phone, :package, :referral_code,:referrers_code, :email, :password, NOW(), NOW())";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
                 ':surname' => $data['txtSurname'],
                 ':otherNames' => $data['txtOtherNames'],
                 ':phone' => $data['txtPhone'],
+                ':package' => $data['slPackage'],
                 ':referral_code' => $data['referral_code'],
                 ':referrers_code' => $data['referrers_code'],
                 ':email' => $data['txtEmail'],

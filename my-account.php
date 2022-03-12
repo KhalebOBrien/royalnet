@@ -52,11 +52,15 @@
                                     E-mail   
                                     <span class="text-muted float-end"><?= $_SESSION['user']['email'] ?></span>
                                 </h6>
-
                                 <h6 class="card-text">
                                     <i class="bi bi-phone"></i>
                                     Phone   
                                     <span class="text-muted float-end"><?= $_SESSION['user']['phone'] ?></span>
+                                </h6>
+                                <h6 class="card-text">
+                                    <i class="bi bi-briefcase"></i>
+                                    Package   
+                                    <span class="text-muted float-end"><?= $_SESSION['user']['package'] ?></span>
                                 </h6>
                                 <div class="row mt-4">
                                     <p class="card-text col-6">
