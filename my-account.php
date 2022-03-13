@@ -8,9 +8,14 @@
     }
     
     require_once './app/Controllers/PackageController.php';
+    require_once './app/Controllers/BankController.php';
 
     $package = new PackageController();
     $userPackage = $package->getPackage($_SESSION['user']['package']);
+
+    $bank = new BankController();
+    $banks = $bank->getAll();
+    $userBank = $bank->getBank($_SESSION['user']['bank']);
 ?>
 
 <!DOCTYPE html>
@@ -95,39 +100,22 @@
                                 <form action="" method="POST">
                                     <select class="form-select" name="slBank" aria-label="Default select example">
                                         <option selected disabled>Select bank</option>
-                                        <option value="access">Access Bank</option>
-                                        <option value="access diamond">Access Bank (Diamond)</option>
-                                        <option value="citi">Citibank</option>
-                                        <option value="ecobank">Ecobank</option>
-                                        <option value="fidelity">Fidelity Bank</option>
-                                        <option value="first">First Bank</option>
-                                        <option value="fcmb">First City Monument Bank (FCMB)</option>
-                                        <option value="gtb">Guaranty Trust Bank (GTB)</option>
-                                        <option value="heritage">Heritage Bank</option>
-                                        <option value="jaiz">Jaiz Bank</option>
-                                        <option value="keystone">Keystone Bank</option>
-                                        <option value="kuda">Kuda Bank</option>
-                                        <option value="parallex">Parallex Bank</option>
-                                        <option value="polaris">Polaris Bank</option>
-                                        <option value="providus">Providus Bank</option>
-                                        <option value="skye">Skye Bank</option>
-                                        <option value="stanbic">Stanbic IBTC Bank</option>
-                                        <option value="standard">Standard Chartered Bank</option>
-                                        <option value="sterling">Sterling Bank</option>
-                                        <option value="suntrust">Suntrust Bank</option>
-                                        <option value="titan trust"> Titan Trust Bank</option>
-                                        <option value="union">Union Bank</option>
-                                        <option value="uba">United Bank for Africa (UBA)</option>
-                                        <option value="unity">Unity Bank</option>
-                                        <option value="wema">Wema Bank</option>
-                                        <option value="zenith">Zenith Bank</option>
+                                        <?php
+                                            if (!empty($banks)) :
+                                                foreach ($banks as $b) :
+                                        ?>
+                                        <option value="<?=$b['id']?>" <?= (isset($userBank['id']) && $b['id']==$userBank['id']) ? 'selected' : '' ?>><?=$b['name']?></option>
+                                        <?php
+                                                endforeach;
+                                            endif;
+                                        ?>
                                     </select>
-                                    <input type="number" name="acctNumber" class="form-control mt-3" placeholder="Account number">
-                                    <input type="text" name="acctName" class="form-control mt-3" placeholder="Account name">
+                                    <input type="number" name="txtAcctNumber" class="form-control mt-3" placeholder="Account number" value="<?= $_SESSION['user']['acct_number'] ?>" >
+                                    <input type="text" name="txtAcctName" class="form-control mt-3" placeholder="Account name" value="<?= $_SESSION['user']['acct_name'] ?>" >
                                 
                                     <h6 class="mt-4"><strong> Socoal Media Links</strong></h6>
                                     Enter the link of your social media where you will be posting your tasks.
-                                    <div class="mb-3 mt-3"> 
+                                    <div class="mb-3 mt-3">
                                         <div class="input-group mb-3">
                                         <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-facebook text-light"></i></span>
                                         <input type="text" name="fb_link" class="form-control" placeholder="https://m.facebook.com/username" value="<?= $_SESSION['user']['fb_link'] ?>" aria-describedby="basic-addon1">

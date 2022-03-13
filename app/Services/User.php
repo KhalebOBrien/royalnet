@@ -41,7 +41,7 @@ class User extends DatabaseConnetion
 
     /**
      * This function is used to create new users
-     * @param  array $data
+     * @param array $data
      * @return int
      */
     public function create($data)
