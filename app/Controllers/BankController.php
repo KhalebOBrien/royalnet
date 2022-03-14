@@ -34,14 +34,30 @@ class BankController
 		return false;
     }
 
+	/**
+	 * This function is used to create banks
+	 */
 	public function createBank($data)
 	{
-		if(isset($data['btnRegister'])){
+		if(isset($data['btnAddBank'])){
 			$this->validateSession($data['csrfToken']);
 
 			if ($this->bank->addBank($data)) {
 				return true;
 			}
+		}
+	}
+
+	/**
+	 * This function is used to validate user session token
+	 * @param string $token
+	 */
+	private function validateSession($token)
+	{
+		if ($_SESSION['CSRF'] !== $token) {
+			session_unset();
+			session_destroy();
+			header('Location: 419');
 		}
 	}
 }

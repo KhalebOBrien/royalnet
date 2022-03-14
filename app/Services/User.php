@@ -174,7 +174,56 @@ class User extends DatabaseConnetion
             echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
             exit();
         }
+    }
 
+    public function updateProfile($account, $data)
+    {
+        try {
+            $sql = "UPDATE users SET bank = :bank, acct_number = :acct_number, acct_name = :acct_name, fb_link = :fb_link, ig_link = :ig_link, tw_link = :tw_link, yt_link = :yt_link, updated_at = NOW() WHERE id = :id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':bank' => $data['slBank'],
+                ':acct_number' => $data['txtAcctNumber'],
+                ':acct_name' => $data['txtAcctName'],
+                ':fb_link' => $data['txtFbLink'],
+                ':ig_link' => $data['txtIgLink'],
+                ':tw_link' => $data['txtTwLink'],
+                ':yt_link' => $data['txtYtLink'],
+                ':id' => $account['id']
+            ]);
+
+            $_SESSION['user'] = $this->getUserByEmail($account['email']);
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
+
+    /**
+     * This function is used to delete a user
+     * @param  array $account
+     * @param  boolean
+     */
+    public function deleteProfile($account)
+    {
+        try {
+            $sql = "DELETE FROM users WHERE id = :id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':id' => $account['id']
+            ]);
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
     }
 	
 }

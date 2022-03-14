@@ -6,9 +6,14 @@
     if (!isset($_SESSION['user'])) {
         header('location: login');
     }
+
+    if (!isset($_SESSION['CSRF'])) {
+        $_SESSION['CSRF'] = Helpers::generateRandomToken();
+    }
     
     require_once './app/Controllers/PackageController.php';
     require_once './app/Controllers/BankController.php';
+    require_once './app/Controllers/UserController.php';
 
     $package = new PackageController();
     $userPackage = $package->getPackage($_SESSION['user']['package']);
@@ -16,6 +21,10 @@
     $bank = new BankController();
     $banks = $bank->getAll();
     $userBank = $bank->getBank($_SESSION['user']['bank']);
+
+    $u = new UserController();
+    $u->updateAccount($_SESSION['user'], $_REQUEST);
+    $u->deleteAccount($_REQUEST);
 ?>
 
 <!DOCTYPE html>
@@ -98,6 +107,7 @@
                             <div class="card-body">
                                 <h6><strong> Account Details</strong></h6>
                                 <form action="" method="POST">
+                                    <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
                                     <select class="form-select" name="slBank" aria-label="Default select example">
                                         <option selected disabled>Select bank</option>
                                         <?php
@@ -118,25 +128,25 @@
                                     <div class="mb-3 mt-3">
                                         <div class="input-group mb-3">
                                         <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-facebook text-light"></i></span>
-                                        <input type="text" name="fb_link" class="form-control" placeholder="https://m.facebook.com/username" value="<?= $_SESSION['user']['fb_link'] ?>" aria-describedby="basic-addon1">
+                                        <input type="url" name="txtFbLink" class="form-control" placeholder="https://m.facebook.com/username" value="<?= $_SESSION['user']['fb_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
 
                                         <div class="input-group mb-3">
                                             <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-twitter text-light"></i></span>
-                                            <input type="text" name="tw_link" class="form-control" placeholder="https://twitter.com/username" value="<?= $_SESSION['user']['tw_link'] ?>" aria-describedby="basic-addon1">
+                                            <input type="url" name="txtTwLink" class="form-control" placeholder="https://twitter.com/username" value="<?= $_SESSION['user']['tw_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
 
                                         <div class="input-group mb-3">
                                             <span class="input-group-text bg-danger" id="basic-addon1"><i class="bi bi-instagram text-light"></i></span>
-                                            <input type="text" name="ig_link" class="form-control" placeholder="https://instagram.com/username" value="<?= $_SESSION['user']['ig_link'] ?>" aria-describedby="basic-addon1">
+                                            <input type="url" name="txtIgLink" class="form-control" placeholder="https://instagram.com/username" value="<?= $_SESSION['user']['ig_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
                                         
                                         <div class="input-group mb-3">
                                             <span class="input-group-text bg-danger" id="basic-addon1"><i class="bi bi-youtube text-light"></i></span>
-                                            <input type="text" name="yt_link" class="form-control" placeholder="https://youtube.com/username" value="<?= $_SESSION['user']['yt_link'] ?>" aria-describedby="basic-addon1">
+                                            <input type="url" name="txtYtLink" class="form-control" placeholder="https://youtube.com/username" value="<?= $_SESSION['user']['yt_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-success float-end">Update</button>
+                                        <button type="submit" name="btnUpdateAccount" class="btn btn-success float-end">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -156,9 +166,10 @@
                                 </div>
                             </div>
 
-                            <form action="">
-                                <input type="password" class="form-control mt-3" placeholder="Enter password">
-                                <button type="submit" class="btn btn-danger mt-3 float-end">Delete account</button>
+                            <form action="" method="POST">
+                                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                                <input type="password" name="txtPassword" class="form-control mt-3" placeholder="Enter password">
+                                <button type="submit" name="btnDeleteAccount" class="btn btn-danger mt-3 float-end">Delete account</button>
                             </form>
                         </div>
                     </div>
