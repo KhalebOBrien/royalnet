@@ -79,3 +79,9 @@
 a{
     text-decoration: none;
 }
+.nav-info{
+    font-size: 15px;
+}
+.text-reset:hover{
+    color: green !important;
+}

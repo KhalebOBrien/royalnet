@@ -15,8 +15,27 @@
     <div class="container-fluod">
 
         <marquee width="100%" scrollamount="5" class="bg-info">
-            Do you want us to influence or advertise your brand, business or promote your contents? Each Slot is 20,000. Contact our Customer Care Rep: 1234567890
+            Do you want us to influence or advertise your brand, business or promote your contents? Each Slot is 20,000. Contact our Customer Care Rep: +234 703 349 9876
         </marquee>
+
+        <div class="row justify-content-end nav-info">
+          <span class="col-5 d-flex justify-content-center border-end justify-content-center">
+            <p class=	"d-none d-sm-block">
+               Contact our customer care  
+               <i class="bi bi-telephone"></i>
+                +234 703 349 9876
+            </p> 
+          
+          </span>
+          <span class="col-4 d-flex justify-content-center justify-content-center">
+            <p>
+                Whatsapp us here 
+                <a href="https://wa.me/2347033499876" target="_blank"  style="text-decoration: none; color: green;">
+                <i class="bi bi-whatsapp"></i>  
+              </a>
+            </p>
+          </span>
+        </div>
 
           <nav class="navbar">
             <div class="container">
@@ -37,7 +56,7 @@
             <div class="hero">
                 <div class="hero-text">
                     <h1>Earn from performing online task</h1>
-                    <p>And I'm a Photographer</p>
+                    <p>Our Earn Daily platform gives you the opportunity to perform simple tasks while you earn from the comfort of your home.</p>
                     <a href="register"><button type="button" class="btn get-started">Get started</button></a>
                 </div>
             </div>
@@ -92,6 +111,72 @@
           </div>
         </div>
         
+
+
+        <!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted ">
+  
+  <section class="">
+    <div class="container text-center text-md-start mt-5 pt-4">
+     
+      <div class="row mt-3">
+        
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+       
+          <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
+            Royal Network
+          </h6>
+          <p class="d-flex justify-content-center">
+          Our Earn Daily platform gives you the opportunity to perform simple tasks while you earn from the comfort of your home.
+          </p>
+        </div>
+     
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          
+          <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
+            Useful links
+          </h6>
+          <p class="d-flex justify-content-center">
+            <a href="register.php" class="text-reset footer-link">Sign Up</a>
+          </p>
+          <p class="d-flex justify-content-center">
+            <a href="login.php" class="text-reset footer-link">Sign In</a>
+          </p>
+        </div>
+
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
+         
+          <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
+            Contact out customer care
+          </h6>
+          <!-- company's email -->
+          <p class="d-flex justify-content-center">
+            <i class="fas fa-envelope me-3"></i>
+            website@email
+          </p>
+          <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 703 349 9876</p>
+          <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 703 349 9876</p>
+          <div class="d-flex justify-content-center mb-3">
+              <a href="https://wa.me/2347033499876" target="_blank"  style="text-decoration: none; color: green;">
+                    <i class="bi bi-whatsapp"></i>  
+              </a>
+          </div>
+        </div>
+       
+      </div>
+     
+    </div>
+  </section>
+ 
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> <?php Helpers::APPLICATION_NAME ?> </div>
+  </div>
+  <!-- Copyright -->
+</footer>
 
    </div>
 
