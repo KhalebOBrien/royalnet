@@ -23,6 +23,7 @@
     $userBank = $bank->getBank($_SESSION['user']['bank']);
 
     $u = new UserController();
+    $referrals = $u->fetchUserReferrals();
     $u->updateAccount($_SESSION['user'], $_REQUEST);
     $u->deleteAccount($_REQUEST);
 ?>
@@ -87,7 +88,7 @@
                                         <strike>N</strike> <span>0</span> <br>
                                         Total Earnings
                                     </p>
-                                    <p class="card-text col-6"><span>0</span> <br>
+                                    <p class="card-text col-6"><span><?= count($referrals) ?></span> <br>
                                         Referrals
                                     </p>
                                 </div>

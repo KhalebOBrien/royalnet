@@ -56,6 +56,15 @@ class UserController
 	}
 
 	/**
+	 * This function is used to retrieve user refferals
+	 * @return array
+	 */
+	public function fetchUserReferrals()
+	{
+		return $this->user->getUsersReferrals($_SESSION['user']['referral_code']);
+	}
+
+	/**
 	 * This function is used to validate user session token
 	 * @param string $token
 	 */

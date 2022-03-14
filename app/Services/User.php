@@ -127,7 +127,7 @@ class User extends DatabaseConnetion
      * @param  string $email
      * @return $user
      */
-    public function getUserByRefferalCode($code)
+    public function getUserByReferralCode($code)
     {
         $sql = "SELECT * FROM users WHERE referral_code = '".$code."'";
         $q = $this->dbconn->query($sql);
@@ -141,7 +141,7 @@ class User extends DatabaseConnetion
      * @param  string $code
      * @return array $users
      */
-    public function getUsersRefferals($code)
+    public function getUsersReferrals($code)
     {
         $sql = "SELECT * FROM users WHERE referrers_code = '".$code."'";
         $q = $this->dbconn->query($sql);
@@ -176,6 +176,12 @@ class User extends DatabaseConnetion
         }
     }
 
+    /**
+     * This function is used to update a users profile
+     * @param  array $account
+     * @param  array $data
+     * @return boolean
+     */
     public function updateProfile($account, $data)
     {
         try {
