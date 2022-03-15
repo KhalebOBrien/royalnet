@@ -5,7 +5,7 @@ use App\Middleware\DatabaseConnetion;
 
 require_once 'app/Middleware/DatabaseConnetion.php';
 
-class Package extends DatabaseConnetion
+class Bank extends DatabaseConnetion
 {
 	public function __Construct()
 	{
@@ -13,12 +13,12 @@ class Package extends DatabaseConnetion
 	}
 
     /**
-     * This function is used to fetch all packages from the database
+     * This function is used to fetch all banks from the database
      * @return array
      */
-    public function fetchAllPackages()
+    public function fetchAllBanks()
     {
-        $sql = "SELECT * FROM packages";
+        $sql = "SELECT * FROM banks";
         $q = $this->dbconn->query($sql);
         $result = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -26,13 +26,13 @@ class Package extends DatabaseConnetion
     }
 
     /**
-     * This function is used to find a package by id
+     * This function is used to fetch a bank by id
      * @param int $id
      * @return array
      */
-    public function fetchPackageById($id)
+    public function fetchBankById($id)
     {
-        $sql = "SELECT * FROM packages WHERE id = ".$id;
+        $sql = "SELECT * FROM banks WHERE id = ".$id;
         $q = $this->dbconn->query($sql);
         $result = $q->fetch(\PDO::FETCH_ASSOC);
 
@@ -40,21 +40,17 @@ class Package extends DatabaseConnetion
     }
 
     /**
-     * This function is used to add packages to database
+     * This function is used to add banks to database
      * @param array $data
      * @return int
      */
-    public function addPackage($data)
+    public function addBank($data)
     {
 		try {
-            $sql = "INSERT INTO packages (name, description, price, daily_commission, refferal_commission) VALUES (:name, :description, :price, :daily_commission, :refferal_commission)";
+            $sql = "INSERT INTO banks (name) VALUES (:name)";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
-                ':name' => $data['txtname'],
-                ':description' => $data['txtDescription'], 
-                ':price' => $data['txtPrice'],
-                ':daily_commission' => $data['txtDailyCommission'],
-                ':refferal_commission' => $data['txtRefferalCommission']
+                ':name' => $data['txtname']
             ));
 
             return $this->dbconn->lastInsertId();

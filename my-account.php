@@ -6,11 +6,26 @@
     if (!isset($_SESSION['user'])) {
         header('location: login');
     }
+
+    if (!isset($_SESSION['CSRF'])) {
+        $_SESSION['CSRF'] = Helpers::generateRandomToken();
+    }
     
     require_once './app/Controllers/PackageController.php';
+    require_once './app/Controllers/BankController.php';
+    require_once './app/Controllers/UserController.php';
 
     $package = new PackageController();
     $userPackage = $package->getPackage($_SESSION['user']['package']);
+
+    $bank = new BankController();
+    $banks = $bank->getAll();
+    $userBank = $bank->getBank($_SESSION['user']['bank']);
+
+    $u = new UserController();
+    $referrals = $u->fetchUserReferrals();
+    $u->updateAccount($_SESSION['user'], $_REQUEST);
+    $u->deleteAccount($_REQUEST);
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +88,7 @@
                                         <strike>N</strike> <span>0</span> <br>
                                         Total Earnings
                                     </p>
-                                    <p class="card-text col-6"><span>0</span> <br>
+                                    <p class="card-text col-6"><span><?= count($referrals) ?></span> <br>
                                         Referrals
                                     </p>
                                 </div>
@@ -93,62 +108,46 @@
                             <div class="card-body">
                                 <h6><strong> Account Details</strong></h6>
                                 <form action="" method="POST">
+                                    <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
                                     <select class="form-select" name="slBank" aria-label="Default select example">
                                         <option selected disabled>Select bank</option>
-                                        <option value="access">Access Bank</option>
-                                        <option value="access diamond">Access Bank (Diamond)</option>
-                                        <option value="citi">Citibank</option>
-                                        <option value="ecobank">Ecobank</option>
-                                        <option value="fidelity">Fidelity Bank</option>
-                                        <option value="first">First Bank</option>
-                                        <option value="fcmb">First City Monument Bank (FCMB)</option>
-                                        <option value="gtb">Guaranty Trust Bank (GTB)</option>
-                                        <option value="heritage">Heritage Bank</option>
-                                        <option value="jaiz">Jaiz Bank</option>
-                                        <option value="keystone">Keystone Bank</option>
-                                        <option value="kuda">Kuda Bank</option>
-                                        <option value="parallex">Parallex Bank</option>
-                                        <option value="polaris">Polaris Bank</option>
-                                        <option value="providus">Providus Bank</option>
-                                        <option value="skye">Skye Bank</option>
-                                        <option value="stanbic">Stanbic IBTC Bank</option>
-                                        <option value="standard">Standard Chartered Bank</option>
-                                        <option value="sterling">Sterling Bank</option>
-                                        <option value="suntrust">Suntrust Bank</option>
-                                        <option value="titan trust"> Titan Trust Bank</option>
-                                        <option value="union">Union Bank</option>
-                                        <option value="uba">United Bank for Africa (UBA)</option>
-                                        <option value="unity">Unity Bank</option>
-                                        <option value="wema">Wema Bank</option>
-                                        <option value="zenith">Zenith Bank</option>
+                                        <?php
+                                            if (!empty($banks)) :
+                                                foreach ($banks as $b) :
+                                        ?>
+                                        <option value="<?=$b['id']?>" <?= (isset($userBank['id']) && $b['id']==$userBank['id']) ? 'selected' : '' ?>><?=$b['name']?></option>
+                                        <?php
+                                                endforeach;
+                                            endif;
+                                        ?>
                                     </select>
-                                    <input type="number" name="acctNumber" class="form-control mt-3" placeholder="Account number">
-                                    <input type="text" name="acctName" class="form-control mt-3" placeholder="Account name">
+                                    <input type="number" name="txtAcctNumber" class="form-control mt-3" placeholder="Account number" value="<?= $_SESSION['user']['acct_number'] ?>" >
+                                    <input type="text" name="txtAcctName" class="form-control mt-3" placeholder="Account name" value="<?= $_SESSION['user']['acct_name'] ?>" >
                                 
                                     <h6 class="mt-4"><strong> Socoal Media Links</strong></h6>
                                     Enter the link of your social media where you will be posting your tasks.
-                                    <div class="mb-3 mt-3"> 
+                                    <div class="mb-3 mt-3">
                                         <div class="input-group mb-3">
                                         <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-facebook text-light"></i></span>
-                                        <input type="text" name="fb_link" class="form-control" placeholder="https://m.facebook.com/username" value="<?= $_SESSION['user']['fb_link'] ?>" aria-describedby="basic-addon1">
+                                        <input type="url" name="txtFbLink" class="form-control" placeholder="https://m.facebook.com/username" value="<?= $_SESSION['user']['fb_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
 
                                         <div class="input-group mb-3">
                                             <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-twitter text-light"></i></span>
-                                            <input type="text" name="tw_link" class="form-control" placeholder="https://twitter.com/username" value="<?= $_SESSION['user']['tw_link'] ?>" aria-describedby="basic-addon1">
+                                            <input type="url" name="txtTwLink" class="form-control" placeholder="https://twitter.com/username" value="<?= $_SESSION['user']['tw_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
 
                                         <div class="input-group mb-3">
                                             <span class="input-group-text bg-danger" id="basic-addon1"><i class="bi bi-instagram text-light"></i></span>
-                                            <input type="text" name="ig_link" class="form-control" placeholder="https://instagram.com/username" value="<?= $_SESSION['user']['ig_link'] ?>" aria-describedby="basic-addon1">
+                                            <input type="url" name="txtIgLink" class="form-control" placeholder="https://instagram.com/username" value="<?= $_SESSION['user']['ig_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
                                         
                                         <div class="input-group mb-3">
                                             <span class="input-group-text bg-danger" id="basic-addon1"><i class="bi bi-youtube text-light"></i></span>
-                                            <input type="text" name="yt_link" class="form-control" placeholder="https://youtube.com/username" value="<?= $_SESSION['user']['yt_link'] ?>" aria-describedby="basic-addon1">
+                                            <input type="url" name="txtYtLink" class="form-control" placeholder="https://youtube.com/username" value="<?= $_SESSION['user']['yt_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-success float-end">Update</button>
+                                        <button type="submit" name="btnUpdateAccount" class="btn btn-success float-end">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -168,9 +167,10 @@
                                 </div>
                             </div>
 
-                            <form action="">
-                                <input type="password" class="form-control mt-3" placeholder="Enter password">
-                                <button type="submit" class="btn btn-danger mt-3 float-end">Delete account</button>
+                            <form action="" method="POST">
+                                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                                <input type="password" name="txtPassword" class="form-control mt-3" placeholder="Enter password">
+                                <button type="submit" name="btnDeleteAccount" class="btn btn-danger mt-3 float-end">Delete account</button>
                             </form>
                         </div>
                     </div>

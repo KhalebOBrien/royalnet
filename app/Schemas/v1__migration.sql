@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS `users` (
     `other_names` varchar(255) NOT NULL,
     `phone` varchar(255) NOT NULL,
     `package` INT(4) NULL DEFAULT NULL,
+    `bank` INT(4) NULL DEFAULT NULL,
+    `acct_number` varchar(255) NULL DEFAULT NULL,
+    `acct_name` varchar(255) NULL DEFAULT NULL,
     `referral_code` varchar(255) NOT NULL,
     `referrers_code` varchar(255) NULL DEFAULT NULL,
     `is_admin` tinyint(1) NULL DEFAULT 0,
@@ -28,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `packages` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id` int(4) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `description` text NULL DEFAULT NULL,
     `price` varchar(50) NOT NULL,
@@ -48,3 +51,37 @@ INSERT INTO `packages` (`name`, `description`, `price`, `daily_commission`, `ref
 ("Assistant Director - N500,000", "You register with N500000 and you earn N20000 every day! This excludes the 50% referral commission.", "500000", "20000", "50"),
 ("Director - N1,000,000", "You register with N1000000 and you earn N40500 every day! This excludes the 50% referral commission.", "1000000", "40500", "50"),
 ("Shareholder - N2,000,000", "You register with N2000000 and you earn N83000 every day! This excludes the 50% referral commission.", "2000000", "83000", "50");
+
+CREATE TABLE IF NOT EXISTS `banks` (
+    `id` int(4) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `banks` (`name`) VALUES
+('Access Bank'),
+('Access Bank (Diamond)'),
+('Citibank'),
+('Ecobank'),
+('Fidelity Bank'),
+('First Bank'),
+('First City Monument Bank (FCMB)'),
+('Guaranty Trust Bank (GTB)'),
+('Heritage Bank'),
+('Jaiz Bank'),
+('Keystone Bank'),
+('Kuda Bank'),
+('Parallex Bank'),
+('Polaris Bank'),
+('Providus Bank'),
+('Skye Bank'),
+('Stanbic IBTC Bank'),
+('Standard Chartered Bank'),
+('Sterling Bank'),
+('Suntrust Bank'),
+('Titan Trust Bank'),
+('Union Bank'),
+('United Bank for Africa (UBA)'),
+('Unity Bank'),
+('Wema Bank'),
+('Zenith Bank');

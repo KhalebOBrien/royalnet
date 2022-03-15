@@ -6,6 +6,11 @@
     if (!isset($_SESSION['user'])) {
         header('location: login');
     }
+    
+    require_once './app/Controllers/UserController.php';
+    
+    $u = new UserController();
+    $referrals = $u->fetchUserReferrals();
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +80,7 @@
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 Referrals</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span>0</span>
+                                                <span><?= count($referrals) ?></span>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -106,22 +111,29 @@
                                 <h6 class="m-0 font-weight-bold text-primary">My referrals</h6>
                             </div>
                             <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Dated added</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                    <td>User full name</td>
-                                    <td>1/1/1111</td>
-                                    </tr>
-                                    <tr>
-                                        
-                                </tbody>
-                            </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Dated Joined</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            if (!empty($referrals)) :
+                                                foreach ($referrals as $referral) :
+                                                    $dt = new \DateTime($referral['created_at']);
+                                        ?>
+                                        <tr>
+                                            <td><?= $referral['surname'].', '.$referral['other_names'] ?></td>
+                                            <td><?= $dt->format('d F Y') ?></td>
+                                        </tr>
+                                        <?php
+                                                endforeach;
+                                            endif;
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
