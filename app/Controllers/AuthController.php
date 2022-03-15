@@ -21,8 +21,13 @@ class AuthController
 	 */
 	public function register($data)
 	{
-		if(isset($data['btnRegister'])){
+		if(isset($data['btnRegister'])) {
 			$this->validateSession($data['csrfToken']);
+
+			// prevent multiple registration with same email
+			if(!empty($this->user->getUserByEmail($data['txtEmail']))) {
+				return null;
+			}
 
 			$data['referral_code'] = Helpers::randomString(8);
 			$data['txtPassword'] = password_hash($data['txtPassword'], PASSWORD_DEFAULT);
