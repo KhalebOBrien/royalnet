@@ -83,6 +83,9 @@
                                     <span class="text-muted float-end"><?= $userPackage['name'] ?></span>
                                 </h6>
                                 <hr>
+                                <?php
+                                    if (!$_SESSION['user']['is_admin']) :
+                                ?>
                                 <div class="row mt-4">
                                     <p class="card-text col-6">
                                         <strike>N</strike> <span>0</span> <br>
@@ -93,6 +96,9 @@
                                     </p>
                                 </div>
                                 <hr>
+                                <?php
+                                    endif;
+                                ?>
                                 <div class="d-grid gap-2">
                                     <a href="change-password" class="btn bg-gray-600 card-link change-password"><i class="bi bi-lock"></i> Change Password</a>
                                 </div>

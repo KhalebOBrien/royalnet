@@ -1,6 +1,74 @@
 <?php
 
 use App\Services\Helpers;
+
+
+    if ($_SESSION['user']['is_admin']) :
+?>
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-2"><?= Helpers::APPLICATION_TITLE ?> ADMIN</div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="dashboard" >
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="post-task" >
+            <span>Post Tasks</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="pay">
+            <span>Pay Users</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="manage-admins">
+            <span>Manage Admins</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="manage-users">
+            <span>Manage Users</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Profile
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="my-account">
+            <span>My Account</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#logoutModal">
+            <span>Logout</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+    
+</ul>
+
+<?php
+    else :
 ?>
 
 <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -52,3 +120,7 @@ use App\Services\Helpers;
     <hr class="sidebar-divider d-none d-md-block">
     
 </ul>
+
+<?php
+    endif;
+?>

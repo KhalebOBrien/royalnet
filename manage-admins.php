@@ -40,14 +40,7 @@
 <body id="page-top">
     <div id="wrapper">
 
-        <?php 
-            if ($_SESSION['user']['is_admin']) {
-                include_once './partials/__admin-dashboard-sidenav.php';
-            }
-            else {
-                include_once './partials/__dashboard-sidenav.php';
-            }
-        ?>
+        <?php include_once './partials/__dashboard-sidenav.php' ?>
 
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
