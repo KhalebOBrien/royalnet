@@ -268,6 +268,19 @@ class User extends DatabaseConnetion
 
         return $users;
     }
+
+    /**
+     * This function is used to fetch all unapproved members
+     * @return array $users
+     */
+    public function getUnapprovedUsers()
+    {
+        $sql = "SELECT * FROM users WHERE is_approved = 0";
+        $q = $this->dbconn->query($sql);
+        $users = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $users;
+    }
 	
 }
 

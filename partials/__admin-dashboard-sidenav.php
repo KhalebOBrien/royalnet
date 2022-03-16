@@ -37,6 +37,12 @@ use App\Services\Helpers;
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="manage-users">
+            <span>Manage Users</span>
+        </a>
+    </li>
+
     <hr class="sidebar-divider">
 
     <div class="sidebar-heading">

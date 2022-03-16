@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `password` varchar(255) NOT NULL,
     `pwd_reset_token` varchar(255) NULL,
     `token_created_at` datetime NULL DEFAULT NULL,
+    `email_verification_token` varchar(255) NULL,
     `fb_link` VARCHAR(255) NULL DEFAULT NULL,
     `ig_link` VARCHAR(255) NULL DEFAULT NULL, 
     `tw_link` VARCHAR(255) NULL DEFAULT NULL, 

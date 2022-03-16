@@ -15,10 +15,13 @@
     }
     
     require_once './app/Controllers/UserController.php';
+    require_once './app/Controllers/PackageController.php';
     
     $user = new UserController();
-    $admins = $user->fetchAdmins();
-    $user->createAdmin($_POST);
+    $members = $user->fetchAllUsers();
+    // $user->createAdmin($_POST);
+    
+    $p = new PackageController();
 ?>
 
 <!DOCTYPE html>
@@ -56,14 +59,13 @@
 
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Admin Users</h1>
-                        <h4 class="h4 btn btn-primary mb-0 text-white" data-bs-toggle="modal" data-bs-target="#createAdminModal">Add Admin</h4>
+                        <h1 class="h3 mb-0 text-gray-800">Manage Users</h1>
                     </div>
 
                     <!-- List of all admins and their details -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">All Our Admins</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">All Our Users</h6>
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -71,24 +73,30 @@
                                     <tr>
                                         <th scope="col">Full Name</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Unique Code</th>
-                                        <th scope="col">Created By</th>
-                                        <th scope="col">Date Created</th>
+                                        <th scope="col">Referral Code</th>
+                                        <th scope="col">Referred By</th>
+                                        <th scope="col">Package</th>
+                                        <th scope="col">Date Joined</th>
+                                        <th scope="col">Approved</th>
+                                        <th scope="col">Status</th>
                                         <!-- <th scope="col">Action</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        if (!empty($admins)) :
-                                            foreach ($admins as $admin) :
-                                                $reff = $user->fetchUserReferrer($admin['referrers_code']);
+                                        if (!empty($members)) :
+                                            foreach ($members as $member) :
+                                                $reff = $user->fetchUserReferrer($member['referrers_code']);
                                     ?>
                                     <tr>
-                                        <td><?= $admin['surname'].', '.$admin['other_names'] ?></td>
-                                        <td><?= $admin['email'] ?></td>
-                                        <td><?= $admin['referral_code'] ?></td>
-                                        <td><?= !empty($reff) ? $reff['email'] : '' ?></td>
-                                        <td><?= $admin['created_at'] ?></td>
+                                        <td><?= $member['surname'].', '.$member['other_names'] ?></td>
+                                        <td><?= $member['email'] ?></td>
+                                        <td><?= $member['referral_code'] ?></td>
+                                        <td><?= !empty($reff) ? $reff['email'] : '-' ?></td>
+                                        <td><?= $p->getPackage($member['package'])['name'] ?></td>
+                                        <td><?= $member['created_at'] ?></td>
+                                        <td><?= $member['is_approved'] ? '<span class="badge badge-primary">Yes</span>' : '<span class="badge badge-secondary">No</span>' ?></td>
+                                        <td><?= $member['is_suspended'] ? '<span class="badge badge-danger">Suspended</span>' : '<span class="badge badge-success">Active</span>' ?></td>
                                         <!-- <td><button type="button" class="btn btn-primary">Suspend</button></td> -->
                                     </tr>
                                     <?php
@@ -96,38 +104,13 @@
                                         else :
                                     ?>
                                     <tr>
-                                        <td colspan="">Users full name </td>
+                                        <td colspan="8"><i>No Users FOUND</i> </td>
                                     </tr>
                                     <?php
                                         endif;
                                     ?>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Add Admin Modal -->
-            <div class="modal fade" id="createAdminModal" tabindex="-1" aria-labelledby="adminCreateModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="adminCreateModalLabel">Create An Admin</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="post" name="create-admin-form">
-                                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
-                                <input type="hidden" name="referrers_code" value="<?= $_SESSION['user']['referral_code'] ?>">
-                                <input type="text" name="txtSurname" class="form-control mt-2 form-input" id="" placeholder="Surname">
-                                <input type="text" name="txtOtherNames" class="form-control mt-2 form-input" id="" placeholder="Other names">
-                                <input type="number" name="txtPhone" class="form-control mt-2 form-input" id="" placeholder="Phone number">
-                                <input type="email" name="txtEmail" class="form-control mt-2 form-input" id="" placeholder="E-mail">
-                                <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="" placeholder="Password">
-
-                                <button name="btnAddAdmin" class="submit-form float-right btn btn-primary mt-4 mb-2">Create</button>
-                            </form>
                         </div>
                     </div>
                 </div>
