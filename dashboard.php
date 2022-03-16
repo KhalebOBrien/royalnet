@@ -8,9 +8,12 @@
     }
     
     require_once './app/Controllers/UserController.php';
+    require_once './app/Controllers/PackageController.php';
     
     $u = new UserController();
     $referrals = $u->fetchUserReferrals();
+    
+    $p = new PackageController();
 ?>
 
 <!DOCTYPE html>
@@ -156,23 +159,32 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Date joined</th>
-                                            <th scope="col">Number of referral(s)</th>
-                                            <th scope="col">Social Media Handle</th>
+                                            <th scope="col">Full Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Date Joined</th>
                                             <th scope="col">Plan</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                            $pendingUsers = $u->fetchAllUnapprovedUsers();
+                                            if(!empty($pendingUsers)) :
+                                                foreach($pendingUsers as $unapproved) :
+                                        ?>
                                         <tr>
-                                            <td>Users full name </td>
-                                            <td>1/1/1111</td>
-                                            <td>000</td>
-                                            <td>@mdo/twitter...</td>
-                                            <td>plan type</td>
-                                            <td><button type="button" class="btn btn-primary">Verify</button></td>
+                                            <td><?= $unapproved['surname'].', '.$unapproved['other_names'] ?></td>
+                                            <td><?= $unapproved['email'] ?></td>
+                                            <td><?= $unapproved['phone'] ?></td>
+                                            <td><?= $unapproved['created_at'] ?></td>
+                                            <td><?= $p->getPackage($unapproved['package'])['name'] ?></td>
+                                            <td><button type="button" class="btn btn-primary">Approve</button></td>
                                         </tr>
+                                        <?php
+                                                endforeach;
+                                            endif;
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

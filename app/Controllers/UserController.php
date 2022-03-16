@@ -65,6 +65,15 @@ class UserController
 	}
 
 	/**
+	 * This function is used to retrieve users referrer
+	 * @return array
+	 */
+	public function fetchUserReferrer($referrersCode)
+	{
+		return $this->user->getUserByReferralCode($referrersCode);
+	}
+
+	/**
 	 * This function is used to retrieve admins except users
 	 * @return array
 	 */
@@ -80,6 +89,15 @@ class UserController
 	public function fetchAllUsers()
 	{
 		return $this->user->getAllUsers();
+	}
+
+	/**
+	 * This function is used to retrieve all users that have not been approved
+	 * @return array
+	 */
+	public function fetchAllUnapprovedUsers()
+	{
+		return $this->user->getUnapprovedUsers();
 	}
 
 	/**
