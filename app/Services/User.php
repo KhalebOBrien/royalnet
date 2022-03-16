@@ -242,6 +242,32 @@ class User extends DatabaseConnetion
             exit();
         }
     }
+
+    /**
+     * This function is used to fetch all admins
+     * @return array $admins
+     */
+    public function getAdmins()
+    {
+        $sql = "SELECT * FROM users WHERE is_admin = 1";
+        $q = $this->dbconn->query($sql);
+        $admins = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $admins;
+    }
+
+    /**
+     * This function is used to fetch all non-admins (members)
+     * @return array $users
+     */
+    public function getAllUsers()
+    {
+        $sql = "SELECT * FROM users WHERE is_admin = 0";
+        $q = $this->dbconn->query($sql);
+        $users = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $users;
+    }
 	
 }
 

@@ -8,7 +8,7 @@ use App\Services\Helpers;
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"><?= Helpers::APPLICATION_NAME ?> ADMIN</div>
+        <div class="sidebar-brand-text mx-2"><?= Helpers::APPLICATION_TITLE ?> ADMIN</div>
     </a>
 
     <hr class="sidebar-divider my-0">
@@ -28,6 +28,12 @@ use App\Services\Helpers;
     <li class="nav-item">
         <a class="nav-link collapsed" href="pay">
             <span>Pay Users</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="manage-admins">
+            <span>Manage Admins</span>
         </a>
     </li>
 
