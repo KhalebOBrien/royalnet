@@ -44,23 +44,34 @@ class User extends DatabaseConnetion
      * @param array $data
      * @return int
      */
-    public function create($data)
+    public function create($data, $isAdmin)
     {
 		try {
-            $sql = "INSERT INTO users (surname, other_names, phone, package, referral_code, referrers_code, email, password, created_at, updated_at) VALUES (:surname, :otherNames, :phone, :package, :referral_code,:referrers_code, :email, :password, NOW(), NOW())";
+            $sql = "INSERT INTO users (surname, other_names, phone, package, referral_code, referrers_code, is_admin, is_approved, is_verified, email, password, created_at, updated_at) VALUES (:surname, :otherNames, :phone, :package, :referral_code,:referrers_code, :is_admin, :is_approved, :is_verified, :email, :password, NOW(), NOW())";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
                 ':surname' => $data['txtSurname'],
                 ':otherNames' => $data['txtOtherNames'],
                 ':phone' => $data['txtPhone'],
-                ':package' => $data['slPackage'],
+                ':package' => $isAdmin ? null : $data['slPackage'],
                 ':referral_code' => $data['referral_code'],
                 ':referrers_code' => $data['referrers_code'],
+                ':is_admin' => $isAdmin,
+                ':is_approved' => $isAdmin ? 1 : 0, 
+                ':is_verified' => $isAdmin ? 1 : 0,
                 ':email' => $data['txtEmail'],
                 ':password' => $data['txtPassword']
             ));
+            $userId = $this->dbconn->lastInsertId();
+            
+            $sql = "INSERT INTO wallets (user_id, amount, created_at, updated_at) VALUES (:user_id, :amount, NOW(), NOW())";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute(array(
+                ':user_id' => $userId,
+                ':amount' => '0.00'
+            ));
 
-            return $this->dbconn->lastInsertId();
+            return $userId;
         }
         catch (\PDOException $ex)
         {

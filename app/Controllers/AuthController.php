@@ -32,10 +32,11 @@ class AuthController
 			$data['referral_code'] = Helpers::randomString(8);
 			$data['txtPassword'] = password_hash($data['txtPassword'], PASSWORD_DEFAULT);
 
-			if ($this->user->create($data)) {
+			if ($this->user->create($data, 0)) {
 				// send email
 
-				$_SESSION['success'] = 'You have successfully registered. Please check your email to activate your account.';
+				header('location: login');
+				// $_SESSION['success'] = 'You have successfully registered. Please check your email to activate your account.';
 			}
 		}
 

@@ -86,7 +86,7 @@ INSERT INTO `banks` (`name`) VALUES
 ('Wema Bank'),
 ('Zenith Bank');
 
-CREATE TABLE IF NOT EXISTS `wallet` (
+CREATE TABLE IF NOT EXISTS `wallets` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` INT(11) NULL DEFAULT NULL,
     `amount` varchar(255) NOT NULL,
