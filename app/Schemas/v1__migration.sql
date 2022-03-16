@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `tw_link` VARCHAR(255) NULL DEFAULT NULL, 
     `yt_link` VARCHAR(255) NULL DEFAULT NULL,
     `created_at` datetime NULL DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT NULL,
+    `updated_at` datetime NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -85,3 +85,36 @@ INSERT INTO `banks` (`name`) VALUES
 ('Unity Bank'),
 ('Wema Bank'),
 ('Zenith Bank');
+
+CREATE TABLE IF NOT EXISTS `wallet` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` INT(11) NULL DEFAULT NULL,
+    `amount` varchar(255) NOT NULL,
+    `created_at` datetime NULL DEFAULT NULL,
+    `updated_at` datetime NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `withdrawals` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `slug` varchar(255) NOT NULL,
+    `user_id` INT(11) NULL DEFAULT NULL,
+    `amount` varchar(255) NOT NULL,
+    `is_approved` tinyint(1) NULL DEFAULT 0,
+    `created_at` datetime NULL DEFAULT NULL,
+    `updated_at` datetime NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `tasks` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `created_by` INT(11) NULL DEFAULT NULL,
+    `slug` varchar(255) NOT NULL,
+    `title` varchar(255) NULL DEFAULT NULL,
+    `body` text NULL DEFAULT NULL,
+    `image` varchar(255) NULL DEFAULT NULL,
+    `created_at` datetime NULL DEFAULT NULL,
+    `updated_at` datetime NULL DEFAULT NULL,
+    PRIMARY KEY (`id`) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

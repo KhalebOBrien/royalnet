@@ -8,7 +8,7 @@ use App\Services\Helpers;
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"><?= Helpers::APPLICATION_NAME ?></div>
+        <div class="sidebar-brand-text mx-3"><?= Helpers::APPLICATION_NAME ?> ADMIN</div>
     </a>
 
     <hr class="sidebar-divider my-0">
@@ -20,14 +20,14 @@ use App\Services\Helpers;
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="task" >
-            <span>Tasks</span>
+        <a class="nav-link collapsed" href="post-task" >
+            <span>Post Tasks</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="withdraw">
-            <span>Withdraw</span>
+        <a class="nav-link collapsed" href="pay">
+            <span>Pay Users</span>
         </a>
     </li>
 
