@@ -96,11 +96,12 @@ CREATE TABLE IF NOT EXISTS `wallets` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `withdrawals` (
+CREATE TABLE IF NOT EXISTS `transactions` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `slug` varchar(255) NOT NULL,
+    `reference_code` varchar(255) NOT NULL,
     `user_id` INT(11) NULL DEFAULT NULL,
     `amount` varchar(255) NOT NULL,
+    `type` varchar(25) NOT NULL,
     `is_approved` tinyint(1) NULL DEFAULT 0,
     `created_at` datetime NULL DEFAULT NULL,
     `updated_at` datetime NULL DEFAULT NULL,
