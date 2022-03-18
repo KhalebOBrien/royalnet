@@ -36,12 +36,12 @@
             <h4>Sign up to get started</h4>
             <p style="color: gray;">It's fast and easy</p>
             <hr>
-            <form action="" method="post" name="register-form">
+            <form action="" method="post" name="register-form" onsubmit="return validateRegister()">
                 <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
                 <input type="hidden" name="referrers_code" value="<?= isset($_GET['r'])?$_GET['r']:'' ?>">
-                <input type="text" name="txtSurname" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Surname">
-                <input type="text" name="txtOtherNames" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Other names">
-                <select name="slPackage" class="form-control mt-2 form-select" required>
+                <input type="text" name="txtSurname" class="form-control mt-2 form-input" id="surname" placeholder="Surname">
+                <input type="text" name="txtOtherNames" class="form-control mt-2 form-input" id="otherName" placeholder="Other names">
+                <select name="slPackage" class="form-control mt-2 form-select" id="package">
                     <option selected disabled>Select a Package</option>
                     <?php
                         if (!empty($packages)) :
@@ -53,12 +53,13 @@
                         endif;
                     ?>
                 </select>
-                <input type="email" name="txtEmail" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="E-mail">
-                <input type="number" name="txtPhone" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Phone number">
-                <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Password">
-                <input type="password" name="txtConfirmPassword" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Re-enter Password">
+                <input type="email" name="txtEmail" class="form-control mt-2 form-input" id="email" placeholder="E-mail" >
+                <input type="number" name="txtPhone" class="form-control mt-2 form-input" id="phoneNum" placeholder="Phone number">
+                <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="pwd" placeholder="Password" >
+                <input type="password" name="txtConfirmPassword" class="form-control mt-2 form-input" id="pwd2" placeholder="Re-enter Password" >
 
                 <p class="mt-1" style="font-size: 12px;">By signing up you agree to our <a href="privacy-policy"> Privacy Policy</a></p>
+                <div id="register-err-msg" class="alert-danger" role="alert"></div>
 
                 <button name="btnRegister" class="submit-form mt-4 mb-2">Sign Up</button>
             </form> <br>
@@ -72,5 +73,6 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="js/validation.js"></script>
 </body>
 </html>
