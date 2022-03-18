@@ -12,6 +12,7 @@
     
     $u = new UserController();
     $referrals = $u->fetchUserReferrals();
+    $u->approveUser();
     
     $p = new PackageController();
 ?>
@@ -46,6 +47,9 @@
                     // decide dashboard view by user type
                     if ($_SESSION['user']['is_admin']) :
                         // show admin dashboard
+                        $allUsers = $u->fetchAllUsers();
+                        $allApprovedUsers = $u->fetchAllApprovedUsers();
+                        $pendingUsers = $u->fetchAllUnapprovedUsers();
                 ?>
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -54,7 +58,7 @@
 
                         <div class="row">
                             <!-- Total num of users -->
-                            <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="col-xl-3 col-md-3 mb-4">
                                 <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -63,7 +67,7 @@
                                                     Total Users
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span>0</span>
+                                                    <span><?= count($allUsers) ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -73,22 +77,61 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- Total num of pending users -->
+                            <div class="col-xl-3 col-md-3 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Total Pending Users
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span><?= count($pendingUsers) ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="bi bi-people-fill btn-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total num of approved users -->
+                            <div class="col-xl-3 col-md-3 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Total Approved Users
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span><?= count($allApprovedUsers) ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="bi bi-people-fill btn-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Total num of people reffered -->
-                            <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="col-xl-3 col-md-3 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Total number of people referred
+                                                    Total Revenue
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                     <span>0</span>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="bi bi-people-fill btn-lg"></i>
+                                                <i class="bi bi-currency-exchange btn-lg"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +205,6 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $pendingUsers = $u->fetchAllUnapprovedUsers();
                                             if(!empty($pendingUsers)) :
                                                 foreach($pendingUsers as $unapproved) :
                                         ?>
@@ -172,7 +214,7 @@
                                             <td><?= $unapproved['phone'] ?></td>
                                             <td><?= $unapproved['created_at'] ?></td>
                                             <td><?= $p->getPackage($unapproved['package'])['name'] ?></td>
-                                            <td><button type="button" class="btn btn-primary">Approve</button></td>
+                                            <td><a href="dashboard?approve=<?=$unapproved['referral_code']?>&back=dashboard" class="btn btn-primary">Approve</a></td>
                                         </tr>
                                         <?php
                                                 endforeach;
