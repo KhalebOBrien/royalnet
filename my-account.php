@@ -59,7 +59,11 @@
                     </div>
                 
                     <div class="card border-left-warning shadow mb-3">
-                        <span class="referral-link">Referral link: <span><?= Helpers::APPLICATION_DOMAIN.'register?r='.$_SESSION['user']['referral_code'] ?></span></span>
+                        <span class="referral-link">Referral link: <span id="ref-link"><?= Helpers::APPLICATION_DOMAIN.'register?r='.$_SESSION['user']['referral_code'] ?></span>
+                            <span class="float-end">
+                                <button class="btn" id="copy-ref-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy to clipboard"> <i class="bi bi-clipboard"></i></button>
+                            </span>  
+                        </span>
                     </div>
 
                     <!-- Profile info -->
@@ -191,6 +195,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="js/dashboard-temp.js"></script>
+    <script src="js/copy-to-clipboard.js"></script>
 
 
 </body>

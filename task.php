@@ -135,13 +135,24 @@
                                 <p>Step 4, Upload it on your Social media timeline, then you are done. You can add any text or write up as you wish either for promotion and getting referrals.</p>
                             </div>
 
+                            <h5 class="card-title">Tasks</h5>
+
                             <!-- tasks will be here -->
 
-                            <!-- <ol >
-                                <li class="text-gray-800">
-                                    
-                                </li>
-                            </ol> -->
+                            <div class="border-top">
+                                <!-- Text about the task -->
+                                <div class="mt-2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget bibendum odio. Sed pulvinar arcu sapien, at tristique turpis aliquam id. Aliquam fringilla feugiat diam, eu bibendum augue rhoncus quis. Etiam at purus eu eros aliquam iaculis. In pharetra ornare nibh sit amet consectetur. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur egestas sapien id est hendrerit dapibus. Phasellus facilisis fermentum est, sed commodo tellus finibus ac.
+                                </div>
+
+                                <!--Task images -->
+
+                                <div class="mt-3">
+                                    <img src="" height="400" width="400" class="rounded" alt="task image">
+                                    <img src="..." height="400" width="400" class="rounded ml-3" alt="task image">
+                                </div>
+                                
+                            </div>
 
                              
                         </div>
