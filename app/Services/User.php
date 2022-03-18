@@ -281,6 +281,79 @@ class User extends DatabaseConnetion
 
         return $users;
     }
+
+    /**
+     * This function is used to fetch all approved members
+     * @return array $users
+     */
+    public function getApprovedUsers()
+    {
+        $sql = "SELECT * FROM users WHERE is_approved = 1 AND is_admin = 0";
+        $q = $this->dbconn->query($sql);
+        $users = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $users;
+    }
+
+    public function approveUser($code)
+    {
+        try {
+            $sql = "UPDATE users SET is_approved = :is_approved, updated_at = NOW() WHERE referral_code = :referral_code";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':is_approved' => 1,
+                ':referral_code' => $code
+            ]);
+
+            // retrive the parties
+            $user = $this->getUserByReferralCode($code);
+            $referrer = $this->getUserByReferralCode($user['referrers_code']);
+
+            if (!empty($user['referrers_code']) && !empty($referrer)) {
+                // retrive the referrer's package reff commission
+                $sql = "SELECT * FROM packages WHERE id = ".$referrer['package'];
+                $q = $this->dbconn->query($sql);
+                $referrerPackage = $q->fetch(\PDO::FETCH_ASSOC);
+                // retrive the user's package price
+                $sql = "SELECT * FROM packages WHERE id = ".$user['package'];
+                $q = $this->dbconn->query($sql);
+                $userPackage = $q->fetch(\PDO::FETCH_ASSOC);
+
+                // calculate the commission
+                $commission = (intval($referrerPackage['refferal_commission']) * intval($userPackage['price'])) / 100;
+
+                // create referral bonus tranx for the referrer
+                $sql = "INSERT INTO transactions (reference_code, user_id, amount, type, is_approved, created_at, updated_at) VALUES (:reference_code, :user_id, :amount, :type, :is_approved, NOW(), NOW())";
+                $q = $this->dbconn->prepare($sql);
+                $q->execute(array(
+                    ':reference_code' => $token = Helpers::randomString(12),
+                    ':user_id' => $referrer['id'],
+                    ':amount' => $commission,
+                    ':type' => 'referral bonus',
+                    ':is_approved' => 1
+                ));
+
+                // get the referrer's wallet                
+                $sql = "SELECT amount FROM wallets WHERE user_id = ".$referrer['id'];
+                $q = $this->dbconn->query($sql);
+                $wallet = $q->fetch(\PDO::FETCH_ASSOC);
+                // update the referrer's wallet balance
+                $sql = "UPDATE wallets SET amount = :amount, updated_at = NOW() WHERE user_id = :user_id";
+                $q = $this->dbconn->prepare($sql);
+                $q->execute([
+                    ':amount' => intval($wallet['amount']) + $commission,
+                    ':user_id' => $referrer['id'],
+                ]);
+            }
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
 	
 }
 

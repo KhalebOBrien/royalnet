@@ -101,6 +101,15 @@ class UserController
 	}
 
 	/**
+	 * This function is used to retrieve all users that have been approved
+	 * @return array
+	 */
+	public function fetchAllApprovedUsers()
+	{
+		return $this->user->getApprovedUsers();
+	}
+
+	/**
 	 * This function is used to register new admin
 	 * @param  array $data
 	 * @return boolean
@@ -122,6 +131,17 @@ class UserController
 				// send email
 				header('location: manage-admins');
 				// $_SESSION['msg'] = 'You have successfully registered. Please check your email to activate your account.';
+			}
+		}
+
+		return null;
+	}
+
+	public function approveUser()
+	{
+		if(isset($_GET['approve'])) {
+			if ($this->user->approveUser($_GET['approve'])) {
+				header('location: '.$_GET['back']);
 			}
 		}
 
