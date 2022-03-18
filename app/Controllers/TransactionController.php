@@ -29,6 +29,15 @@ class TransactionController
     {
         return $this->transaction->fetchTransactionById($id);
     }
+	
+	/**
+	 * This function is used to fetch transaction by Id
+	 * @return array
+	 */
+    public function sumUserTransactionsByType($user_id, $type=null)
+    {
+        return $this->transaction->sumUserTranxByType($user_id, $type);
+    }
 }
 
 ?>

@@ -40,14 +40,32 @@ class Transaction extends DatabaseConnetion
     }
 
     /**
-     * This function is used to add packages to database
+     * This function is used to fetch all referral bonus transactions for a user
+     * @return int
+     */
+    public function sumUserTranxByType($userId, $type=null)
+    {
+        $sql = "SELECT SUM(amount) AS total FROM transactions WHERE user_id = ".$userId;
+        if (!is_null($type)) {
+            $sql .= " AND type = '".$type."'";
+        }
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        $result = empty($result['total']) ? 0 : $result['total'];
+
+        return $result;
+    }
+
+    /**
+     * This function is used to add withdrawal to database
      * @param array $data
      * @return int
      */
-    public function addPackage($data)
+    public function addWithdrawal($data)
     {
 		try {
-            $sql = "INSERT INTO packages (name, description, price, daily_commission, refferal_commission) VALUES (:name, :description, :price, :daily_commission, :refferal_commission)";
+            $sql = "INSERT INTO transactions (name, description, price, daily_commission, refferal_commission) VALUES (:name, :description, :price, :daily_commission, :refferal_commission)";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
                 ':name' => $data['txtname'],

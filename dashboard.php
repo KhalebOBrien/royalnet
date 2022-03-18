@@ -128,7 +128,7 @@
                                                     Total Users Wallet Bal.
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= $accWorth ?></span>
+                                                    &#8358;<?= $accWorth ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -148,7 +148,7 @@
                                                     User Estimated Worth
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= $allUsers['summedDeposits'] ?></span>
+                                                    &#8358;<?= $allUsers['summedDeposits'] ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -168,7 +168,7 @@
                                                     Total Pending Deposits
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= $pendingUsers['summedDeposits'] ?></span>
+                                                    &#8358;<?= $pendingUsers['summedDeposits'] ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -188,7 +188,7 @@
                                                     Total Approved Deposits.
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= $allApprovedUsers['summedDeposits'] ?></span>
+                                                    &#8358;<?= $allApprovedUsers['summedDeposits'] ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -208,7 +208,7 @@
                                                     Total Payouts
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= $accWorth ?></span>
+                                                    &#8358;<?= $accWorth ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -262,6 +262,7 @@
                 <?php 
                     else :
                         // show user dashboard
+                        $walletBalance = $u->fetchUserWalletBalance();
                 ?>
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -274,17 +275,17 @@
                         </div>
 
                         <div class="row">
-                            <!-- Total earnings -->
+                            <!-- Wallet Balance -->
                             <div class="col-xl-6 col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Earnings
+                                                    Available Balance
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <strike>N</strike><span>0</span>
+                                                    &#8358;<?= $walletBalance ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">

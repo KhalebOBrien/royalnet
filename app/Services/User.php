@@ -395,6 +395,10 @@ class User extends DatabaseConnetion
         }
     }
 
+    /**
+     * This function is used to retrieve a package by id
+     * @return array $package
+     */
     private function getPackage($id)
     {
         $sql = "SELECT * FROM packages WHERE id = ".$id;
@@ -415,6 +419,15 @@ class User extends DatabaseConnetion
         $total = $q->fetch(\PDO::FETCH_ASSOC);
 
         return $total['total'];
+    }
+
+    public function getUserWalletBalance($id)
+    {
+        $sql = "SELECT amount FROM wallets WHERE user_id = ".$id;
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        return $result['amount'];
     }
 	
 }

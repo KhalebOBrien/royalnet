@@ -162,6 +162,11 @@ class UserController
 		return $this->user->getTotalUsersAccumulatedBalance();
 	}
 
+	public function fetchUserWalletBalance()
+	{
+		return $this->user->getUserWalletBalance($_SESSION['user']['id']);
+	}
+
 	/**
 	 * This function is used to validate user session token
 	 * @param string $token

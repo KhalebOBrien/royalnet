@@ -11,7 +11,13 @@
         $_SESSION['CSRF'] = Helpers::generateRandomToken();
     }
 
-    $transactions;
+    require_once './app/Controllers/TransactionController.php';
+    require_once './app/Controllers/UserController.php';
+    
+    $u = new UserController();
+
+    $tranx = new TransactionController();
+    $transactions = $tranx->getAllTransactionByUser($_SESSION['user']['id']);
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +62,7 @@
                                                 All Time Total Earnings
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span>0</span>
+                                                &#8358;<?= $tranx->sumUserTransactionsByType($_SESSION['user']['id']) ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -77,7 +83,7 @@
                                                 Available Balance
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span>0</span>
+                                                &#8358;<?= $u->fetchUserWalletBalance() ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -98,7 +104,7 @@
                                                 Total Referral Bonus
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span>0</span>
+                                                &#8358;<?= $tranx->sumUserTransactionsByType($_SESSION['user']['id'], 'referral bonus') ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -119,7 +125,7 @@
                                                 All Time Withdrawals
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span>0</span>
+                                                &#8358;<?= $tranx->sumUserTransactionsByType($_SESSION['user']['id'], 'withdrawal') ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -142,7 +148,7 @@
                                     <tr>
                                         <th scope="col">Reference Code</th>
                                         <th scope="col">Type</th>
-                                        <th scope="col">Amount</th>
+                                        <th scope="col">Amount (&#8358;)</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Approval Date</th>
@@ -155,7 +161,7 @@
                                     ?>
                                     <tr>
                                         <td><?= $transaction['reference_code'] ?></td>
-                                        <td><?= $transaction['type'] ?></td>
+                                        <td><?= ucwords($transaction['type']) ?></td>
                                         <td><?= $transaction['amount'] ?></td>
                                         <td><?= $transaction['created_at'] ?></td>
                                         <td><?= $transaction['is_approved'] ? '<span class="badge badge-primary">Approved</span>' : '<span class="badge badge-secondary">Pending</span>' ?></td>
