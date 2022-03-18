@@ -197,7 +197,6 @@
     <script src="js/dashboard-temp.js"></script>
     <script src="js/copy-to-clipboard.js"></script>
 
-
 </body>
 
 </html>

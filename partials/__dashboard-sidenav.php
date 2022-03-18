@@ -94,8 +94,8 @@ use App\Services\Helpers;
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="withdraw">
-            <span>Withdraw</span>
+        <a class="nav-link collapsed" href="my-wallet">
+            <span>Manage Wallet</span>
         </a>
     </li>
 
