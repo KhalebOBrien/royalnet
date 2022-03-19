@@ -1,9 +1,9 @@
 // Form validation for register 
 
+
 function validateRegister() {
     const SURNAME = document.querySelector('#surname')
     const OTHERNAME = document.querySelector('#otherName')
-    const PACKAGE = document.querySelector('#package')
     const EMAIL = document.querySelector('#email')
     const PHONE_NUM = document.querySelector('#phoneNum')
     const PWD = document.querySelector('#pwd')
@@ -27,16 +27,6 @@ function validateRegister() {
     }else {
         OTHERNAME.className = 'form-control mt-2 form-input '
     }
-
-
-    if (PACKAGE.options[PACKAGE.selectedIndex].selected) {
-        register_err.innerHTML = "Select a package"
-        PACKAGE.className = 'form-control mt-2 form-input border-danger'
-        return false
-    }else {
-        PACKAGE.className = 'form-control mt-2 form-input '
-    }
-
 
     if (EMAIL.value === "") {
         register_err.innerHTML = "Enter email"
