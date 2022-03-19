@@ -162,6 +162,10 @@ class UserController
 		return $this->user->getTotalUsersAccumulatedBalance();
 	}
 
+	/**
+	 * This function is used to fetch the wallet balance of the current user
+	 * @return int
+	 */
 	public function fetchUserWalletBalance()
 	{
 		return $this->user->getUserWalletBalance($_SESSION['user']['id']);

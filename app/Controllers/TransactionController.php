@@ -38,6 +38,34 @@ class TransactionController
     {
         return $this->transaction->sumUserTranxByType($user_id, $type);
     }
+
+	/**
+	 * This function is used to create a withdrawal request
+	 * @param array
+	 */
+	public function withdrawalRequest($data)
+	{
+		if(isset($data['btnRequestWithdrawal'])){
+			$this->validateSession($data['csrfToken']);
+
+			if ($this->transaction->addWithdrawal($_SESSION['user']['id'], $data['txtAmount'])) {
+				header('location: my-wallet');
+			}
+		}	
+	}
+
+	/**
+	 * This function is used to validate user session token
+	 * @param string $token
+	 */
+	private function validateSession($token)
+	{
+		if ($_SESSION['CSRF'] !== $token) {
+			session_unset();
+			session_destroy();
+			header('Location: 419');
+		}
+	}
 }
 
 ?>

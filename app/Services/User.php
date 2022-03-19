@@ -373,7 +373,7 @@ class User extends DatabaseConnetion
                     ':is_approved' => 1
                 ));
 
-                // get the referrer's wallet                
+                // get the referrer's wallet
                 $sql = "SELECT amount FROM wallets WHERE user_id = ".$referrer['id'];
                 $q = $this->dbconn->query($sql);
                 $wallet = $q->fetch(\PDO::FETCH_ASSOC);

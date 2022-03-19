@@ -59,23 +59,43 @@ class Transaction extends DatabaseConnetion
 
     /**
      * This function is used to add withdrawal to database
-     * @param array $data
-     * @return int
+     * @param int $userId
+     * @param string $amount
+     * @return boolean
      */
-    public function addWithdrawal($data)
+    public function addWithdrawal($userId, $amount)
     {
 		try {
-            $sql = "INSERT INTO transactions (name, description, price, daily_commission, refferal_commission) VALUES (:name, :description, :price, :daily_commission, :refferal_commission)";
+            // get the users's wallet                
+            $sql = "SELECT amount FROM wallets WHERE user_id = ".$userId;
+            $q = $this->dbconn->query($sql);
+            $wallet = $q->fetch(\PDO::FETCH_ASSOC);
+
+            // prevent withdrawal of loosed values
+            if (intval($wallet['amount']) < intval($amount)) {
+                return false;
+            }
+
+            // update the users's wallet balance
+            $sql = "UPDATE wallets SET amount = :amount, updated_at = NOW() WHERE user_id = :user_id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':amount' => intval($wallet['amount']) - intval($amount),
+                ':user_id' => $userId,
+            ]);
+
+            // create transaction record
+            $sql = "INSERT INTO transactions (reference_code, user_id, amount, type, is_approved, created_at, updated_at) VALUES (:reference_code, :user_id, :amount, :type, :is_approved, NOW(), NOW())";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
-                ':name' => $data['txtname'],
-                ':description' => $data['txtDescription'], 
-                ':price' => $data['txtPrice'],
-                ':daily_commission' => $data['txtDailyCommission'],
-                ':refferal_commission' => $data['txtRefferalCommission']
+                ':reference_code' => $token = Helpers::randomString(12),
+                ':user_id' => $userId,
+                ':amount' => intval($amount),
+                ':type' => 'withdrawal',
+                ':is_approved' => 0
             ));
 
-            return $this->dbconn->lastInsertId();
+            return true;
         }
         catch (\PDOException $ex)
         {

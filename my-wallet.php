@@ -18,6 +18,8 @@
 
     $tranx = new TransactionController();
     $transactions = $tranx->getAllTransactionByUser($_SESSION['user']['id']);
+    $walletBalance = $u->fetchUserWalletBalance();
+    $tranx->withdrawalRequest($_POST);
 ?>
 
 <!DOCTYPE html>
@@ -52,27 +54,6 @@
                     </div>
 
                     <div class="row">
-                        <!-- Total earnings -->
-                        <div class="col-xl-3 col-md-3 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                All Time Total Earnings
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                &#8358;<?= $tranx->sumUserTransactionsByType($_SESSION['user']['id']) ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="bi bi-currency-exchange btn-lg"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Available balance -->
                         <div class="col-xl-3 col-md-3 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -83,7 +64,7 @@
                                                 Available Balance
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                &#8358;<?= $u->fetchUserWalletBalance() ?>
+                                                &#8358;<?= $walletBalance ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -108,7 +89,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="bi bi-people-fill btn-lg"></i>
+                                            <i class="bi bi-currency-exchange btn-lg"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +110,28 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="bi bi-calendar btn-lg"></i>
+                                            <i class="bi bi-currency-exchange btn-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Total earnings -->
+                        <div class="col-xl-3 col-md-3 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                All Time Total Earnings
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                &#8358;<?= $tranx->sumUserTransactionsByType($_SESSION['user']['id']) ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="bi bi-currency-exchange btn-lg"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -197,10 +199,11 @@
 
                             <form action="" method="post" name="withdrawal-form">
                                 <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><strike>N</strike></span>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">&#8358;</span>
                                     <input type="text" name="txtAmount" class="form-control" placeholder="Enter Amount" aria-describedby="basic-addon1">
                                 </div>
+                                    <small class="text-danger">Maximum withdrawable amount: <b>&#8358;<?= $walletBalance ?></b></small>
 
                                 <button name="btnRequestWithdrawal" class="submit-form float-right btn btn-primary mt-4 mb-2">Submit</button>
                             </form>
