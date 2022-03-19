@@ -9,12 +9,15 @@
     
     require_once './app/Controllers/UserController.php';
     require_once './app/Controllers/PackageController.php';
+    require_once './app/Controllers/TransactionController.php';
     
     $u = new UserController();
     $referrals = $u->fetchUserReferrals();
     $u->approveUser();
     
     $p = new PackageController();
+
+    $tranx = new TransactionController();
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +54,7 @@
                         $allApprovedUsers = $u->fetchAllApprovedUsers(true);
                         $pendingUsers = $u->fetchAllUnapprovedUsers(true);
                         $accWorth = $u->getAccumulatedWorth();
+                        $payOuts = $tranx->sumAllApprovedTransactions('withdrawal')
                 ?>
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -208,7 +212,7 @@
                                                     Total Paid Out
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    &#8358;<?= $accWorth ?>
+                                                    &#8358;<?= $payOuts ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">

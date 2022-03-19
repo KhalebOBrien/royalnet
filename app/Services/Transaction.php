@@ -158,6 +158,22 @@ class Transaction extends DatabaseConnetion
         }
 	}
 
+    /**
+     * This function is used to sum all approved transactions
+     * @return array $users
+     */
+    public function sumApprovedTransactions($type)
+    {
+
+        $sql = "SELECT SUM(amount) AS total FROM transactions WHERE is_approved = 1 AND type = '".$type."'";
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        $result = empty($result['total']) ? 0 : $result['total'];
+        
+        return $result;
+    }
+
 }
 
 ?>

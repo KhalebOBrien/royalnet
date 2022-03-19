@@ -79,6 +79,15 @@ class TransactionController
 	}
 
 	/**
+	 * This function is used to sum all approved transactions
+	 * @return array
+	 */
+	public function sumAllApprovedTransactions($type)
+	{
+		return $this->transaction->sumApprovedTransactions($type);
+	}
+
+	/**
 	 * This function is used to validate user session token
 	 * @param string $token
 	 */
