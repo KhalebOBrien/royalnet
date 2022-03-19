@@ -260,11 +260,24 @@ class User extends DatabaseConnetion
      * This function is used to fetch all non-admins (members)
      * @return array $users
      */
-    public function getAllUsers()
+    public function getAllUsers($sumDeposits=false)
     {
         $sql = "SELECT * FROM users WHERE is_admin = 0";
         $q = $this->dbconn->query($sql);
         $users = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+        if ($sumDeposits) {
+            $sum = 0;
+            if (!empty($users)) {
+                foreach ($users as $user) {
+                    // get the users package
+                    $userPackage = $this->getPackage($user['package']);
+                    $sum += intval($userPackage['price']);
+                }
+            }
+            $users['users'] = $users;
+            $users['summedDeposits'] = $sum;
+        }
 
         return $users;
     }
@@ -273,11 +286,24 @@ class User extends DatabaseConnetion
      * This function is used to fetch all unapproved members
      * @return array $users
      */
-    public function getUnapprovedUsers()
+    public function getUnapprovedUsers($sumDeposits=false)
     {
         $sql = "SELECT * FROM users WHERE is_approved = 0";
         $q = $this->dbconn->query($sql);
         $users = $q->fetchAll(\PDO::FETCH_ASSOC);
+
+        if ($sumDeposits) {
+            $sum = 0;
+            if (!empty($users)) {
+                foreach ($users as $user) {
+                    // get the users package
+                    $userPackage = $this->getPackage($user['package']);
+                    $sum += intval($userPackage['price']);
+                }
+            }
+            $users['users'] = $users;
+            $users['summedDeposits'] = $sum;
+        }
 
         return $users;
     }
@@ -286,15 +312,33 @@ class User extends DatabaseConnetion
      * This function is used to fetch all approved members
      * @return array $users
      */
-    public function getApprovedUsers()
+    public function getApprovedUsers($sumDeposits=false)
     {
         $sql = "SELECT * FROM users WHERE is_approved = 1 AND is_admin = 0";
         $q = $this->dbconn->query($sql);
         $users = $q->fetchAll(\PDO::FETCH_ASSOC);
 
+        if ($sumDeposits) {
+            $sum = 0;
+            if (!empty($users)) {
+                foreach ($users as $user) {
+                    // get the users package
+                    $userPackage = $this->getPackage($user['package']);
+                    $sum += intval($userPackage['price']);
+                }
+            }
+            $users['users'] = $users;
+            $users['summedDeposits'] = $sum;
+        }
+        
         return $users;
     }
 
+	/**
+	 * This function is used to approve a user.
+	 * This will lead to crediting the upliner
+	 * @return boolean
+	 */
     public function approveUser($code)
     {
         try {
@@ -311,13 +355,9 @@ class User extends DatabaseConnetion
 
             if (!empty($user['referrers_code']) && !empty($referrer)) {
                 // retrive the referrer's package reff commission
-                $sql = "SELECT * FROM packages WHERE id = ".$referrer['package'];
-                $q = $this->dbconn->query($sql);
-                $referrerPackage = $q->fetch(\PDO::FETCH_ASSOC);
+                $referrerPackage = $this->getPackage($referrer['package']);
                 // retrive the user's package price
-                $sql = "SELECT * FROM packages WHERE id = ".$user['package'];
-                $q = $this->dbconn->query($sql);
-                $userPackage = $q->fetch(\PDO::FETCH_ASSOC);
+                $userPackage = $this->getPackage($user['package']);
 
                 // calculate the commission
                 $commission = (intval($referrerPackage['refferal_commission']) * intval($userPackage['price'])) / 100;
@@ -353,6 +393,41 @@ class User extends DatabaseConnetion
             echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
             exit();
         }
+    }
+
+    /**
+     * This function is used to retrieve a package by id
+     * @return array $package
+     */
+    private function getPackage($id)
+    {
+        $sql = "SELECT * FROM packages WHERE id = ".$id;
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    /**
+     * This function is used to fetch accumulated balance of all wallets
+     * @return int $total
+     */
+    public function getTotalUsersAccumulatedBalance()
+    {
+        $sql = "SELECT SUM(amount) AS total FROM wallets";
+        $q = $this->dbconn->query($sql);
+        $total = $q->fetch(\PDO::FETCH_ASSOC);
+
+        return $total['total'];
+    }
+
+    public function getUserWalletBalance($id)
+    {
+        $sql = "SELECT amount FROM wallets WHERE user_id = ".$id;
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        return $result['amount'];
     }
 	
 }

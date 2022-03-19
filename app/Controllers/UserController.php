@@ -86,27 +86,27 @@ class UserController
 	 * This function is used to retrieve all users except admins
 	 * @return array
 	 */
-	public function fetchAllUsers()
+	public function fetchAllUsers($sumDeposits=false)
 	{
-		return $this->user->getAllUsers();
+		return $this->user->getAllUsers($sumDeposits);
 	}
 
 	/**
 	 * This function is used to retrieve all users that have not been approved
 	 * @return array
 	 */
-	public function fetchAllUnapprovedUsers()
+	public function fetchAllUnapprovedUsers($sumDeposits=false)
 	{
-		return $this->user->getUnapprovedUsers();
+		return $this->user->getUnapprovedUsers($sumDeposits);
 	}
 
 	/**
 	 * This function is used to retrieve all users that have been approved
 	 * @return array
 	 */
-	public function fetchAllApprovedUsers()
+	public function fetchAllApprovedUsers($sumDeposits=false)
 	{
-		return $this->user->getApprovedUsers();
+		return $this->user->getApprovedUsers($sumDeposits);
 	}
 
 	/**
@@ -137,6 +137,11 @@ class UserController
 		return null;
 	}
 
+	/**
+	 * This function is used to approve a user.
+	 * This will lead to crediting the upliner
+	 * @return boolean
+	 */
 	public function approveUser()
 	{
 		if(isset($_GET['approve'])) {
@@ -146,6 +151,20 @@ class UserController
 		}
 
 		return null;
+	}
+
+	/**
+     * This function is used to fetch accumulated balance of all wallets
+     * @return int
+	 */
+	public function getAccumulatedWorth()
+	{
+		return $this->user->getTotalUsersAccumulatedBalance();
+	}
+
+	public function fetchUserWalletBalance()
+	{
+		return $this->user->getUserWalletBalance($_SESSION['user']['id']);
 	}
 
 	/**

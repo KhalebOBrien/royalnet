@@ -47,9 +47,10 @@
                     // decide dashboard view by user type
                     if ($_SESSION['user']['is_admin']) :
                         // show admin dashboard
-                        $allUsers = $u->fetchAllUsers();
-                        $allApprovedUsers = $u->fetchAllApprovedUsers();
-                        $pendingUsers = $u->fetchAllUnapprovedUsers();
+                        $allUsers = $u->fetchAllUsers(true);
+                        $allApprovedUsers = $u->fetchAllApprovedUsers(true);
+                        $pendingUsers = $u->fetchAllUnapprovedUsers(true);
+                        $accWorth = $u->getAccumulatedWorth();
                 ?>
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -67,7 +68,7 @@
                                                     Total Users
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= count($allUsers) ?></span>
+                                                    <span><?= count($allUsers['users']) ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -87,7 +88,7 @@
                                                     Total Pending Users
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= count($pendingUsers) ?></span>
+                                                    <span><?= count($pendingUsers['users']) ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -107,7 +108,7 @@
                                                     Total Approved Users
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span><?= count($allApprovedUsers) ?></span>
+                                                    <span><?= count($allApprovedUsers['users']) ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -117,17 +118,97 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Total num of people reffered -->
+                            <!-- Total users accummulated balance -->
                             <div class="col-xl-3 col-md-3 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Total Revenue
+                                                    Total Users Wallet Bal.
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <span>0</span>
+                                                    &#8358;<?= $accWorth ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="bi bi-currency-exchange btn-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total users estimated worth -->
+                            <div class="col-xl-3 col-md-3 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    User Estimated Worth
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    &#8358;<?= $allUsers['summedDeposits'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="bi bi-currency-exchange btn-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total users pending deposits -->
+                            <div class="col-xl-3 col-md-3 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Total Pending Deposits
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    &#8358;<?= $pendingUsers['summedDeposits'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="bi bi-currency-exchange btn-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total users approved deposits -->
+                            <div class="col-xl-3 col-md-3 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Total Approved Deposits.
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    &#8358;<?= $allApprovedUsers['summedDeposits'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="bi bi-currency-exchange btn-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total payouts -->
+                            <div class="col-xl-3 col-md-3 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Total Payouts
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    &#8358;<?= $accWorth ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -145,53 +226,6 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Pending Users</h6>
                             </div>
                             <div class="card-body">
-                                <!-- search, filter and sort -->
-                                <div class="container mb-4">
-                                    <div class="row justify-content-end">
-                                        <!-- search -->
-                                        <div class="col-lg-4 col-sm-12 col-md-12">
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" placeholder="Search by emial" aria-label="Search by emial" aria-describedby="basic-addon2">
-                                                <button class="input-group-text"><i class="bi bi-search"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5 col-sm-12 col-md-12 ">
-                                            <div class="float-end">
-                                                <!-- filter -->
-                                                <span class="dropdown">
-                                                    <button class="btn btn-light dropdown-toggle border-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Filter
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><a class="dropdown-item" href="#">Date joined</a></li>
-                                                        <li><a class="dropdown-item" href="#">Verified users</a></li>
-                                                        <li><a class="dropdown-item" href="#">Unverified users</a></li>
-                                                    </ul>
-                                                </span>
-                                                <!-- sort -->
-                                                <span class="dropdown ">
-                                                    <button class="btn btn-light dropdown-toggle border-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Sort by plan
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                        <li><a class="dropdown-item" href="#">Member</a></li>
-                                                        <li><a class="dropdown-item" href="#">Agent</a></li>
-                                                        <li><a class="dropdown-item" href="#">VIP 1</a></li>
-                                                        <li><a class="dropdown-item" href="#">VIP 2</a></li>
-                                                        <li><a class="dropdown-item" href="#">VIP 3</a></li>
-                                                        <li><a class="dropdown-item" href="#">Deputy Manager</a></li>
-                                                        <li><a class="dropdown-item" href="#">Manager</a></li>
-                                                        <li><a class="dropdown-item" href="#">Assistant Director</a></li>
-                                                        <li><a class="dropdown-item" href="#">Director</a></li>
-                                                        <li><a class="dropdown-item" href="#">Shareholder</a></li>
-                                                    </ul>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Table -->
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -205,8 +239,8 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            if(!empty($pendingUsers)) :
-                                                foreach($pendingUsers as $unapproved) :
+                                            if(!empty($pendingUsers['users'])) :
+                                                foreach($pendingUsers['users'] as $unapproved) :
                                         ?>
                                         <tr>
                                             <td><?= $unapproved['surname'].', '.$unapproved['other_names'] ?></td>
@@ -228,6 +262,7 @@
                 <?php 
                     else :
                         // show user dashboard
+                        $walletBalance = $u->fetchUserWalletBalance();
                 ?>
                     <div class="container-fluid">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -240,17 +275,17 @@
                         </div>
 
                         <div class="row">
-                            <!-- Total earnings -->
+                            <!-- Wallet Balance -->
                             <div class="col-xl-6 col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Earnings
+                                                    Available Balance
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <strike>N</strike><span>0</span>
+                                                    &#8358;<?= $walletBalance ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
