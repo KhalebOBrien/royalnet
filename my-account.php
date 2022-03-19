@@ -166,26 +166,28 @@
                         </div>
 
                           <!-- update profile -->
-                        <div class="card shadow mb-4 col-lg-6 col-sm-12 col-md-12 mt-2 row">
-                         <div class="row align-self-center">
-                             <div class="card-header py-3">
-                             <h6 class="m-0 font-weight-bold text-primary">Update account</h6>
-                            Change your account details
-                         </div>
-                         <div class="card-body">
-                            <form action="">
-                                <input type="text" class="form-control mb-2" placeholder="New name">
-                                <input type="text" class="form-control mb-2" placeholder="New phone number">
-                            </form>
+                                <div class="card shadow mb-4 col-12 mt-5 row">
+                                    <div class="row align-self-center">         
+                                        <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Update account</h6>
+                                        Change your account details
+                                        </div>
+                                        <div class="card-body">
+                                        <form action="" onsubmit="return validateUpdateAccountName()">
+                                            <input type="text" class="form-control mb-2" placeholder="New surname" id="new-surname">
+                                            <input type="text" class="form-control mb-2" placeholder="New other name" id="new-othername">
+                                            <input type="number" class="form-control mb-2" placeholder="New phone number" id="new-number">
 
-
+                                            <div id="register-err-msg" class="alert-danger text-center" role="alert"></div>
+                                            <button type="submit" class="btn btn-success card-link mb-3 float-end"></i> Update name</button>
+                                        </form>
                             
-                            <button class="btn btn-primary card-link mb-3 float-end"><i class="bi bi-person"></i> Update account</button>
                             
-                         </div>
-                        </div>
-                        
-                    </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                      
                     </div>
 
                    
@@ -222,6 +224,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="js/dashboard-temp.js"></script>
+    <script src="js/updateAccount.js"></script>
     <script src="js/copy-to-clipboard.js"></script>
 
 </body>

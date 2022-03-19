@@ -1,5 +1,6 @@
 // Form validation for register 
 
+
 function validateRegister() {
     const SURNAME = document.querySelector('#surname')
     const OTHERNAME = document.querySelector('#otherName')
