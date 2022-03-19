@@ -32,12 +32,13 @@
             
             <h4 class="pt-3">Sign in to <?= Helpers::APPLICATION_NAME ?></h4>
             <hr>
-            <form action="" method="post" name="login-form">
+            <form action="" method="post" name="login-form" onsubmit="return validateLogin()">
                 <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
-                <input type="text" name="txtEmail" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Email">
-                <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="exampleFormControlInput1" placeholder="Password"> 
+                <input type="text" name="txtEmail" class="form-control mt-2 form-input" id="email" placeholder="Email">
+                <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="password" placeholder="Password"> 
                 <a href="forgot-password">Forgot password?</a> <br>
 
+                <div id="register-err-msg" class="alert-danger" role="alert"></div>
                 <button name="btnLogin" class="submit-form mt-4 mb-2">Sign In</button>
             </form>
             <br>
@@ -51,5 +52,6 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

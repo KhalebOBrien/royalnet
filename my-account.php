@@ -103,6 +103,8 @@
                                 <?php
                                     endif;
                                 ?>
+                               
+
                                 <div class="d-grid gap-2">
                                     <a href="change-password" class="btn bg-gray-600 card-link change-password"><i class="bi bi-lock"></i> Change Password</a>
                                 </div>
@@ -162,7 +164,32 @@
                                 </form>
                             </div>
                         </div>
+
+                          <!-- update profile -->
+                        <div class="card shadow mb-4 col-lg-6 col-sm-12 col-md-12 mt-2 row">
+                         <div class="row align-self-center">
+                             <div class="card-header py-3">
+                             <h6 class="m-0 font-weight-bold text-primary">Update account</h6>
+                            Change your account details
+                         </div>
+                         <div class="card-body">
+                            <form action="">
+                                <input type="text" class="form-control mb-2" placeholder="New name">
+                                <input type="text" class="form-control mb-2" placeholder="New phone number">
+                            </form>
+
+
+                            
+                            <button class="btn btn-primary card-link mb-3 float-end"><i class="bi bi-person"></i> Update account</button>
+                            
+                         </div>
+                        </div>
+                        
                     </div>
+                    </div>
+
+                   
+                     
 
                     <!-- delete account section -->
                     <div class="card shadow mt-3 mb-4">

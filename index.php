@@ -18,24 +18,9 @@
             Do you want us to influence or advertise your brand, business or promote your contents? Each Slot is 20,000. Contact our Customer Care Rep: +234 703 349 9876
         </marquee>
 
-        <div class="row justify-content-end nav-info">
-          <span class="col-5 d-flex justify-content-center border-end justify-content-center">
-            <p class=	"d-none d-sm-block">
-               Contact our customer care  
-               <i class="bi bi-telephone"></i>
-                +234 703 349 9876
-            </p> 
-          
-          </span>
-          <span class="col-4 d-flex justify-content-center justify-content-center">
-            <p>
-                Whatsapp us here 
-                <a href="https://wa.me/2347033499876" target="_blank"  style="text-decoration: none; color: green;">
-                <i class="bi bi-whatsapp"></i>  
-              </a>
-            </p>
-          </span>
-        </div>
+        <a href="https://wa.me/2347033499876?text=Hi, my name is..." class="float" target="_blank">
+          <i class="bi bi-whatsapp my-float"></i>
+          </a>
 
           <nav class="navbar">
             <div class="container">
@@ -66,7 +51,8 @@
           <div class="row ">
               <div class="col-lg-6 col-sm-12 col-md-12 pt-4">
                 <div class="about ">
-                About   
+                  <span class="sub-head">About</span> <span class="line"></span>  
+
                 <div class="about-heading">What is Royal Network?</div>
                 <div class="about-details">Royal Network  is an online Networking, Advert and Affiliate Marketing Center where various individuals earn on a daily basis by performing simple task.
                   We also pay a 50% commission on every referral completed successfully.
@@ -90,31 +76,175 @@
                 <img src="images/about-us.jpg" alt="" class="about-us-image img-fluid" height="100px">
               </div>
           </div>
+
+
+          <!-- Packages -->
+        <div class="pt-5">
+          <span class="sub-head">Packages</span> <span class="line"></span>
         </div>
 
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+        <div class="row mt-4">
+
+          <div class="col-lg-4 col-sm-12 col-md-6">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3  bg-success">
+              <h4 class="my-0 fw-normal text-light">Member</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"> N3000</h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li><i class="bi bi-check2-circle text-success"></i> Earn N140 every day</li>
+                <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
           </div>
-        </div>
+
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3 bg-success">
+                <h4 class="my-0 fw-normal text-light">Agent</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title"> N5000</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li><i class="bi bi-check2-circle text-success"></i> Earn N240 every day</li>
+                  <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                </ul>
+              </div>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 col-md-6">
+              <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3 bg-success">
+                  <h4 class="my-0 fw-normal text-light">VIP 1</h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title"> N10,000</h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li><i class="bi bi-check2-circle text-success"></i> Earn N420 every day</li>
+                    <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                  </ul>
+                </div>
+              </div>
+              </div>
+
+              <div class="col-lg-4 col-sm-12 col-md-6">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3  bg-success">
+                    <h4 class="my-0 fw-normal text-light">VIP 2</h4>
+                  </div>
+                  <div class="card-body">
+                    <h1 class="card-title pricing-card-title"> N25,000</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                      <li><i class="bi bi-check2-circle text-success"></i> Earn N930 every day</li>
+                      <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                    </ul>
+                  </div>
+                </div>
+                </div>
+      
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 bg-success">
+                      <h4 class="my-0 fw-normal text-light">VIP 3</h4>
+                    </div>
+                    <div class="card-body">
+                      <h1 class="card-title pricing-card-title"> N60,000</h1>
+                      <ul class="list-unstyled mt-3 mb-4">
+                        <li><i class="bi bi-check2-circle text-success"></i> Earn N2300 every day</li>
+                        <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                      </ul>
+                    </div>
+                  </div>
+                  </div>
+      
+                  <div class="col-lg-4 col-sm-12 col-md-6">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                      <div class="card-header py-3 bg-success">
+                        <h4 class="my-0 fw-normal text-light">Deputy Manager</h4>
+                      </div>
+                      <div class="card-body">
+                        <h1 class="card-title pricing-card-title"> N150,000</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                          <li><i class="bi bi-check2-circle text-success"></i> Earn N5800 every day</li>
+                          <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                        </ul>
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                      <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-success">
+                          <h4 class="my-0 fw-normal text-light">Manager </h4>
+                        </div>
+                        <div class="card-body">
+                          <h1 class="card-title pricing-card-title"> N250,000</h1>
+                          <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="bi bi-check2-circle text-success"></i> Earn N9600 every day</li>
+                            <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                          </ul>
+                        </div>
+                      </div>
+                      </div>
+          
+                      <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                          <div class="card-header py-3 bg-success">
+                            <h4 class="my-0 fw-normal text-light">Assistant Director</h4>
+                          </div>
+                          <div class="card-body">
+                            <h1 class="card-title pricing-card-title"> N500,000</h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                              <li><i class="bi bi-check2-circle text-success"></i> Earn N20000 every day</li>
+                              <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                            </ul>
+                          </div>
+                        </div>
+                        </div>
+                      
+                        <div class="col-lg-4 col-sm-12 col-md-6">
+                          <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3 bg-success">
+                              <h4 class="my-0 fw-normal text-light">Director  </h4>
+                            </div>
+                            <div class="card-body">
+                              <h1 class="card-title pricing-card-title"> N1,000,000</h1>
+                              <ul class="list-unstyled mt-3 mb-4">
+                                <li><i class="bi bi-check2-circle text-success"></i> Earn N40,500 every day</li>
+                                <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                              </ul>
+                            </div>
+                          </div>
+                          </div>
+
+                            <div class="col-lg-4 col-sm-12 col-md-6">
+                              <div class="card mb-4 rounded-3 shadow-sm">
+                                <div class="card-header py-3 bg-success">
+                                  <h4 class="my-0 fw-normal text-light">Shareholder  </h4>
+                                </div>
+                                <div class="card-body">
+                                  <h1 class="card-title pricing-card-title"> N2,000,000</h1>
+                                  <ul class="list-unstyled mt-3 mb-4">
+                                    <li><i class="bi bi-check2-circle text-success"></i> Earn N83000 every day</li>
+                                    <li><i class="bi bi-check2-circle text-success"></i> Get 50% referral commission</li>
+                                  </ul>
+                                </div>
+                              </div>
+                              </div>
+                  
+
+      </div>
+
+    </div>
+  
         
 
 
         <!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted ">
+<footer class="text-center text-lg-start bg-light">
   
   <section class="">
     <div class="container text-center text-md-start mt-5 pt-4">
@@ -172,8 +302,8 @@
  
 
   <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> <?php Helpers::APPLICATION_NAME ?> </div>
+  <div class="text-center" style="background-color: rgba(0, 0, 0, 0.05);">
+      <div class="text-center mt-5" id="cpright">© <span id="copyrightYear">2022</span> Royal Net </div>
   </div>
   <!-- Copyright -->
 </footer>
@@ -182,5 +312,12 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+  let copyrightYear = document.querySelector('#copyrightYear')
+  let Y = new Date().getFullYear()
+
+  copyrightYear.innerHTML = Y;
+</script>
 </body>
 </html>
