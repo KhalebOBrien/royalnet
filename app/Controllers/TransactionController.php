@@ -55,6 +55,30 @@ class TransactionController
 	}
 
 	/**
+	 * This function is used to retrieve all withdrawal request for admins approval
+	 * @return array
+	 */
+	public function getAllWithdrawalRequest()
+	{
+		return $this->transaction->fetchAllWithdrawalRequest();
+	}
+
+	/**
+	 * This function is used to approve a user withdrawal request.
+	 * @return boolean
+	 */
+	public function approveWithdrawal()
+	{
+		if(isset($_GET['approve'])) {
+			if ($this->transaction->approveWithdrawalRequest($_GET['approve'])) {
+				header('location: '.$_GET['back']);
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * This function is used to validate user session token
 	 * @param string $token
 	 */

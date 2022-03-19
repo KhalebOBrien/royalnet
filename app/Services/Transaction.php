@@ -95,6 +95,10 @@ class Transaction extends DatabaseConnetion
                 ':is_approved' => 0
             ));
 
+            // send mail to admin
+
+            // send mail to user
+
             return true;
         }
         catch (\PDOException $ex)
@@ -103,6 +107,56 @@ class Transaction extends DatabaseConnetion
             exit();
         }
     }
+
+    /**
+     * This function is used to fetch all withdrawal requests
+     */
+    public function fetchAllWithdrawalRequest()
+    {
+        $sql = "SELECT * FROM transactions WHERE type = 'withdrawal'";
+        $q = $this->dbconn->query($sql);
+        $transactions = $q->fetchAll(\PDO::FETCH_ASSOC);
+        $result = [];
+        if (!empty($transactions)) {
+            foreach ($transactions as $tranx) {
+                $sql = "SELECT `id`, `surname`, `other_names`, `phone`, `bank`, `acct_number`, `acct_name`, `email`, `fb_link`, `ig_link`, `tw_link`, `yt_link` FROM users WHERE id = ".$tranx['user_id'];
+                $q = $this->dbconn->query($sql);
+                $data = $q->fetch(\PDO::FETCH_ASSOC);
+                $data['requestedAmount'] = $tranx['amount'];
+                $data['referenceCode'] = $tranx['reference_code'];
+                $data['isApproved'] = $tranx['is_approved'];
+
+                $result[] = $data;
+            }
+        }
+
+        return $result;
+    }
+
+	/**
+	 * This function is used to approve a user withdrawal request.
+	 * @return boolean
+	 */
+	public function approveWithdrawalRequest($code)
+	{
+        try {
+            $sql = "UPDATE transactions SET is_approved = :is_approved, updated_at = NOW() WHERE reference_code = :reference_code";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':is_approved' => 1,
+                ':reference_code' => $code
+            ]);
+
+            // send mail to user
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+	}
 
 }
 
