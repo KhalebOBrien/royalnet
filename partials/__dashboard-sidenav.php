@@ -88,8 +88,8 @@ use App\Services\Helpers;
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="task" >
-            <span>Tasks</span>
+        <a class="nav-link collapsed" href="task-list" >
+            <span>View Tasks</span>
         </a>
     </li>
 

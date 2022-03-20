@@ -46,7 +46,7 @@ class Task extends DatabaseConnetion
      */
     public function fetchTaskBySlug($slug)
     {
-        $sql = "SELECT * FROM tasks WHERE slug = ".$slug;
+        $sql = "SELECT * FROM tasks WHERE slug = '".$slug."'";
         $q = $this->dbconn->query($sql);
         $result = $q->fetch(\PDO::FETCH_ASSOC);
 

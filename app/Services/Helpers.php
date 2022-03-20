@@ -47,6 +47,9 @@ class Helpers
 		mail($to, $subject, $message, $headers);
 	}
 
+	/**
+	 * This function is used to upload images
+	 */
 	public static function uploadImage($file)
 	{
 		$photo = htmlentities(trim($file['name']), ENT_QUOTES, 'UTF-8');
@@ -63,5 +66,14 @@ class Helpers
 		
 		return "error";
 	}
+
+	/**
+	 * This function ccounts the words contained in a sentence
+	 */
+	public static function wordCount($string, $word_limit = 10)
+    {
+        $words = explode(" ",$string);
+        return implode(" ",array_splice($words,0,$word_limit));
+    }
 }
 ?>
