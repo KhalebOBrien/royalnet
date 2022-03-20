@@ -40,11 +40,9 @@
                     </div>
 
                     <!-- tasks -->
-                    <!-- <div class="card shadow mb-4"> -->
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Available tasks</h6>
                         </div>
-                        <!-- <div class=""> -->
                             <div class=" mt-5 mb-5">
                                 <strong>Set up your account before performing tasks.</strong>
                                 <p>Your Task: Make sure you read carefully before performing the task.</p>
@@ -55,8 +53,6 @@
                             </div>
 
                              
-                        <!-- </div> -->
-                    <!-- </div> -->
 
                     <!-- task container -->
                     <div class="row justify-content-around"> 
@@ -102,8 +98,6 @@
                                 </div>
 
                                 
-                                <!-- task container -->
-                            <!-- <div class="row justify-content-around">  -->
                                 <!-- task body -->
                                 <div class="col-lg-3 col-md-12 col-sm-12">
                                     <div class="card mb-3" >
@@ -144,7 +138,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- </div> -->
 
                         </div>
     
