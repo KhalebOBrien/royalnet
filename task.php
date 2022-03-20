@@ -34,7 +34,7 @@
                 
                 <?php include_once './partials/__dashboard-topnav.php' ?>
 
-                <div class="container-fluid">
+                <div class="container">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Tasks</h1>
                     </div>
@@ -55,18 +55,57 @@
 
                             <h5 class="card-title">Tasks</h5>
 
-                            <!-- tasks will be here -->
-
-                            <div class="border-top">
-                                <!-- Text about the task -->
+                            <div class="border-top mb-4">
                                 <div class="mt-1">
-                                    Click on the task link you want to perform
+                                    Choose a task you want to perform
                                 </div>
-
-                            <span><a href="perform-task.html"> task link</a></span>
                                 
                             </div>
 
+                            <!-- task container -->
+                            <div class="row justify-content-around"> 
+                                <!-- task body -->
+                                <div class="col-lg-5 col-md-12 col-sm-10">
+                                    <div class="card mb-3" >
+                                        <img src="images/hero.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success"> <span>Task title</span> </h5>
+                                            <p class="card-text"> <span>Some text about the task</span> </p>
+        
+                                            
+                                            <p class="card-text">
+                                                Click the link below for more details about the task <br>
+                                                 <a href="perform-task"> <span>task link</span> </a>
+                                            </p>
+        
+                                            
+                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
+                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- task body -->
+                                <div class="col-lg-5 col-md-12 col-sm-12 ">
+                                    <div class="card mb-4">
+                                        <img src="images/hero.jpg" class="image-fluid card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success"> <span>Task title</span> </h5>
+                                            <p class="card-text"> <span>Some text about the task</span> </p>
+        
+                                            
+                                            <p class="card-text">
+                                                Click the link below for more details about the task <br>
+                                                 <a href="perform-task"> <span>task link</span> </a>
+                                            </p>
+        
+                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
+                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+    
                              
                         </div>
                     </div>
