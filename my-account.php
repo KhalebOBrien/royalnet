@@ -68,45 +68,67 @@
 
                     <!-- Profile info -->
                     <div class="row justify-content-around">
-                        <div class="card col-lg-4 col-12 mt-2">
-                            <div class="card-body  profile">
-                                <h5 class="card-title mb-4"><span><?= $_SESSION['user']['surname'].', '.$_SESSION['user']['other_names'] ?></span></h5>
-                                <h6 class="card-text">
-                                    <i class="bi bi-envelope"></i>
-                                    E-mail   
-                                    <span class="text-muted float-end"><?= $_SESSION['user']['email'] ?></span>
-                                </h6>
-                                <h6 class="card-text">
-                                    <i class="bi bi-phone"></i>
-                                    Phone   
-                                    <span class="text-muted float-end"><?= $_SESSION['user']['phone'] ?></span>
-                                </h6>
-                                <h6 class="card-text">
-                                    <i class="bi bi-briefcase"></i>
-                                    Package   
-                                    <span class="text-muted float-end"><?= $userPackage['name'] ?></span>
-                                </h6>
-                                <hr>
-                                <?php
-                                    if (!$_SESSION['user']['is_admin']) :
-                                ?>
-                                <div class="row mt-4">
-                                    <p class="card-text col-6">
-                                        <b>&#8358;<?= $u->fetchUserWalletBalance() ?></b> <br>
-                                        Wallet Balance
-                                    </p>
-                                    <p class="card-text col-6"><b><?= count($referrals) ?></b> <br>
-                                        Referrals
-                                    </p>
-                                </div>
-                                <hr>
-                                <?php
-                                    endif;
-                                ?>
-                               
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <div class="card col-12 mt-2">
+                                    <div class="card-body  profile">
+                                        <h5 class="card-title mb-4"><span><?= $_SESSION['user']['surname'].', '.$_SESSION['user']['other_names'] ?></span></h5>
+                                        <h6 class="card-text">
+                                            <i class="bi bi-envelope"></i>
+                                            E-mail   
+                                            <span class="text-muted float-end"><?= $_SESSION['user']['email'] ?></span>
+                                        </h6>
+                                        <h6 class="card-text">
+                                            <i class="bi bi-phone"></i>
+                                            Phone   
+                                            <span class="text-muted float-end"><?= $_SESSION['user']['phone'] ?></span>
+                                        </h6>
+                                        <h6 class="card-text">
+                                            <i class="bi bi-briefcase"></i>
+                                            Package   
+                                            <span class="text-muted float-end"><?= $userPackage['name'] ?></span>
+                                        </h6>
+                                        <hr>
+                                        <?php
+                                            if (!$_SESSION['user']['is_admin']) :
+                                        ?>
+                                        <div class="row mt-4">
+                                            <p class="card-text col-6">
+                                                <b>&#8358;<?= $u->fetchUserWalletBalance() ?></b> <br>
+                                                Wallet Balance
+                                            </p>
+                                            <p class="card-text col-6"><b><?= count($referrals) ?></b> <br>
+                                                Referrals
+                                            </p>
+                                        </div>
+                                        <hr>
+                                        <?php
+                                            endif;
+                                        ?>
+                                    
 
-                                <div class="d-grid gap-2">
-                                    <a href="change-password" class="btn bg-gray-600 card-link change-password"><i class="bi bi-lock"></i> Change Password</a>
+                                        <div class="d-grid gap-2">
+                                            <a href="change-password" class="btn bg-gray-600 card-link change-password"><i class="bi bi-lock"></i> Change Password</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card col-12 mt-3">
+                                    <div class="row align-self-center">         
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Update Account</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <form action="" onsubmit="return validateUpdateAccountName()" name="update-profile" method="POST">
+                                                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                                                <input type="text" class="form-control mb-2" placeholder="New surname" id="new-surname" name="txtSurname" value="<?= $_SESSION['user']['surname'] ?>">
+                                                <input type="text" class="form-control mb-2" placeholder="New other name" id="new-othername"  name="txtOthernames" value="<?= $_SESSION['user']['other_names'] ?>">
+                                                <input type="text" class="form-control mb-2" placeholder="New phone number" id="new-number" name="txtPhone" value="<?= $_SESSION['user']['phone'] ?>">
+
+                                                <div id="register-err-msg" class="alert-danger text-center" role="alert"></div>
+                                                <button type="submit" class="btn btn-success card-link mt-2 float-end" name="btnUpdateProfileDetails"></i>Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -159,39 +181,12 @@
                                             <input type="url" name="txtYtLink" class="form-control" placeholder="https://youtube.com/username" value="<?= $_SESSION['user']['yt_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
                                         
-                                        <button type="submit" name="btnUpdateAccount" class="btn btn-success float-end">Update</button>
+                                        <button type="submit" name="btnUpdateBankDetails" class="btn btn-success float-end">Update</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-
-                          <!-- update profile -->
-                                <div class="card shadow mb-4 col-12 mt-5 row">
-                                    <div class="row align-self-center">         
-                                        <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Update account</h6>
-                                        Change your account details
-                                        </div>
-                                        <div class="card-body">
-                                        <form action="" onsubmit="return validateUpdateAccountName()">
-                                            <input type="text" class="form-control mb-2" placeholder="New surname" id="new-surname">
-                                            <input type="text" class="form-control mb-2" placeholder="New other name" id="new-othername">
-                                            <input type="number" class="form-control mb-2" placeholder="New phone number" id="new-number">
-
-                                            <div id="register-err-msg" class="alert-danger text-center" role="alert"></div>
-                                            <button type="submit" class="btn btn-success card-link mb-3 float-end"></i> Update name</button>
-                                        </form>
-                            
-                            
-                                    </div>
-                                </div>
-                                
-                            </div>
-                      
                     </div>
-
-                   
-                     
 
                     <!-- delete account section -->
                     <div class="card shadow mt-3 mb-4">

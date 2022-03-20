@@ -204,21 +204,33 @@ class User extends DatabaseConnetion
      * @param  array $data
      * @return boolean
      */
-    public function updateProfile($account, $data)
+    public function updateProfile($account, $data, $updateType)
     {
         try {
-            $sql = "UPDATE users SET bank = :bank, acct_number = :acct_number, acct_name = :acct_name, fb_link = :fb_link, ig_link = :ig_link, tw_link = :tw_link, yt_link = :yt_link, updated_at = NOW() WHERE id = :id";
-            $q = $this->dbconn->prepare($sql);
-            $q->execute([
-                ':bank' => $data['slBank'],
-                ':acct_number' => $data['txtAcctNumber'],
-                ':acct_name' => $data['txtAcctName'],
-                ':fb_link' => $data['txtFbLink'],
-                ':ig_link' => $data['txtIgLink'],
-                ':tw_link' => $data['txtTwLink'],
-                ':yt_link' => $data['txtYtLink'],
-                ':id' => $account['id']
-            ]);
+            if($updateType == 'bank'){
+                $sql = "UPDATE users SET bank = :bank, acct_number = :acct_number, acct_name = :acct_name, fb_link = :fb_link, ig_link = :ig_link, tw_link = :tw_link, yt_link = :yt_link, updated_at = NOW() WHERE id = :id";
+                $q = $this->dbconn->prepare($sql);
+                $q->execute([
+                    ':bank' => $data['slBank'],
+                    ':acct_number' => $data['txtAcctNumber'],
+                    ':acct_name' => $data['txtAcctName'],
+                    ':fb_link' => $data['txtFbLink'],
+                    ':ig_link' => $data['txtIgLink'],
+                    ':tw_link' => $data['txtTwLink'],
+                    ':yt_link' => $data['txtYtLink'],
+                    ':id' => $account['id']
+                ]);
+            }
+            else {
+                $sql = "UPDATE users SET surname = :surname, other_names = :other_names, phone = :phone, updated_at = NOW() WHERE id = :id";
+                $q = $this->dbconn->prepare($sql);
+                $q->execute([
+                    ':surname' => $data['txtSurname'],
+                    ':other_names' => $data['txtOthernames'],
+                    ':phone' => $data['txtPhone'],
+                    ':id' => $account['id']
+                ]);
+            }
 
             $_SESSION['user'] = $this->getUserByEmail($account['email']);
 
