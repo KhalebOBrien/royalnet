@@ -46,5 +46,22 @@ class Helpers
 
 		mail($to, $subject, $message, $headers);
 	}
+
+	public static function uploadImage($file)
+	{
+		$photo = htmlentities(trim($file['name']), ENT_QUOTES, 'UTF-8');
+		$tmp_dir = $file['tmp_name'];
+		$upload_dir = './upL04ds/';
+
+		$imgExt = strtolower(pathinfo($photo,PATHINFO_EXTENSION));
+
+		$profilePhoto = Helpers::randomString(15)."-".time().".".$imgExt;
+
+		if (move_uploaded_file($tmp_dir, $upload_dir.$profilePhoto)) {
+			return $profilePhoto;
+		}
+		
+		return "error";
+	}
 }
 ?>
