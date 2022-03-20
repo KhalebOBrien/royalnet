@@ -26,6 +26,17 @@ class User extends DatabaseConnetion
             $account = $q->fetch(\PDO::FETCH_ASSOC);
     
             if($account && password_verify($password, $account['password'])) {
+                // unappproved users cannot login
+                if (!$account['is_approved']) {
+                    $_SESSION['msg'] = "Sorry, you cannot login at this time as your account have not been approved.";
+                    return false;
+                }
+                // suspended users cannot login
+                if ($account['is_suspended']) {
+                    $_SESSION['msg'] = "Sorry, you have been restricted access to this system.";
+                    return false;
+                }
+
                 $_SESSION['user'] = $account;
                 return true;
             }
@@ -249,7 +260,7 @@ class User extends DatabaseConnetion
      */
     public function getAdmins()
     {
-        $sql = "SELECT * FROM users WHERE is_admin = 1";
+        $sql = "SELECT * FROM users WHERE is_admin = 1 ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $admins = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -288,7 +299,7 @@ class User extends DatabaseConnetion
      */
     public function getUnapprovedUsers($sumDeposits=false)
     {
-        $sql = "SELECT * FROM users WHERE is_approved = 0";
+        $sql = "SELECT * FROM users WHERE is_approved = 0 ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $users = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -314,7 +325,7 @@ class User extends DatabaseConnetion
      */
     public function getApprovedUsers($sumDeposits=false)
     {
-        $sql = "SELECT * FROM users WHERE is_approved = 1 AND is_admin = 0";
+        $sql = "SELECT * FROM users WHERE is_approved = 1 AND is_admin = 0 ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $users = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -385,6 +396,8 @@ class User extends DatabaseConnetion
                     ':user_id' => $referrer['id'],
                 ]);
             }
+            
+            $_SESSION['msg'] = $user['email']." successfully APPROVED.";
 
             return true;
         } 

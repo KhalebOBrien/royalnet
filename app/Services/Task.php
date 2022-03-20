@@ -18,7 +18,7 @@ class Task extends DatabaseConnetion
      */
     public function fetchAllTask()
     {
-        $sql = "SELECT * FROM tasks";
+        $sql = "SELECT * FROM tasks ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $result = $q->fetchAll(\PDO::FETCH_ASSOC);
 

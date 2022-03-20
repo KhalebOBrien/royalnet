@@ -31,6 +31,8 @@
     <title>Dashboard - <?= Helpers::APPLICATION_NAME ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/alertify.core.css">
+    <link rel="stylesheet" type="text/css" href="css/alertify.default.css">
     <link rel="icon" href="/images/logo.png">
     <link href="css/dashboard-temp.css" rel="stylesheet">
     <link rel="stylesheet" href="css/user-dashboard.css">
@@ -329,8 +331,7 @@
                                     <p>Make sure you read carefully before performing the task.</p>
                                     <p>Step 1, Click on Tasks.</p>
                                     <p>Step 2, Wait for few seconds to view the advert campaign and today news headlines with promoted links.</p>
-                                    <p>Step 3, Download the sponsored image and copy the sponsored content</p>
-                                    <p>Step 4, Upload it on your Social media timeline, then you are done. You can add any text or write up as you wish either for promotion and getting referrals.</p>
+                                    <p>Step 3, Copy the link from your browser and share on your Social media timeline, then you are done. You can add any text or write up as you wish either for promotion and getting referrals.</p>
                                 </div>
                             </div>
 
@@ -381,8 +382,21 @@
     <!-- Bootstrap core JavaScript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="js/alertify.min.js"></script>
     <script src="js/dashboard-temp.js"></script>
+    
+    <?php 
+        if (isset($_SESSION['msg'])) :
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            alertify.success('<?= $_SESSION['msg'] ?>');
+        });
+    </script>
+    <?php
+            unset($_SESSION['msg']);
+        endif;
+    ?>
 </body>
 
 </html>

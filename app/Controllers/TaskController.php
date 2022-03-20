@@ -61,7 +61,7 @@ class TaskController
 			$data['flImage'] = Helpers::uploadImage($_FILES['flImage']);
 
 			if ($this->task->addTask($data)) {
-				return true;
+				header('location: manage-task');
 			}
 		}
 	}

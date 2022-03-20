@@ -55,8 +55,7 @@
                                 <p>Your Task: Make sure you read carefully before performing the task.</p>
                                 <p>Step 1, Click on Tasks.</p>
                                 <p>Step 2, Wait for few seconds to view the advert campaign and today news headlines with promoted links.</p>
-                                <p>Step 3, Download the sponsored image and copy the sponsored content</p>
-                                <p>Step 4, Upload it on your Social media timeline, then you are done. You can add any text or write up as you wish either for promotion and getting referrals.</p>
+                                <p>Step 3, Copy the link from your browser and share on your Social media timeline, then you are done. You can add any text or write up as you wish either for promotion and getting referrals.</p>
                             </div>
                         </div>
                     </div>
