@@ -40,10 +40,12 @@
                     </div>
 
                     <!-- tasks -->
+                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Available tasks</h6>
                         </div>
-                            <div class=" mt-5 mb-5">
+                        <div class="card-body">
+                            <div class="card-body">
                                 <strong>Set up your account before performing tasks.</strong>
                                 <p>Your Task: Make sure you read carefully before performing the task.</p>
                                 <p>Step 1, Click on Tasks.</p>
@@ -51,11 +53,18 @@
                                 <p>Step 3, Download the sponsored image and copy the sponsored content</p>
                                 <p>Step 4, Upload it on your Social media timeline, then you are done. You can add any text or write up as you wish either for promotion and getting referrals.</p>
                             </div>
-
-                             
+                        </div>
+                    </div>
 
                     <!-- task container -->
-                    <div class="row justify-content-around"> 
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Select a task you want to perform</h6>
+                        </div>
+                        
+                            <div class="card-body">
+                            <div class="row justify-content-around"> 
+                                
                                 <!-- task body -->
                                 <div class="col-lg-3 col-md-12 col-sm-12    ">
                                     <div class="card mb-3" >
@@ -69,10 +78,7 @@
                                                 Click the link below for more details about the task <br>
                                                  <a href="perform-task"> <span>task link</span> </a>
                                             </p>
-        
-                                            
-                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
-                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -91,13 +97,13 @@
                                                  <a href="perform-task"> <span>task link</span> </a>
                                             </p>
         
-                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
-                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
                                         </div>
                                     </div>
                                 </div>
 
                                 
+                                <!-- task container -->
+                            <!-- <div class="row justify-content-around">  -->
                                 <!-- task body -->
                                 <div class="col-lg-3 col-md-12 col-sm-12">
                                     <div class="card mb-3" >
@@ -111,10 +117,7 @@
                                                 Click the link below for more details about the task <br>
                                                  <a href="perform-task"> <span>task link</span> </a>
                                             </p>
-        
                                             
-                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
-                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
                                         </div>
                                     </div>
                                 </div>
@@ -133,11 +136,14 @@
                                                  <a href="perform-task"> <span>task link</span> </a>
                                             </p>
         
-                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
-                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                                <!-- </div> -->
 
                         </div>
     
