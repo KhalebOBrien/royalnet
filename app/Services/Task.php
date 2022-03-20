@@ -67,7 +67,7 @@ class Task extends DatabaseConnetion
                 ':created_by' => $_SESSION['user']['id'],
                 ':slug' => $data['slug'],
                 ':title' => $data['txtTitle'],
-                ':body' => $data['txtBody'],
+                ':body' => htmlentities(trim($data['txtBody']), ENT_QUOTES, 'UTF-8'),
                 ':image' => $data['flImage']
             ));
 

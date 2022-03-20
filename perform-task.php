@@ -1,3 +1,21 @@
+<?php
+    session_start();
+    require_once './app/Services/Helpers.php';
+    require_once './app/Controllers/TaskController.php';
+    use App\Services\Helpers;
+
+    if (!isset($_GET['v'])) {
+        header('location: /');
+    }
+    
+    $task = new TaskController();
+    $taskData = $task->getTaskBySlug($_GET['v']);
+
+    if (empty($taskData)) {
+        //header('location: 404');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,42 +30,28 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <section class="container">
-
-            <div class="task-body col-sm-12 col-lg-6 col-md-12">
-                <div class="card mb-4 task-body">
-                    <img src="images/hero.jpg" class="card-img-top" alt="...">
+        <div class="task-body col-sm-12 col-lg-6 col-md-12">
+            <div class="card mb-4 task-body">
+                <img src="upL04ds/<?= $taskData['image'] ?>" class="card-img-top" alt="<?= $taskData['title'] ?>">
                 <div class="card-body">
-                    <h5 class="card-title text-success text-center"> <span>Task title</span> </h5>
+                    <h5 class="card-title text-success text-center"> <span><?= $taskData['title'] ?></span> </h5>
                     <p class="card-text">
-                        Link:  <a href="perform-task"> <span>task link</span> </a>                         
+                        <?= html_entity_decode($taskData['body']) ?>
                     </p>
-                    <p class="card-text"> <span>Some text about the task</span> </p>
                 </div>
 
-                <!-- copyright -->
                 <div>
                     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.05);">
-                        <div class="text-center mt-5" id="cpright">© <span id="copyrightYear">2022</span> Royal Net </div>
+                        <div class="text-center mt-5">&copy; <?= Date('Y') . ' ' . Helpers::APPLICATION_NAME ?> </div>
                     </div>
                 </div>
-                </div>
-                
             </div>
-
         </div>
     </section>
  
-
-      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script>
-        let copyrightYear = document.querySelector('#copyrightYear')
-        let Y = new Date().getFullYear()
-      
-        copyrightYear.innerHTML = Y;
-      </script>
+
 </body>
 </html>
