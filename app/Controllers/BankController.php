@@ -1,6 +1,5 @@
 <?php
 
-use App\Services\Package;
 use App\Services\Bank;
 
 require_once 'app/Services/Bank.php';
