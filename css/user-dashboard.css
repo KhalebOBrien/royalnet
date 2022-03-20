@@ -17,3 +17,6 @@
 .change-password:hover{
     color: white;
 }
+.task-link{
+    text-decoration: none;
+}
