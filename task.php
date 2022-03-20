@@ -40,12 +40,13 @@
                     </div>
 
                     <!-- tasks -->
-                    <div class="card shadow mb-4">
+                    <!-- <div class="card shadow mb-4"> -->
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Available tasks</h6>
                         </div>
-                        <div class="card-body">
-                            <div class="card-body">
+                        <!-- <div class=""> -->
+                            <div class=" mt-5 mb-5">
+                                <strong>Set up your account before performing tasks.</strong>
                                 <p>Your Task: Make sure you read carefully before performing the task.</p>
                                 <p>Step 1, Click on Tasks.</p>
                                 <p>Step 2, Wait for few seconds to view the advert campaign and today news headlines with promoted links.</p>
@@ -53,19 +54,14 @@
                                 <p>Step 4, Upload it on your Social media timeline, then you are done. You can add any text or write up as you wish either for promotion and getting referrals.</p>
                             </div>
 
-                            <h5 class="card-title">Tasks</h5>
+                             
+                        <!-- </div> -->
+                    <!-- </div> -->
 
-                            <div class="border-top mb-4">
-                                <div class="mt-1">
-                                    Choose a task you want to perform
-                                </div>
-                                
-                            </div>
-
-                            <!-- task container -->
-                            <div class="row justify-content-around"> 
+                    <!-- task container -->
+                    <div class="row justify-content-around"> 
                                 <!-- task body -->
-                                <div class="col-lg-5 col-md-12 col-sm-10">
+                                <div class="col-lg-3 col-md-12 col-sm-12    ">
                                     <div class="card mb-3" >
                                         <img src="images/hero.jpg" class="card-img-top" alt="...">
                                         <div class="card-body">
@@ -86,7 +82,7 @@
                                 </div>
 
                                 <!-- task body -->
-                                <div class="col-lg-5 col-md-12 col-sm-12 ">
+                                <div class="col-lg-3 col-md-12 col-sm-12 ">
                                     <div class="card mb-4">
                                         <img src="images/hero.jpg" class="image-fluid card-img-top" alt="...">
                                         <div class="card-body">
@@ -104,11 +100,55 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
+                                <!-- task container -->
+                            <!-- <div class="row justify-content-around">  -->
+                                <!-- task body -->
+                                <div class="col-lg-3 col-md-12 col-sm-12">
+                                    <div class="card mb-3" >
+                                        <img src="images/hero.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success"> <span>Task title</span> </h5>
+                                            <p class="card-text"> <span>Some text about the task</span> </p>
+        
+                                            
+                                            <p class="card-text">
+                                                Click the link below for more details about the task <br>
+                                                 <a href="perform-task"> <span>task link</span> </a>
+                                            </p>
+        
+                                            
+                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
+                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
+                                        </div>
+                                    </div>
                                 </div>
-    
-                             
+
+                                <!-- task body -->
+                                <div class="col-lg-3 col-md-12 col-sm-12 ">
+                                    <div class="card mb-4">
+                                        <img src="images/hero.jpg" class="image-fluid card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success"> <span>Task title</span> </h5>
+                                            <p class="card-text"> <span>Some text about the task</span> </p>
+        
+                                            
+                                            <p class="card-text">
+                                                Click the link below for more details about the task <br>
+                                                 <a href="perform-task"> <span>task link</span> </a>
+                                            </p>
+        
+                                            <a href="perform-task" class="btn btn-primary task-link mb-3">Perform tast</a>
+                                            <a href="#" class="btn btn-success float-end task-link">Task done</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- </div> -->
+
                         </div>
-                    </div>
+    
+    
                 </div>
             </div>
             
