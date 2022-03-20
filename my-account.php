@@ -92,10 +92,10 @@
                                 ?>
                                 <div class="row mt-4">
                                     <p class="card-text col-6">
-                                        <strike>N</strike> <span>0</span> <br>
-                                        Total Earnings
+                                        <b>&#8358;<?= $u->fetchUserWalletBalance() ?></b> <br>
+                                        Wallet Balance
                                     </p>
-                                    <p class="card-text col-6"><span><?= count($referrals) ?></span> <br>
+                                    <p class="card-text col-6"><b><?= count($referrals) ?></b> <br>
                                         Referrals
                                     </p>
                                 </div>

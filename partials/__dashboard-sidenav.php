@@ -29,7 +29,7 @@ use App\Services\Helpers;
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="pay">
-            <span>Pay Users</span>
+            <span>Withdrawal Requests</span>
         </a>
     </li>
 

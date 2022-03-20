@@ -59,29 +59,119 @@ class Transaction extends DatabaseConnetion
 
     /**
      * This function is used to add withdrawal to database
-     * @param array $data
-     * @return int
+     * @param int $userId
+     * @param string $amount
+     * @return boolean
      */
-    public function addWithdrawal($data)
+    public function addWithdrawal($userId, $amount)
     {
 		try {
-            $sql = "INSERT INTO transactions (name, description, price, daily_commission, refferal_commission) VALUES (:name, :description, :price, :daily_commission, :refferal_commission)";
+            // get the users's wallet                
+            $sql = "SELECT amount FROM wallets WHERE user_id = ".$userId;
+            $q = $this->dbconn->query($sql);
+            $wallet = $q->fetch(\PDO::FETCH_ASSOC);
+
+            // prevent withdrawal of loosed values
+            if (intval($wallet['amount']) < intval($amount)) {
+                return false;
+            }
+
+            // update the users's wallet balance
+            $sql = "UPDATE wallets SET amount = :amount, updated_at = NOW() WHERE user_id = :user_id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':amount' => intval($wallet['amount']) - intval($amount),
+                ':user_id' => $userId,
+            ]);
+
+            // create transaction record
+            $sql = "INSERT INTO transactions (reference_code, user_id, amount, type, is_approved, created_at, updated_at) VALUES (:reference_code, :user_id, :amount, :type, :is_approved, NOW(), NOW())";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
-                ':name' => $data['txtname'],
-                ':description' => $data['txtDescription'], 
-                ':price' => $data['txtPrice'],
-                ':daily_commission' => $data['txtDailyCommission'],
-                ':refferal_commission' => $data['txtRefferalCommission']
+                ':reference_code' => $token = Helpers::randomString(12),
+                ':user_id' => $userId,
+                ':amount' => intval($amount),
+                ':type' => 'withdrawal',
+                ':is_approved' => 0
             ));
 
-            return $this->dbconn->lastInsertId();
+            // send mail to admin
+
+            // send mail to user
+
+            return true;
         }
         catch (\PDOException $ex)
         {
             echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
             exit();
         }
+    }
+
+    /**
+     * This function is used to fetch all withdrawal requests
+     */
+    public function fetchAllWithdrawalRequest()
+    {
+        $sql = "SELECT * FROM transactions WHERE type = 'withdrawal'";
+        $q = $this->dbconn->query($sql);
+        $transactions = $q->fetchAll(\PDO::FETCH_ASSOC);
+        $result = [];
+        if (!empty($transactions)) {
+            foreach ($transactions as $tranx) {
+                $sql = "SELECT `id`, `surname`, `other_names`, `phone`, `bank`, `acct_number`, `acct_name`, `email`, `fb_link`, `ig_link`, `tw_link`, `yt_link` FROM users WHERE id = ".$tranx['user_id'];
+                $q = $this->dbconn->query($sql);
+                $data = $q->fetch(\PDO::FETCH_ASSOC);
+                $data['requestedAmount'] = $tranx['amount'];
+                $data['referenceCode'] = $tranx['reference_code'];
+                $data['isApproved'] = $tranx['is_approved'];
+
+                $result[] = $data;
+            }
+        }
+
+        return $result;
+    }
+
+	/**
+	 * This function is used to approve a user withdrawal request.
+	 * @return boolean
+	 */
+	public function approveWithdrawalRequest($code)
+	{
+        try {
+            $sql = "UPDATE transactions SET is_approved = :is_approved, updated_at = NOW() WHERE reference_code = :reference_code";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':is_approved' => 1,
+                ':reference_code' => $code
+            ]);
+
+            // send mail to user
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+	}
+
+    /**
+     * This function is used to sum all approved transactions
+     * @return array $users
+     */
+    public function sumApprovedTransactions($type)
+    {
+
+        $sql = "SELECT SUM(amount) AS total FROM transactions WHERE is_approved = 1 AND type = '".$type."'";
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        $result = empty($result['total']) ? 0 : $result['total'];
+        
+        return $result;
     }
 
 }
