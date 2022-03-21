@@ -30,21 +30,33 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <section class="container">
-        <div class="task-body col-sm-12 col-lg-6 col-md-12">
-            <div class="card task-body" style="min-height:100vh; box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-">
-                <img src="upL04ds/<?= $taskData['image'] ?>" class="card-img-top" alt="<?= $taskData['title'] ?>">
-                <div class="card-body">
-                    <h5 class="card-title text-success text-center"> <span><?= $taskData['title'] ?></span> </h5>
-                    <p class="card-text">
-                        <?= html_entity_decode($taskData['body']) ?>
-                    </p>
-                </div>
-
-                <div>
-                    <div class="text-center" style="background-color: rgba(0, 0, 0, 0.05);">
-                        <div class="text-center mt-5">&copy; <?= Date('Y') . ' - ' . Helpers::APPLICATION_NAME ?> </div>
+    <section class="flexbox-container" style="padding: 0px !important;">
+        <div class="col-12 d-flex align-items-center justify-content-center" style="padding: 0px !important;">
+            <div class="col-lg-5 col-md-7 col-12 pb-0" style="padding: 0px !important;">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="card shadow col-12 p-0" style="border: 0px; min-height:100vh">
+                        <div class="media-container p-0">
+                            <img class="card-img-top" src="upL04ds/<?= $taskData['image'] ?>" alt="<?= $taskData['title'] ?>">
+                        </div>
+                        <div class="card-content collapse show" style="margin-top: -2px;">
+                            <div class="card-header bg-success">
+                                <div class="row">
+                                    <div class="col-12 text-white text-center">
+                                        <h5 class="card-title"><?= $taskData['title'] ?></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body" style="padding-bottom:6rem">
+                                <?= html_entity_decode($taskData['body']) ?>
+                            </div>
+                            <div class="card-footer" style="background-color: #ffffff; position: absolute; right: 0; bottom: 0; left: 0;">
+                                <div class="row">
+                                    <div class="col-12 text-center text-muted" style="">
+                                        &copy; <?= Date('Y') . ' - ' . Helpers::APPLICATION_NAME ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -62,7 +62,7 @@
                         <span class="referral-link">Referral link: <span id="ref-link"><?= Helpers::APPLICATION_DOMAIN.'register?r='.$_SESSION['user']['referral_code'] ?></span>
                             <span class="float-end">
                                 <button class="btn" id="copy-ref-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy to clipboard"> <i class="bi bi-clipboard"></i></button>
-                            </span>  
+                            </span>
                         </span>
                     </div>
 

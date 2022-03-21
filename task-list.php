@@ -77,11 +77,11 @@
                                         <img src="upL04ds/<?= $taskData['image'] ?>" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title text-success"> <a href="task?view=<?= $taskData['slug'] ?>"><?= $taskData['title'] ?></a> </h5>
-                                            <p class="card-text"> <span><?= Helpers::wordCount(html_entity_decode($taskData['body']), 30) ?>...</span> </p>
-                                            <p class="card-text">
-                                                Click the link below for more details about the task <br>
-                                                 <a href="perform-task"> <span>task link</span> </a>
-                                            </p>
+                                            <p class="card-text"> <span><?= Helpers::wordCount(html_entity_decode($taskData['body']), 30) ?></span> </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="task?view=<?= $taskData['slug'] ?>" class="btn btn-primary">View</a>
+                                            <span class="btn btn-success float-right">Copy Link</span>
                                         </div>
                                     </div>
                                 </div>
