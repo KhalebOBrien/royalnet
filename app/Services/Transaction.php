@@ -18,7 +18,7 @@ class Transaction extends DatabaseConnetion
      */
     public function fetchAllTransactionByUser($userId)
     {
-        $sql = "SELECT * FROM transactions WHERE user_id = ".$userId;
+        $sql = "SELECT * FROM transactions WHERE user_id = ".$userId." ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $result = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -113,7 +113,7 @@ class Transaction extends DatabaseConnetion
      */
     public function fetchAllWithdrawalRequest()
     {
-        $sql = "SELECT * FROM transactions WHERE type = 'withdrawal'";
+        $sql = "SELECT * FROM transactions WHERE type = 'withdrawal' ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $transactions = $q->fetchAll(\PDO::FETCH_ASSOC);
         $result = [];
@@ -160,7 +160,7 @@ class Transaction extends DatabaseConnetion
 
     /**
      * This function is used to sum all approved transactions
-     * @return array $users
+     * @return int
      */
     public function sumApprovedTransactions($type)
     {

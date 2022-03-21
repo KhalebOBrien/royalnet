@@ -18,7 +18,7 @@ class Task extends DatabaseConnetion
      */
     public function fetchAllTask()
     {
-        $sql = "SELECT * FROM tasks";
+        $sql = "SELECT * FROM tasks ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $result = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -46,7 +46,7 @@ class Task extends DatabaseConnetion
      */
     public function fetchTaskBySlug($slug)
     {
-        $sql = "SELECT * FROM tasks WHERE slug = ".$slug;
+        $sql = "SELECT * FROM tasks WHERE slug = '".$slug."'";
         $q = $this->dbconn->query($sql);
         $result = $q->fetch(\PDO::FETCH_ASSOC);
 
@@ -67,7 +67,7 @@ class Task extends DatabaseConnetion
                 ':created_by' => $_SESSION['user']['id'],
                 ':slug' => $data['slug'],
                 ':title' => $data['txtTitle'],
-                ':body' => $data['txtBody'],
+                ':body' => htmlentities(trim($data['txtBody']), ENT_QUOTES, 'UTF-8'),
                 ':image' => $data['flImage']
             ));
 

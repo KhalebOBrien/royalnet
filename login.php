@@ -21,6 +21,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/alertify.core.css">
+    <link rel="stylesheet" type="text/css" href="css/alertify.default.css">
     <link rel="icon" href="/images/logo.png">
     <link rel="stylesheet" href="css/style.css">
     <title>Sign In - <?= Helpers::APPLICATION_NAME ?></title>
@@ -51,7 +53,22 @@
 
     </div>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/alertify.min.js"></script>
     <script src="js/login.js"></script>
+    
+    <?php 
+        if (isset($_SESSION['msg'])) :
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            alertify.error('<?= $_SESSION['msg'] ?>');
+        });
+    </script>
+    <?php
+            unset($_SESSION['msg']);
+        endif;
+    ?>
 </body>
 </html>

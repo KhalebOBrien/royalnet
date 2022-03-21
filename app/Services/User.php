@@ -26,6 +26,17 @@ class User extends DatabaseConnetion
             $account = $q->fetch(\PDO::FETCH_ASSOC);
     
             if($account && password_verify($password, $account['password'])) {
+                // unappproved users cannot login
+                if (!$account['is_approved']) {
+                    $_SESSION['msg'] = "Sorry, you cannot login at this time as your account have not been approved.";
+                    return false;
+                }
+                // suspended users cannot login
+                if ($account['is_suspended']) {
+                    $_SESSION['msg'] = "Sorry, you have been restricted access to this system.";
+                    return false;
+                }
+
                 $_SESSION['user'] = $account;
                 return true;
             }
@@ -193,21 +204,33 @@ class User extends DatabaseConnetion
      * @param  array $data
      * @return boolean
      */
-    public function updateProfile($account, $data)
+    public function updateProfile($account, $data, $updateType)
     {
         try {
-            $sql = "UPDATE users SET bank = :bank, acct_number = :acct_number, acct_name = :acct_name, fb_link = :fb_link, ig_link = :ig_link, tw_link = :tw_link, yt_link = :yt_link, updated_at = NOW() WHERE id = :id";
-            $q = $this->dbconn->prepare($sql);
-            $q->execute([
-                ':bank' => $data['slBank'],
-                ':acct_number' => $data['txtAcctNumber'],
-                ':acct_name' => $data['txtAcctName'],
-                ':fb_link' => $data['txtFbLink'],
-                ':ig_link' => $data['txtIgLink'],
-                ':tw_link' => $data['txtTwLink'],
-                ':yt_link' => $data['txtYtLink'],
-                ':id' => $account['id']
-            ]);
+            if($updateType == 'bank'){
+                $sql = "UPDATE users SET bank = :bank, acct_number = :acct_number, acct_name = :acct_name, fb_link = :fb_link, ig_link = :ig_link, tw_link = :tw_link, yt_link = :yt_link, updated_at = NOW() WHERE id = :id";
+                $q = $this->dbconn->prepare($sql);
+                $q->execute([
+                    ':bank' => $data['slBank'],
+                    ':acct_number' => $data['txtAcctNumber'],
+                    ':acct_name' => $data['txtAcctName'],
+                    ':fb_link' => $data['txtFbLink'],
+                    ':ig_link' => $data['txtIgLink'],
+                    ':tw_link' => $data['txtTwLink'],
+                    ':yt_link' => $data['txtYtLink'],
+                    ':id' => $account['id']
+                ]);
+            }
+            else {
+                $sql = "UPDATE users SET surname = :surname, other_names = :other_names, phone = :phone, updated_at = NOW() WHERE id = :id";
+                $q = $this->dbconn->prepare($sql);
+                $q->execute([
+                    ':surname' => $data['txtSurname'],
+                    ':other_names' => $data['txtOthernames'],
+                    ':phone' => $data['txtPhone'],
+                    ':id' => $account['id']
+                ]);
+            }
 
             $_SESSION['user'] = $this->getUserByEmail($account['email']);
 
@@ -249,7 +272,7 @@ class User extends DatabaseConnetion
      */
     public function getAdmins()
     {
-        $sql = "SELECT * FROM users WHERE is_admin = 1";
+        $sql = "SELECT * FROM users WHERE is_admin = 1 ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $admins = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -288,7 +311,7 @@ class User extends DatabaseConnetion
      */
     public function getUnapprovedUsers($sumDeposits=false)
     {
-        $sql = "SELECT * FROM users WHERE is_approved = 0";
+        $sql = "SELECT * FROM users WHERE is_approved = 0 ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $users = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -314,7 +337,7 @@ class User extends DatabaseConnetion
      */
     public function getApprovedUsers($sumDeposits=false)
     {
-        $sql = "SELECT * FROM users WHERE is_approved = 1 AND is_admin = 0";
+        $sql = "SELECT * FROM users WHERE is_approved = 1 AND is_admin = 0 ORDER BY id DESC";
         $q = $this->dbconn->query($sql);
         $users = $q->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -385,6 +408,8 @@ class User extends DatabaseConnetion
                     ':user_id' => $referrer['id'],
                 ]);
             }
+            
+            $_SESSION['msg'] = $user['email']." successfully APPROVED.";
 
             return true;
         } 

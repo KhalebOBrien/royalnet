@@ -21,11 +21,19 @@ class UserController
 	 */
 	public function updateAccount($user, $data)
 	{
-		if(isset($data['btnUpdateAccount'])){
+		if(isset($data['btnUpdateBankDetails']) || isset($data['btnUpdateProfileDetails'])){
 			$this->validateSession($data['csrfToken']);
 
-			if ($this->user->updateProfile($user, $data)) {
-				header('Location: my-account');
+			if (isset($data['btnUpdateBankDetails'])) {
+				if ($this->user->updateProfile($user, $data, 'bank')) {
+					header('Location: my-account');
+				}
+			}
+			
+			if (isset($data['btnUpdateProfileDetails'])) {
+				if ($this->user->updateProfile($user, $data, 'profile')) {
+					header('Location: my-account');
+				}
 			}
 		}
 

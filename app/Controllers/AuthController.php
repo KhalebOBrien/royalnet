@@ -56,10 +56,6 @@ class AuthController
 			if($this->user->authenticate($data['txtEmail'], $data['txtPassword'])){
 				header('Location: dashboard');
 			}
-			else {
-				echo "invalid username or password";
-				exit;
-			}
 		}
 		
 		return null;
