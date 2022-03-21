@@ -31,7 +31,11 @@
 <body class="sign-body">
 
     <div class="container">
-        <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-6">
+    <nav class="navbar"></nav>
+    
+    <div class="float-end">Already have an account? <a href="login">Sign In</a></div>
+    
+        <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-5">
             <h2><?= Helpers::APPLICATION_NAME ?></h2>
             <h4>Sign up to get started</h4>
             <p style="color: gray;">It's fast and easy</p>
@@ -63,8 +67,9 @@
 
                 <button name="btnRegister" class="submit-form mt-4 mb-2">Sign Up</button>
             </form> <br>
-            <a href="login">Already have an account?</a>
+            <a href="index">Cancel and return to website</a>
         </div>
+        
 
         <footer>
             <div class="text-center mt-5" id="cpright">© <span id="copyrightYear"><?= Date('Y') ?></span> <?= Helpers::APPLICATION_NAME ?> </div>

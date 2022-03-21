@@ -29,10 +29,14 @@
 </head>
 <body>
     <div class="container">
+    <nav class="navbar"></nav>
+    
+    <div class="float-end">Don't have an account? <a href="register">Create new account</a></div>
+       
 
-        <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-6">
+        <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-5">
             
-            <h4 class="pt-3">Sign in to <?= Helpers::APPLICATION_NAME ?></h4>
+            <h4 class="pt-3"><?= Helpers::APPLICATION_NAME ?></h4>
             <hr>
             <form action="" method="post" name="login-form" onsubmit="return validateLogin()">
                 <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
@@ -44,7 +48,7 @@
                 <button name="btnLogin" class="submit-form mt-4 mb-2">Sign In</button>
             </form>
             <br>
-            <a href="register">Create a new account?</a>
+            <a href="index">Cancel and return to website</a>
         </div>
 
         <footer>
