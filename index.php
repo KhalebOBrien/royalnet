@@ -20,7 +20,7 @@
 
         <a href="https://wa.me/2347033499876?text=Hi, my name is..." class="float" target="_blank">
           <i class="bi bi-whatsapp my-float"></i>
-          </a>
+        </a>
 
           <nav class="navbar">
             <div class="container">
@@ -282,17 +282,9 @@
             Contact out customer care
           </h6>
           <!-- company's email -->
-          <p class="d-flex justify-content-center">
-            <i class="fas fa-envelope me-3"></i>
-            website@email
-          </p>
+          <p class="d-flex justify-content-center"><i class="bi bi-envelope"></i> website@email</p>
           <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 703 349 9876</p>
           <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 703 349 9876</p>
-          <div class="d-flex justify-content-center mb-3">
-              <a href="https://wa.me/2347033499876" target="_blank"  style="text-decoration: none; color: green;">
-                    <i class="bi bi-whatsapp"></i>  
-              </a>
-          </div>
         </div>
        
       </div>

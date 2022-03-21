@@ -116,7 +116,6 @@
             <div class="text-center" style="background-color: rgba(0, 0, 0, 0.05);">
                 <div class="text-center mt-5" id="cpright">© <span id="copyrightYear">2022</span> Royal Net </div>
             </div>
-            <!-- Copyright -->
           </footer>
     
 

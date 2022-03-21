@@ -29,7 +29,7 @@
     
     <div class="container">
 
-        <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-6">
+        <div class="text-center form-wrap col-sm-12 col-md-10 col-lg-5">
             
             <h4 class="pt-3">Forgot Password</h4>
             <hr>
