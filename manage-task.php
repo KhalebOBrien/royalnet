@@ -62,8 +62,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="task?view=<?= $taskData['slug'] ?>" target="_blank" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-                                        <span style="display:none;"><?= Helpers::APPLICATION_DOMAIN.'task?view='.$taskData['slug'] ?></span>
-                                        <span class="btn btn-success"><i class="bi bi-clipboard"></i></span>
+                                        <span class="btn btn-success" data-url="<?= Helpers::APPLICATION_DOMAIN.'task?view='.$taskData['slug'] ?>"><i class="bi bi-clipboard"></i></span>
                                         <!-- <a href="post-task?edit=<?= $taskData['slug'] ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> -->
                                         <a href="manage-task?delete=<?= $taskData['slug'] ?>" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></a>
                                     </div>
@@ -91,13 +90,20 @@
     <script src="js/dashboard-temp.js"></script>
     <script>
         $(document).ready(function(){
+            // copy task link to clipboard
+            $('.btn-success').click(function(){
+                navigator.clipboard.writeText(this.dataset.url)
+                alertify.success('Copied to clipboard');
+            });
+
+            // warn before deleting task
             $('.delete-btn').on('click', function(e){
                 e.preventDefault();
                 console.log('clicked');
                 if(confirm('Are you sure you want to delete this task? \nThis action CANNOT be undone!')){
                     window.location = this.href;
                 }
-            })
+            });
         });
     </script>
 
