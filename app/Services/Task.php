@@ -115,6 +115,13 @@ class Task extends DatabaseConnetion
     public function deleteTask($slug)
     {
         try {
+            // get the task image if any
+            $task = $this->fetchTaskBySlug($slug);
+            if (!empty($task) && !empty($task['image'])) {
+                unlink('upL04ds/'.$task['image']);
+            }
+            
+            // proceed to deleting the task
             $sql = "DELETE FROM tasks WHERE slug = :slug";
             $q = $this->dbconn->prepare($sql);
             $q->execute([

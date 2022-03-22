@@ -11,6 +11,7 @@
 
     $task = new TaskController();
     $tasks = $task->getAll();
+    $task->deleteTask($_GET);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,6 @@
     <link rel="icon" href="/images/logo.png">
     <link href="css/dashboard-temp.css" rel="stylesheet">
     <link rel="stylesheet" href="css/user-dashboard.css">
-
 </head>
 
 <body id="page-top">
@@ -64,8 +64,8 @@
                                         <a href="task?view=<?= $taskData['slug'] ?>" target="_blank" class="btn btn-primary"><i class="bi bi-eye"></i></a>
                                         <span style="display:none;"><?= Helpers::APPLICATION_DOMAIN.'task?view='.$taskData['slug'] ?></span>
                                         <span class="btn btn-success"><i class="bi bi-clipboard"></i></span>
-                                        <a href="task?view=<?= $taskData['slug'] ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="task?view=<?= $taskData['slug'] ?>" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></a>
+                                        <!-- <a href="post-task?edit=<?= $taskData['slug'] ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> -->
+                                        <a href="manage-task?delete=<?= $taskData['slug'] ?>" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -91,12 +91,12 @@
     <script src="js/dashboard-temp.js"></script>
     <script>
         $(document).ready(function(){
-            $('.delete-btn').on('click', function(){
+            $('.delete-btn').on('click', function(e){
                 e.preventDefault();
-                console.
-                alertify.confirm('Confirm Delete', 'Are you sure you want to delete this task? This action CANNOT be undone!',
-                            function(){ return true }
-                );
+                console.log('clicked');
+                if(confirm('Are you sure you want to delete this task? \nThis action CANNOT be undone!')){
+                    window.location = this.href;
+                }
             })
         });
     </script>

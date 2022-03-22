@@ -67,6 +67,18 @@ class TaskController
 	}
 
 	/**
+	 * This function is used to delete a task
+	 */
+	public function deleteTask($data)
+	{
+		if (isset($data['delete']) && !empty($data['delete'])) {
+			$this->task->deleteTask($data['delete']);
+			header('location: manage-task');
+		}
+		return null;
+	}
+
+	/**
 	 * This function is used to validate user session token
 	 * @param string $token
 	 */
