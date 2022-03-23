@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `referral_code` varchar(255) NOT NULL,
     `referrers_code` varchar(255) NULL DEFAULT NULL,
     `is_admin` tinyint(1) NULL DEFAULT 0,
+    `is_super_admin` tinyint(1) NULL DEFAULT 0,
     `is_approved` tinyint(1) NULL DEFAULT 0,
     `is_verified` tinyint(1) NULL DEFAULT 0,
     `is_suspended` tinyint(1) NULL DEFAULT 0,

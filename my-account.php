@@ -16,7 +16,6 @@
     require_once './app/Controllers/UserController.php';
 
     $package = new PackageController();
-    $userPackage = $package->getPackage($_SESSION['user']['package']);
 
     $bank = new BankController();
     $banks = $bank->getAll();
@@ -83,15 +82,16 @@
                                             Phone   
                                             <span class="text-muted float-end"><?= $_SESSION['user']['phone'] ?></span>
                                         </h6>
+                                        <?php
+                                            if (!$_SESSION['user']['is_admin']) :
+                                                $userPackage = $package->getPackage($_SESSION['user']['package']);
+                                        ?>
                                         <h6 class="card-text">
                                             <i class="bi bi-briefcase"></i>
-                                            Package   
+                                            Package
                                             <span class="text-muted float-end"><?= $userPackage['name'] ?></span>
                                         </h6>
                                         <hr>
-                                        <?php
-                                            if (!$_SESSION['user']['is_admin']) :
-                                        ?>
                                         <div class="row mt-4">
                                             <p class="card-text col-6">
                                                 <b>&#8358;<?= $u->fetchUserWalletBalance() ?></b> <br>
@@ -105,8 +105,6 @@
                                         <?php
                                             endif;
                                         ?>
-                                    
-
                                         <div class="d-grid gap-2">
                                             <a href="change-password" class="btn bg-gray-600 card-link change-password"><i class="bi bi-lock"></i> Change Password</a>
                                         </div>
@@ -133,6 +131,9 @@
                             </div>
                         </div>
 
+                        <?php
+                            if (!$_SESSION['user']['is_admin']) :
+                        ?>
                         <!-- Set up account -->
                         <div class="card shadow mb-4 col-lg-7 col-12 mt-2">
                             <div class="card-header py-3">
@@ -186,8 +187,14 @@
                                 </form>
                             </div>
                         </div>
+                        <?php
+                            endif;
+                        ?>
                     </div>
 
+                    <?php
+                        if (!$_SESSION['user']['is_admin']) :
+                    ?>
                     <!-- delete account section -->
                     <div class="card shadow mt-3 mb-4">
                         <div class="card-header py-3">
@@ -208,6 +215,9 @@
                             </form>
                         </div>
                     </div>
+                    <?php
+                        endif;
+                    ?>
                 </div>
             </div>
             

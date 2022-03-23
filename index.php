@@ -1,3 +1,8 @@
+<?php
+  require_once './app/Services/Helpers.php';
+  use App\Services\Helpers;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +20,7 @@
     <div class="container-fluod">
 
         <marquee width="100%" scrollamount="5" class="bg-info">
-            Do you want us to influence or advertise your brand, business or promote your contents? Each Slot is 20,000. Contact our Customer Care Rep: +234 703 349 9876
+            Do you want us to influence or advertise your brand, business or promote your contents? Contact our Customer Care Rep: +234 703 349 9876
         </marquee>
 
         <a href="https://wa.me/2347033499876?text=Hi, my name is..." class="float" target="_blank">
@@ -24,8 +29,8 @@
 
           <nav class="navbar">
             <div class="container">
-              <a class="navbar-brand" href="#">
-                <img src="images/logo.png" alt="" width="100" height="50">
+              <a class="navbar-brand" href="/">
+                <img src="images/logo.png" alt="RoyalNet Logo" width="100" height="50">
               </a> 
               <ul class="nav justify-content-end">
                   <li class="nav-item">
@@ -268,10 +273,10 @@
             Useful links
           </h6>
           <p class="d-flex justify-content-center">
-            <a href="register.php" class="text-reset footer-link">Sign Up</a>
+            <a href="register" class="text-reset footer-link">Sign Up</a>
           </p>
           <p class="d-flex justify-content-center">
-            <a href="login.php" class="text-reset footer-link">Sign In</a>
+            <a href="login" class="text-reset footer-link">Sign In</a>
           </p>
         </div>
 
@@ -282,7 +287,7 @@
             Contact out customer care
           </h6>
           <!-- company's email -->
-          <p class="d-flex justify-content-center"><i class="bi bi-envelope"></i> website@email</p>
+          <p class="d-flex justify-content-center"><i class="bi bi-envelope"></i>  <?= Helpers::APPLICATION_MAIL?></p>
           <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 703 349 9876</p>
           <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 703 349 9876</p>
         </div>
@@ -295,7 +300,7 @@
 
   <!-- Copyright -->
   <div class="text-center" style="background-color: rgba(0, 0, 0, 0.05);">
-      <div class="text-center mt-5" id="cpright">© <span id="copyrightYear">2022</span> Royal Net </div>
+      <div class="text-center mt-5">&copy; <?= Date('Y') .' '.Helpers::APPLICATION_NAME ?>. All Rights Reserved.</div>
   </div>
   <!-- Copyright -->
 </footer>
@@ -305,11 +310,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<script>
-  let copyrightYear = document.querySelector('#copyrightYear')
-  let Y = new Date().getFullYear()
-
-  copyrightYear.innerHTML = Y;
-</script>
 </body>
 </html>
