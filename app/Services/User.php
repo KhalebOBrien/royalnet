@@ -375,7 +375,7 @@ class User extends DatabaseConnetion
             // retrive the parties
             $user = $this->getUserByReferralCode($code);
             $referrer = $this->getUserByReferralCode($user['referrers_code']);
-
+            // credit the upliner
             if (!empty($user['referrers_code']) && !empty($referrer)) {
                 // retrive the referrer's package reff commission
                 $referrerPackage = $this->getPackage($referrer['package']);
@@ -410,6 +410,11 @@ class User extends DatabaseConnetion
             }
             
             $_SESSION['msg'] = $user['email']." successfully APPROVED.";
+            // prepare approval mail for the user
+            $subject = 'Account APPROVED!';
+            $message = '<b>Hello, '.$user['surname'].'. </b><br>Your account have been approved. You can login to your account by visiting this link: <a href="'.Helpers::APPLICATION_DOMAIN.'login" target="_blank">'.Helpers::APPLICATION_DOMAIN.'login</a><br> PLEASE, IGNORE THIS EMAIL IF YOU DID NOT PERFORM THIS ACTION.';
+            // send mail
+            Helpers::sendMail($user['email'], $subject, $message);
 
             return true;
         } 
