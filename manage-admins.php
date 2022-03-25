@@ -18,7 +18,11 @@
     
     $user = new UserController();
     $admins = $user->fetchAdmins();
-    $user->createAdmin($_POST);
+    if($_SESSION['user']['is_super_admin']){
+        $user->createAdmin($_POST);
+        $user->suspendUser($_POST);
+        $user->reviveUser($_POST);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +54,13 @@
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Admin Users</h1>
+                        <?php
+                            if($_SESSION['user']['is_super_admin']) :
+                        ?>
                         <h4 class="h4 btn btn-primary mb-0 text-white" data-bs-toggle="modal" data-bs-target="#createAdminModal">Add Admin</h4>
+                        <?php
+                            endif;
+                        ?>
                     </div>
 
                     <!-- List of all admins and their details -->
@@ -67,7 +77,14 @@
                                         <th scope="col">Unique Code</th>
                                         <th scope="col">Created By</th>
                                         <th scope="col">Date Created</th>
-                                        <!-- <th scope="col">Action</th> -->
+                                        <th scope="col">Status</th>
+                                        <?php
+                                            if($_SESSION['user']['is_super_admin']) :
+                                        ?>
+                                        <th scope="col">Action</th>
+                                        <?php
+                                            endif;
+                                        ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +92,15 @@
                                         if (!empty($admins)) :
                                             foreach ($admins as $admin) :
                                                 $reff = $user->fetchUserReferrer($admin['referrers_code']);
+                                                $btn = '';
+                                                if(!$admin['is_super_admin']) {
+                                                    if ($admin['is_suspended']) {
+                                                        $btn = '<a href="manage-admins?revive='.$admin['referral_code'].'" class="btn btn-primary revive-link">Revive</a>';
+                                                    }
+                                                    else {
+                                                        $btn = '<a href="manage-admins?suspend='.$admin['referral_code'].'" class="btn btn-danger suspension-link">Suspend</a>';
+                                                    }
+                                                }
                                     ?>
                                     <tr>
                                         <td><?= $admin['surname'].', '.$admin['other_names'] ?></td>
@@ -82,7 +108,16 @@
                                         <td><?= $admin['referral_code'] ?></td>
                                         <td><?= !empty($reff) ? $reff['email'] : '' ?></td>
                                         <td><?= $admin['created_at'] ?></td>
-                                        <!-- <td><button type="button" class="btn btn-primary">Suspend</button></td> -->
+                                        <td><?= $admin['is_suspended'] ? '<span class="badge badge-secondary">Suspended</span>' : '<span class="badge badge-primary">Active</span>' ?></td>
+                                        <?php
+                                            if($_SESSION['user']['is_super_admin']) :
+                                        ?>
+                                        <td>
+                                            <?= $btn ?>
+                                        </td>
+                                        <?php
+                                            endif;
+                                        ?>
                                     </tr>
                                     <?php
                                             endforeach;
@@ -136,6 +171,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="js/dashboard-temp.js"></script>
+    <script>
+        $(document).ready(function(){
+            // warn before performing action
+            $('.revive-link').on('click', function(e){
+                e.preventDefault();
+                if(confirm('Are you sure you want to revive this admin?')){
+                    window.location = this.href;
+                }
+            });
+            $('.suspension-link').on('click', function(e){
+                e.preventDefault();
+                if(confirm('Are you sure you want to suspend this admin?')){
+                    window.location = this.href;
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

@@ -425,6 +425,63 @@ class User extends DatabaseConnetion
         }
     }
 
+	/**
+	 * This function is used to suspend a user.
+	 * @return boolean
+	 */
+    public function suspendUser($code)
+    {
+        try {
+            $sql = "UPDATE users SET is_suspended = :is_suspended, updated_at = NOW() WHERE referral_code = :referral_code";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':is_suspended' => 1,
+                ':referral_code' => $code
+            ]);
+            
+            $user = $this->getUserByReferralCode($code);
+            $_SESSION['msg'] = $user['email']." successfully SUSPENDED.";
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
+
+	/**
+	 * This function is used to revive a suspended user.
+	 * @return boolean
+	 */
+    public function reviveUser($code)
+    {
+        try {
+            $sql = "UPDATE users SET is_suspended = :is_suspended, updated_at = NOW() WHERE referral_code = :referral_code";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':is_suspended' => 0,
+                ':referral_code' => $code
+            ]);
+            
+            $user = $this->getUserByReferralCode($code);
+            $_SESSION['msg'] = $user['email']." successfully REVIVED.";
+            // prepare approval mail for the user
+            $subject = 'Account REVIVED!';
+            $message = '<b>Hello, '.$user['surname'].'. </b><br>Your account have been revived. You can login to your account by visiting this link: <a href="'.Helpers::APPLICATION_DOMAIN.'login" target="_blank">'.Helpers::APPLICATION_DOMAIN.'login</a>';
+            // send mail
+            Helpers::sendMail($user['email'], $subject, $message);
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
+
     /**
      * This function is used to retrieve a package by id
      * @return array $package

@@ -162,6 +162,38 @@ class UserController
 	}
 
 	/**
+	 * This function is used to suspend a user.
+	 * Only admins can suspend users
+	 * @return boolean
+	 */
+	public function suspendUser()
+	{
+		if(isset($_GET['suspend']) && $_SESSION['user']['is_super_admin']) {
+			if ($this->user->suspendUser($_GET['suspend'])) {
+				header('location: manage-admins');
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * This function is used to revive a suspended user.
+	 * Only admins can revive users
+	 * @return boolean
+	 */
+	public function reviveUser()
+	{
+		if(isset($_GET['revive']) && $_SESSION['user']['is_super_admin']) {
+			if ($this->user->reviveUser($_GET['revive'])) {
+				header('location: manage-admins');
+			}
+		}
+
+		return null;
+	}
+
+	/**
      * This function is used to fetch accumulated balance of all wallets
      * @return int
 	 */
