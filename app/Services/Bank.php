@@ -89,7 +89,7 @@ class Bank extends DatabaseConnetion
     /**
      * This function is used to delete a bank
      * @param  int $id
-     * @param  boolean
+     * @return  boolean
      */
     public function deleteBank($id)
     {
@@ -118,6 +118,19 @@ class Bank extends DatabaseConnetion
         }
     }
 
+    /**
+     * This function is used to get the count of all users under a bank
+     * @param  int $bankId
+     * @return  int $count
+     */
+    public function sumUsersByBank($bankId)
+    {
+        $sql = "SELECT COUNT(*) AS total FROM users WHERE bank = ".$bankId;
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        return $result['total'];
+    }
 }
 
 ?>

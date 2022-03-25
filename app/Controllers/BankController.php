@@ -79,6 +79,15 @@ class BankController
 		return null;
 	}
 
+    /**
+     * This function is used to get the count of all users under a bank
+     * @param  int $bankId
+     */
+	public function sumBankUsers($bank)
+	{
+		return $this->bank->sumUsersByBank($bank);
+	}
+
 	/**
 	 * This function is used to validate user session token
 	 * @param string $token

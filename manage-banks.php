@@ -76,7 +76,7 @@
                                                     <h6><?= $bank['name'] ?></h6>
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <i class="bi bi-people-fill btn-lg"></i><span>23</span>
+                                                    <i class="bi bi-people-fill btn-lg"></i><span><?= $b->sumBankUsers($bank['id']) ?></span>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
