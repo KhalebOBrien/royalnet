@@ -104,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
     `amount` varchar(255) NOT NULL,
     `type` varchar(25) NOT NULL,
     `is_approved` tinyint(1) NULL DEFAULT 0,
+    `is_revoked` tinyint(1) NULL DEFAULT 0,
     `created_at` datetime NULL DEFAULT NULL,
     `updated_at` datetime NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
