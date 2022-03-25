@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="about-heading pt-3">What is it for?</div>
-                <div class="about-details">Royal Network is for people(ranging from young and old) who want to scale up their income, people looking for other legitimate sources of income online by simply making money through networking and through affiliate marketingy.
+                <div class="about-details">Royal Network is for people(ranging from young and old) who want to scale up their income, people looking for other legitimate sources of income online by simply making money through networking and through affiliate marketing.
                 </div>
 
                 <div class="about-heading pt-3">How Does It Work? </div>
