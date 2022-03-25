@@ -151,9 +151,9 @@
                                         <th scope="col">Reference Code</th>
                                         <th scope="col">Type</th>
                                         <th scope="col">Amount (&#8358;)</th>
-                                        <th scope="col">Date</th>
+                                        <th scope="col">Submitted On</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Approval Date</th>
+                                        <th scope="col">Response Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -166,7 +166,11 @@
                                         <td><?= ucwords($transaction['type']) ?></td>
                                         <td><?= $transaction['amount'] ?></td>
                                         <td><?= $transaction['created_at'] ?></td>
-                                        <td><?= $transaction['is_approved'] ? '<span class="badge badge-primary">Approved</span>' : '<span class="badge badge-secondary">Pending</span>' ?></td>
+                                        <td>
+                                            <?= $transaction['is_approved'] ? '<span class="badge badge-success">Approved</span>' : '' ?>
+                                            <?= $transaction['is_revoked'] ? '<span class="badge badge-warning">Revoked</span>' : '' ?>
+                                            <?= (!$transaction['is_approved'] && !$transaction['is_revoked']) ? '<span class="badge badge-secondary">Pending</span>' : '' ?>
+                                        </td>
                                         <td><?= $transaction['updated_at'] ?></td>
                                     </tr>
                                     <?php

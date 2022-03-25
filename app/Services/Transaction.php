@@ -146,6 +146,7 @@ class Transaction extends DatabaseConnetion
                 $data['referenceCode'] = $tranx['reference_code'];
                 $data['isApproved'] = $tranx['is_approved'];
                 $data['isRevoked'] = $tranx['is_revoked'];
+                $data['createdAt'] = $tranx['created_at'];
 
                 $result[] = $data;
             }

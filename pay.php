@@ -81,6 +81,7 @@
                                         <th scope="col">Amount</th>
                                         <th scope="col">Account Details</th>
                                         <th scope="col">Social Media Handle</th>
+                                        <th scope="col">Requested On</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -103,6 +104,7 @@
                                         <td>&#8358;<?= $wr['requestedAmount'] ?></td>
                                         <td><?= $bankName.', '.$wr['acct_name'].' '.$wr['acct_number'] ?></td>
                                         <td><?= $tw.' '.$fb.' '.$ig.' '.$yt ?></td>
+                                        <td><?= $wr['createdAt'] ?></td>
                                         <td>
                                             <?= $wr['isApproved'] ? '<span class="badge badge-success">Approved</span>' : '' ?>
                                             <?= $wr['isRevoked'] ? '<span class="badge badge-warning">Revoked</span>' : '' ?>
