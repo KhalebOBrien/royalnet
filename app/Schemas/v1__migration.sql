@@ -32,6 +32,21 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `users` (`id`, `surname`, `other_names`, `phone`, `referral_code`, `is_admin`, `is_super_admin`, `is_approved`, `is_verified`, `is_suspended`, `email`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'RoyalNet', 'Super Admin', '09012345678', '5uPp3R4dmIn', 1, 1, 1, 1, 0, 'admin@royalnet.com.ng', '$2y$10$dDOkHIkBzvha21a8m6FMnuRXePzLg91BjNsPxMaM7lqmUN0iGNpVa', NOW(), NOW());
+
+CREATE TABLE IF NOT EXISTS `wallets` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` INT(11) NULL DEFAULT NULL,
+    `amount` varchar(255) NOT NULL,
+    `created_at` datetime NULL DEFAULT NULL,
+    `updated_at` datetime NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `wallets` (`id`, `user_id`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 1, '0.00', NOW(), NOW());
+
 CREATE TABLE IF NOT EXISTS `packages` (
     `id` int(4) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
@@ -87,15 +102,6 @@ INSERT INTO `banks` (`name`) VALUES
 ('Unity Bank'),
 ('Wema Bank'),
 ('Zenith Bank');
-
-CREATE TABLE IF NOT EXISTS `wallets` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` INT(11) NULL DEFAULT NULL,
-    `amount` varchar(255) NOT NULL,
-    `created_at` datetime NULL DEFAULT NULL,
-    `updated_at` datetime NULL DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `transactions` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
