@@ -79,12 +79,37 @@ class TransactionController
 	}
 
 	/**
+	 * This function is used to revoke a user withdrawal request.
+     * It will refund the user's wallet
+	 * @return boolean
+	 */
+	public function revokeWithdrawal()
+	{
+		if(isset($_GET['revoke'])) {
+			if ($this->transaction->revokeWithdrawalRequest($_GET['revoke'])) {
+				header('location: '.$_GET['back']);
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * This function is used to sum all approved transactions
 	 * @return array
 	 */
 	public function sumAllApprovedTransactions($type)
 	{
 		return $this->transaction->sumApprovedTransactions($type);
+	}
+
+	/**
+	 * This function is used to sum all revoked transactions
+	 * @return array
+	 */
+	public function sumAllRevokedTransactions($type)
+	{
+		return $this->transaction->sumRevokedTransactions($type);
 	}
 
 	/**

@@ -10,7 +10,7 @@
         header('location: login');
     }
     
-    if (isset($_SESSION['user']) && $_SESSION['user']['is_admin'] != 1) {
+    if (isset($_SESSION['user']) && $_SESSION['user']['is_super_admin'] != 1) {
         header('location: 403');
     }
     
@@ -21,6 +21,7 @@
     $bank = new BankController();
     $withdrawalRequests = $tranx->getAllWithdrawalRequest();
     $tranx->approveWithdrawal();
+    $tranx->revokeWithdrawal();
 ?>
 
 <!DOCTYPE html>
@@ -84,8 +85,14 @@
                                         <td>&#8358;<?= $wr['requestedAmount'] ?></td>
                                         <td><?= $bankName.', '.$wr['acct_name'].' '.$wr['acct_number'] ?></td>
                                         <td><?= $tw.' '.$fb.' '.$ig.' '.$yt ?></td>
-                                        <td><?= $wr['isApproved'] ? '<span class="badge badge-success">Approved</span>' : '<span class="badge badge-secondary">Pending</span>' ?></td>
-                                        <td><?= $wr['isApproved'] ? '' : '<a href="pay?approve='.$wr['referenceCode'].'&back=pay" class="btn btn-primary">Approve</a>' ?></td>
+                                        <td>
+                                            <?= $wr['isApproved'] ? '<span class="badge badge-success">Approved</span>' : '' ?>
+                                            <?= $wr['isRevoked'] ? '<span class="badge badge-warning">Revoked</span>' : '' ?>
+                                            <?= (!$wr['isApproved'] && !$wr['isRevoked']) ? '<span class="badge badge-secondary">Pending</span>' : '' ?>
+                                        </td>
+                                        <td>
+                                            <?= ($wr['isApproved'] || $wr['isRevoked']) ? '' : '<a href="pay?approve='.$wr['referenceCode'].'&back=pay" class="btn btn-primary">Approve</a> <a href="pay?revoke='.$wr['referenceCode'].'&back=pay" class="btn btn-danger">Revoke</a>' ?>
+                                        </td>
                                     </tr>
                                     <?php
                                             endforeach;

@@ -27,11 +27,17 @@ use App\Services\Helpers;
         </a>
     </li>
 
+    <?php
+        if ($_SESSION['user']['is_super_admin']) :
+    ?>
     <li class="nav-item">
         <a class="nav-link collapsed" href="pay">
             <span>Withdrawal Requests</span>
         </a>
     </li>
+    <?php
+        endif;
+    ?>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="manage-admins">

@@ -19,9 +19,9 @@
     $user = new UserController();
     $admins = $user->fetchAdmins();
     if($_SESSION['user']['is_super_admin']){
-        $user->createAdmin($_POST);
-        $user->suspendUser($_POST);
-        $user->reviveUser($_POST);
+        $user->createAdmin();
+        $user->suspendUser();
+        $user->reviveUser();
     }
 ?>
 

@@ -19,8 +19,8 @@
     
     $user = new UserController();
     $members = $user->fetchAllUsers();
-    $user->suspendUser($_POST);
-    $user->reviveUser($_POST);
+    $user->suspendUser();
+    $user->reviveUser();
     
     $p = new PackageController();
 ?>
