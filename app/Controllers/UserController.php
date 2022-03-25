@@ -168,9 +168,9 @@ class UserController
 	 */
 	public function suspendUser()
 	{
-		if(isset($_GET['suspend']) && $_SESSION['user']['is_super_admin']) {
+		if(isset($_GET['suspend'])) {
 			if ($this->user->suspendUser($_GET['suspend'])) {
-				header('location: manage-admins');
+				header('location: '.$_GET['back']);
 			}
 		}
 
@@ -184,9 +184,9 @@ class UserController
 	 */
 	public function reviveUser()
 	{
-		if(isset($_GET['revive']) && $_SESSION['user']['is_super_admin']) {
+		if(isset($_GET['revive'])) {
 			if ($this->user->reviveUser($_GET['revive'])) {
-				header('location: manage-admins');
+				header('location: '.$_GET['back']);
 			}
 		}
 

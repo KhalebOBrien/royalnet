@@ -19,7 +19,8 @@
     
     $user = new UserController();
     $members = $user->fetchAllUsers();
-    // $user->createAdmin($_POST);
+    $user->suspendUser($_POST);
+    $user->reviveUser($_POST);
     
     $p = new PackageController();
 ?>
@@ -72,7 +73,7 @@
                                         <th scope="col">Date Joined</th>
                                         <th scope="col">Approved</th>
                                         <th scope="col">Status</th>
-                                        <!-- <th scope="col">Action</th> -->
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,6 +81,13 @@
                                         if (!empty($members)) :
                                             foreach ($members as $member) :
                                                 $reff = $user->fetchUserReferrer($member['referrers_code']);
+                                                $btn = '';
+                                                if ($member['is_suspended']) {
+                                                    $btn = '<a href="manage-users?revive='.$member['referral_code'].'&back=manage-users" class="btn btn-primary revive-link">Revive</a>';
+                                                }
+                                                else {
+                                                    $btn = '<a href="manage-users?suspend='.$member['referral_code'].'&back=manage-users" class="btn btn-danger suspension-link">Suspend</a>';
+                                                }
                                     ?>
                                     <tr>
                                         <td><?= $member['surname'].', '.$member['other_names'] ?></td>
@@ -90,7 +98,9 @@
                                         <td><?= $member['created_at'] ?></td>
                                         <td><?= $member['is_approved'] ? '<span class="badge badge-primary">Yes</span>' : '<span class="badge badge-secondary">No</span>' ?></td>
                                         <td><?= $member['is_suspended'] ? '<span class="badge badge-danger">Suspended</span>' : '<span class="badge badge-success">Active</span>' ?></td>
-                                        <!-- <td><button type="button" class="btn btn-primary">Suspend</button></td> -->
+                                        <td>
+                                            <?= $btn ?>
+                                        </td>
                                     </tr>
                                     <?php
                                             endforeach;
@@ -119,6 +129,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="js/dashboard-temp.js"></script>
+    <script>
+        $(document).ready(function(){
+            // warn before performing action
+            $('.revive-link').on('click', function(e){
+                e.preventDefault();
+                if(confirm('Are you sure you want to revive this member?')){
+                    window.location = this.href;
+                }
+            });
+            $('.suspension-link').on('click', function(e){
+                e.preventDefault();
+                if(confirm('Are you sure you want to suspend this member?')){
+                    window.location = this.href;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

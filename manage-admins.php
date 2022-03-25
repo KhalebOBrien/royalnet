@@ -95,10 +95,10 @@
                                                 $btn = '';
                                                 if(!$admin['is_super_admin']) {
                                                     if ($admin['is_suspended']) {
-                                                        $btn = '<a href="manage-admins?revive='.$admin['referral_code'].'" class="btn btn-primary revive-link">Revive</a>';
+                                                        $btn = '<a href="manage-admins?revive='.$admin['referral_code'].'&back=manage-users" class="btn btn-primary revive-link">Revive</a>';
                                                     }
                                                     else {
-                                                        $btn = '<a href="manage-admins?suspend='.$admin['referral_code'].'" class="btn btn-danger suspension-link">Suspend</a>';
+                                                        $btn = '<a href="manage-admins?suspend='.$admin['referral_code'].'&back=manage-users" class="btn btn-danger suspension-link">Suspend</a>';
                                                     }
                                                 }
                                     ?>
