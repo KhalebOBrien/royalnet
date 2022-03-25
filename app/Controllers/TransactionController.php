@@ -112,6 +112,31 @@ class TransactionController
 		return $this->transaction->sumRevokedTransactions($type);
 	}
 
+    /**
+     * This function is used to check if the system can take withdrawals or not
+     * @return boolean
+     */
+	public function isWithdrawalTurnedOn()
+	{
+		return $this->transaction->isWithdrawalTurnedOn();
+	}
+
+    /**
+     * This function is used to set the system withdrawal status
+     * @param boolean $status
+     * @return boolean
+     */
+	public function switchWithdrawal($status)
+	{
+		if(!empty($status)) {
+			if ($this->transaction->toggleWithdrawal(($status == 'on') ? 1 : 0)) {
+				header('location: '.$_GET['back']);
+			}
+		}
+
+		return null;
+	}
+
 	/**
 	 * This function is used to validate user session token
 	 * @param string $token

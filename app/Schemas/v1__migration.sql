@@ -122,3 +122,14 @@ CREATE TABLE IF NOT EXISTS `tasks` (
     PRIMARY KEY (`id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `site_settings` (
+    `id` int(1) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NULL DEFAULT NULL,
+    `value` varchar(255) NULL DEFAULT NULL,
+    `last_updated_by` INT(11) NULL DEFAULT NULL,
+    `updated_at` datetime NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `site_settings` (`name`, `value`, `updated_at`) VALUES
+('withdrawal_is_active', '1', NOW());

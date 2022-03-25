@@ -22,6 +22,7 @@
     $withdrawalRequests = $tranx->getAllWithdrawalRequest();
     $tranx->approveWithdrawal();
     $tranx->revokeWithdrawal();
+    $tranx->switchWithdrawal(isset($_GET['switch']) ? $_GET['switch'] : null);
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +52,23 @@
                 <?php include_once './partials/__dashboard-topnav.php'?>
 
                 <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Withdrawal Requests</h1>
+                        <?php
+                            if($_SESSION['user']['is_super_admin']) :
+                                if ($tranx->isWithdrawalTurnedOn()) :
+                        ?>
+                        <a href="pay?switch=off&back=pay" class="btn-turn-off-withdrawals"><h4 class="h4 btn btn-danger mb-0 text-white">Turn OFF Withdrawals</h4></a>
+                        <?php
+                                else :
+                        ?>
+                        <a href="pay?switch=on&back=pay" class="btn-turn-on-withdrawals"><h4 class="h4 btn btn-primary mb-0 text-white">Turn ON Withdrawals</h4></a>
+                        <?php
+                                endif;
+                            endif;
+                        ?>
+                    </div>
+
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Users Withdrawal Request</h6>
@@ -115,6 +133,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="js/dashboard-temp.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.btn-turn-off-withdrawals').on('click', function(e){
+                e.preventDefault();
+                if(confirm('Are you sure you want to TURN OFF WITHDRAWALS? \n\nMembers will not be able to request for withdrawals.')){
+                    window.location = this.href;
+                }
+            });
+            $('.btn-turn-on-withdrawals').on('click', function(e){
+                e.preventDefault();
+                if(confirm('Are you sure you want to TURN ON WITHDRAWALS? \n\nMembers will be permitted to send in their withdrawal requests.')){
+                    window.location = this.href;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

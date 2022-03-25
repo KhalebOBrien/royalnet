@@ -81,6 +81,10 @@ class Transaction extends DatabaseConnetion
     public function addWithdrawal($userId, $amount)
     {
 		try {
+            // prevent withdrawals if turned off by admin
+            if (!$this->isWithdrawalTurnedOn()) {
+                return false;
+            }
             // get the users's wallet                
             $sql = "SELECT amount FROM wallets WHERE user_id = ".$userId;
             $q = $this->dbconn->query($sql);
@@ -247,6 +251,36 @@ class Transaction extends DatabaseConnetion
         $result = empty($result['total']) ? 0 : $result['total'];
         
         return $result;
+    }
+
+    /**
+     * This function is used to check if the system can take withdrawals or not
+     * @return boolean
+     */
+    public function isWithdrawalTurnedOn()
+    {
+        $sql = "SELECT * FROM site_settings WHERE name = 'withdrawal_is_active'";
+        $q = $this->dbconn->query($sql);
+        $result = $q->fetch(\PDO::FETCH_ASSOC);
+
+        return boolval($result['value']);
+    }
+
+    /**
+     * This function is used to set the system withdrawal status
+     * @param boolean $status
+     * @return boolean
+     */
+    public function toggleWithdrawal($status)
+    {
+        $sql = "UPDATE site_settings SET value = :value, last_updated_by = :last_updated_by, updated_at = NOW() WHERE name = 'withdrawal_is_active'";
+        $q = $this->dbconn->prepare($sql);
+        $q->execute([
+            ':value' => $status,
+            ':last_updated_by' => $_SESSION['user']['id']
+        ]);
+
+        return true;
     }
 
 }

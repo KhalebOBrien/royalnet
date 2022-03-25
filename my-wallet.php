@@ -195,18 +195,29 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p><b>NOTE:</b> When withdrawal has been placed, you have to wait a bit for the Admin to confirm and make payment. </p>
+                            
+                            <?php
+                                if ($tranx->isWithdrawalTurnedOn()) :
+                            ?>
+                                <p><b>NOTE:</b> When withdrawal has been placed, you have to wait a bit for the Admin to confirm and make payment. </p>
 
-                            <form action="" method="post" name="withdrawal-form">
-                                <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon1">&#8358;</span>
-                                    <input type="text" name="txtAmount" class="form-control" placeholder="Enter Amount" aria-describedby="basic-addon1">
-                                </div>
-                                    <small class="text-danger">Maximum withdrawable amount: <b>&#8358;<?= $walletBalance ?></b></small>
+                                <form action="" method="post" name="withdrawal-form">
+                                    <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1">&#8358;</span>
+                                        <input type="text" name="txtAmount" class="form-control" placeholder="Enter Amount" aria-describedby="basic-addon1">
+                                    </div>
+                                        <small class="text-danger">Maximum withdrawable amount: <b>&#8358;<?= $walletBalance ?></b></small>
 
-                                <button name="btnRequestWithdrawal" class="submit-form float-right btn btn-primary mt-4 mb-2">Submit</button>
-                            </form>
+                                    <button name="btnRequestWithdrawal" class="submit-form float-right btn btn-primary mt-4 mb-2">Submit</button>
+                                </form>
+                            <?php
+                                else :
+                            ?>
+                                <p><b>SORRY!</b> Withdrawals are currently turned off for now.</p>
+                            <?php
+                                endif;
+                            ?>
                         </div>
                     </div>
                 </div>
