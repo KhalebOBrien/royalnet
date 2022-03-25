@@ -50,11 +50,67 @@ class Bank extends DatabaseConnetion
             $sql = "INSERT INTO banks (name) VALUES (:name)";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
-                ':name' => $data['txtname']
+                ':name' => $data['txtBankName']
             ));
 
             return $this->dbconn->lastInsertId();
         }
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
+
+    /**
+     * This function is used to update a bank
+     * @param array $data
+     * @return boolean
+     */
+    public function updateBank($data)
+    {
+        try {
+            $sql = "UPDATE banks SET name = :name WHERE id = :id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':name' => $data['txtBankName'],
+                ':id' => $data['txtBankId']
+            ]);
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
+
+    /**
+     * This function is used to delete a bank
+     * @param  int $id
+     * @param  boolean
+     */
+    public function deleteBank($id)
+    {
+        try {
+            $sql = "DELETE FROM banks WHERE id = :id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':id' => $id
+            ]);
+
+            // we also need to remove this bank from all users
+            $sql = "UPDATE users SET bank = :bankId, acct_number = :acct_number, acct_name = :acct_name WHERE bank = ".$id;
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':bankId' => NULL,
+                ':acct_number' => NULL,
+                ':acct_name' => NULL
+            ]);
+
+            return true;
+        } 
         catch (\PDOException $ex)
         {
             echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());

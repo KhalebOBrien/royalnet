@@ -51,6 +51,12 @@ use App\Services\Helpers;
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="manage-banks">
+            <span>Manage Banks</span>
+        </a>
+    </li>
+
     <hr class="sidebar-divider">
 
     <div class="sidebar-heading">

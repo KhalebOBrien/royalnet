@@ -163,8 +163,8 @@
                                     Enter the link of your social media where you will be posting your tasks.
                                     <div class="mb-3 mt-3">
                                         <div class="input-group mb-3">
-                                        <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-facebook text-light"></i></span>
-                                        <input type="url" name="txtFbLink" class="form-control" placeholder="https://m.facebook.com/username" value="<?= $_SESSION['user']['fb_link'] ?>" aria-describedby="basic-addon1">
+                                            <span class="input-group-text bg-primary" id="basic-addon1"><i class="bi bi-facebook text-light"></i></span>
+                                            <input type="url" name="txtFbLink" class="form-control" placeholder="https://m.facebook.com/username" value="<?= $_SESSION['user']['fb_link'] ?>" aria-describedby="basic-addon1">
                                         </div>
 
                                         <div class="input-group mb-3">

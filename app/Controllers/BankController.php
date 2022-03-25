@@ -42,9 +42,41 @@ class BankController
 			$this->validateSession($data['csrfToken']);
 
 			if ($this->bank->addBank($data)) {
-				return true;
+				header('location: manage-banks');
 			}
 		}
+	}
+
+	/**
+	 * This function is used to update bank name.
+	 * @return boolean
+	 */
+	public function updateBank($data)
+	{
+		if(isset($data['btnUpdateBank'])) {
+			$this->validateSession($data['csrfToken']);
+
+			if ($this->bank->updateBank($data)) {
+				header('location: manage-banks');
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * This function is used to delete bank.
+	 * @return boolean
+	 */
+	public function deleteBank()
+	{
+		if(isset($_GET['delete'])) {
+			if ($this->bank->deleteBank($_GET['delete'])) {
+				header('location: manage-banks');
+			}
+		}
+
+		return null;
 	}
 
 	/**
