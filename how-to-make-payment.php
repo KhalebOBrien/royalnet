@@ -23,8 +23,12 @@
             </div>
             <div class="p-4">
                 <div class="mb-2">
-                    <span class="privacy-subhead">HOW TO SUCCESSFULLY MAKE PAYMENT</span>  <span class="line"></span>
+                    <span class="privacy-subhead">HOW TO SUCCESSFULLY MAKE PAYMENT WITH OPAY</span>  <span class="line"></span>
                 </div>
+                <div class="col-12 mb-3">
+                  <img src="images/opay icon.png" alt="opay icon" width="50%">
+                </div>
+                
                 <div class="text-muted">
                 1. Download the Opay mobile app from your phones Play Store
                 <br>
