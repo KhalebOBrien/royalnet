@@ -58,7 +58,7 @@
                     ?>
                 </select>
                 <input type="email" name="txtEmail" class="form-control mt-2 form-input" id="email" placeholder="E-mail" >
-                <input type="number" name="txtPhone" class="form-control mt-2 form-input" id="phoneNum" placeholder="Phone number">
+                <input type="tel" name="txtPhone" class="form-control mt-2 form-input" id="phoneNum" placeholder="Phone number">
                 <input type="password" name="txtPassword" class="form-control mt-2 form-input" id="pwd" placeholder="Password" >
                 <input type="password" name="txtConfirmPassword" class="form-control mt-2 form-input" id="pwd2" placeholder="Re-enter Password" >
 

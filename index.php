@@ -23,7 +23,7 @@
             Do you want us to influence or advertise your brand, business or promote your contents? Contact our Customer Care Rep: +234 703 349 9876
         </marquee>
 
-        <a href="https://wa.me/2347033499876?text=Hi, my name is..." class="float" target="_blank">
+        <a href="https://wa.me/2349096167191?text=Hi, my name is..." class="float" target="_blank">
           <i class="bi bi-whatsapp my-float"></i>
         </a>
 
@@ -288,8 +288,8 @@
           </h6>
           <!-- company's email -->
           <p class="d-flex justify-content-center"><i class="bi bi-envelope"></i>  <?= Helpers::APPLICATION_MAIL?></p>
-          <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 703 349 9876</p>
-          <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 703 349 9876</p>
+          <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 909 616 7191</p>
+          <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 909 616 7191</p>
         </div>
        
       </div>

@@ -12,7 +12,7 @@
 </head>
 <body>
     
-         <a href="https://wa.me/2347033499876?text=Hi, my name is..." class="float" target="_blank">
+         <a href="https://wa.me/2349096167191?text=Hi, my name is..." class="float" target="_blank">
           <i class="bi bi-whatsapp my-float"></i>
           </a>
 
@@ -97,8 +97,8 @@
                       <i class="fas fa-envelope me-3"></i>
                       website@email
                     </p>
-                    <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 703 349 9876</p>
-                    <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 703 349 9876</p>
+                    <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 909 616 7191</p>
+                    <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 909 616 7191</p>
                   </div>
                  
                 </div>

@@ -12,7 +12,7 @@
 </head>
 <body>
     
-         <a href="https://wa.me/2347033499876?text=Hi, my name is..." class="float" target="_blank">
+         <a href="https://wa.me/2349096167191?text=Hi, my name is..." class="float" target="_blank">
           <i class="bi bi-whatsapp my-float"></i>
           </a>
 
@@ -32,7 +32,7 @@
                 2. Fund your Opay account 
                 <br>
 
-                3. Transfer to our Agency's official Opay number <em><strong>+234 703 349 9876</strong></em>
+                3. Transfer to our Agency's official Opay number <em><strong>+234 703 349 9876 or +234 909 616 7191</strong></em>
                 <br>
 
                 4. Send our Customer Care a proof of payment via Whatsapp, click the Whatsapp icon at the bottom right of the screen 
@@ -51,7 +51,7 @@
                 1. Visit a nearby Opay POS Stand 
                 <br>
 
-                2. Deposit the required amount via the Opay POS Agent to our Official Opay Number <em><strong>+234 703 349 9876</strong></em>
+                2. Deposit the required amount via the Opay POS Agent to our Official Opay Number <em><strong>+234 703 349 9876 or +234 909 616 7191</strong></em>
                 <br>
 
                 3. Send a proof of payment to our customer care via Whatsapp, click the Whatsapp icon at the bottom right of the screen
@@ -111,8 +111,8 @@
                       <i class="fas fa-envelope me-3"></i>
                       website@email
                     </p>
-                    <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 703 349 9876</p>
-                    <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 703 349 9876</p>
+                    <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 909 616 7191</p>
+                    <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 909 616 7191</p>
                     
                   </div>
                  

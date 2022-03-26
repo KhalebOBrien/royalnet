@@ -120,7 +120,7 @@
                                                 <input type="hidden" name="csrfToken" value="<?= $_SESSION['CSRF'] ?>">
                                                 <input type="text" class="form-control mb-2" placeholder="New surname" id="new-surname" name="txtSurname" value="<?= $_SESSION['user']['surname'] ?>">
                                                 <input type="text" class="form-control mb-2" placeholder="New other name" id="new-othername"  name="txtOthernames" value="<?= $_SESSION['user']['other_names'] ?>">
-                                                <input type="text" class="form-control mb-2" placeholder="New phone number" id="new-number" name="txtPhone" value="<?= $_SESSION['user']['phone'] ?>">
+                                                <input type="tel" class="form-control mb-2" placeholder="New phone number" id="new-number" name="txtPhone" value="<?= $_SESSION['user']['phone'] ?>">
 
                                                 <div id="register-err-msg" class="alert-danger text-center" role="alert"></div>
                                                 <button type="submit" class="btn btn-success card-link mt-2 float-end" name="btnUpdateProfileDetails"></i>Update</button>
