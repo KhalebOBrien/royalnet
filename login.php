@@ -45,10 +45,13 @@
                 <a href="forgot-password">Forgot password?</a> <br>
 
                 <div id="register-err-msg" class="alert-danger" role="alert"></div>
-                <button name="btnLogin" class="submit-form mt-4 mb-2">Sign In</button>
-            </form>
-            <br>
-            <a href="index">Cancel and return to website</a>
+
+                <br>
+                <a href="how-to-make-payment" class="mt-5">How to make payment </a>
+                <br>
+                <button name="btnRegister" class="submit-form mt-4 mb-2">Sign Up</button>
+            </form> <br>
+            <a href="index" style="font-size: 12px">Cancel and return to website</a>
         </div>
 
         <footer>

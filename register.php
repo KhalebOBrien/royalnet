@@ -45,8 +45,8 @@
                 <input type="hidden" name="referrers_code" value="<?= isset($_GET['r'])?$_GET['r']:'' ?>">
                 <input type="text" name="txtSurname" class="form-control mt-2 form-input" id="surname" placeholder="Surname">
                 <input type="text" name="txtOtherNames" class="form-control mt-2 form-input" id="otherName" placeholder="Other names">
-                <select name="slPackage" class="form-control mt-2 form-select" id="package">
-                    <option selected disabled>Select a Package</option>
+                <select name="slPackage" class="form-control mt-2 form-select" id="package" required>
+                    <option value="">Select a Package</option>
                     <?php
                         if (!empty($packages)) :
                             foreach ($packages as $pac) :
@@ -65,9 +65,12 @@
                 <p class="mt-1" style="font-size: 12px;">By signing up you agree to our <a href="privacy-policy"> Privacy Policy</a></p>
                 <div id="register-err-msg" class="alert-danger" role="alert"></div>
 
+                
+                <a href="how-to-make-payment">How to make payment </a>
+                <br>
                 <button name="btnRegister" class="submit-form mt-4 mb-2">Sign Up</button>
             </form> <br>
-            <a href="index">Cancel and return to website</a>
+            <a href="index" style="font-size: 12px">Cancel and return to website</a>
         </div>
         
 

@@ -31,8 +31,8 @@ function validateUpdateAccountName() {
     }else {
         NEW_NUM.className = 'form-control mb-2 form-input '
     }
-    if (NEW_NUM.value.length !== 11) {
-        register_err.innerHTML = "Phone number must be 11 digits"
+    if (NEW_NUM.value.length < 10 || NEW_NUM.value.length > 15) {
+        register_err.innerHTML = "Phone number must be between 10 and 15 numbers"
         NEW_NUM.className = 'form-control mb-2 form-input border-danger'
         return false
     }else {

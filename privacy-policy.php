@@ -99,11 +99,6 @@
                     </p>
                     <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 703 349 9876</p>
                     <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 703 349 9876</p>
-                    <div class="d-flex justify-content-center mb-3">
-                        <a href="https://wa.me/2347033499876" target="_blank"  style="text-decoration: none; color: green;">
-                              <i class="bi bi-whatsapp"></i>  
-                        </a>
-                    </div>
                   </div>
                  
                 </div>

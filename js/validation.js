@@ -51,12 +51,12 @@ function validateRegister() {
     }else {
         PHONE_NUM.className = 'form-control mt-2 form-input '
     }
-    if (PHONE_NUM.value.length !== 11) {
-        register_err.innerHTML = "Phone number must be 11 digits"
-        PHONE_NUM.className = 'form-control mt-2 form-input border-danger'
+    if (PHONE_NUM.value.length < 10 || PHONE_NUM.value.length > 15) {
+        register_err.innerHTML = "Phone number must be between 10 and 15 numbers"
+        PHONE_NUM.className = 'form-control mb-2 form-input border-danger'
         return false
     }else {
-        PHONE_NUM.className = 'form-control mt-2 form-input '
+        PHONE_NUM.className = 'form-control mb-2 form-input '
     }
    
 
