@@ -133,10 +133,10 @@ class UserController
 			}
 
 			$data['referral_code'] = Helpers::randomString(8);
+			$data['email_verification_token'] = Helpers::randomString(8).'-'.Helpers::randomString(24).'-'.Helpers::randomString(8);
 			$data['txtPassword'] = password_hash($data['txtPassword'], PASSWORD_DEFAULT);
 
 			if ($this->user->create($data, 1)) {
-				// send email
 				header('location: manage-admins');
 				// $_SESSION['msg'] = 'You have successfully registered. Please check your email to activate your account.';
 			}

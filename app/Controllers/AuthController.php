@@ -30,11 +30,10 @@ class AuthController
 			}
 
 			$data['referral_code'] = Helpers::randomString(8);
+			$data['email_verification_token'] = Helpers::randomString(8).'-'.Helpers::randomString(24).'-'.Helpers::randomString(8);
 			$data['txtPassword'] = password_hash($data['txtPassword'], PASSWORD_DEFAULT);
 
 			if ($this->user->create($data, 0)) {
-				// send email
-
 				header('location: login');
 				// $_SESSION['success'] = 'You have successfully registered. Please check your email to activate your account.';
 			}
@@ -100,6 +99,28 @@ class AuthController
 
 			if($this->user->resetPassword($user, $data)){
 				header('Location: login');
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * This function is used to reset users 
+	 * password after the request link have been verified
+	 * @param array $data
+	 * @return boolean
+	 */
+	public function validateAccount($data)
+	{
+		// retrieve user data
+		$user = $this->user->getUserByEmail($data['email']);
+		if (empty($user) && $user['email_verification_token'] !== $data['token']) {
+			header('Location: 419');
+		}
+		else {
+			if($this->user->verifyUserAccount($user)){
+				return true;
 			}
 		}
 

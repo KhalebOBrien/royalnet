@@ -58,7 +58,7 @@ class User extends DatabaseConnetion
     public function create($data, $isAdmin)
     {
 		try {
-            $sql = "INSERT INTO users (surname, other_names, phone, package, referral_code, referrers_code, is_admin, is_approved, is_verified, email, password, created_at, updated_at) VALUES (:surname, :otherNames, :phone, :package, :referral_code,:referrers_code, :is_admin, :is_approved, :is_verified, :email, :password, NOW(), NOW())";
+            $sql = "INSERT INTO users (surname, other_names, phone, package, referral_code, referrers_code, is_admin, is_approved, is_verified, email, email_verification_token, password, created_at, updated_at) VALUES (:surname, :otherNames, :phone, :package, :referral_code,:referrers_code, :is_admin, :is_approved, :is_verified, :email, :email_verification_token, :password, NOW(), NOW())";
             $q = $this->dbconn->prepare($sql);
             $q->execute(array(
                 ':surname' => $data['txtSurname'],
@@ -71,6 +71,7 @@ class User extends DatabaseConnetion
                 ':is_approved' => $isAdmin ? 1 : 0, 
                 ':is_verified' => $isAdmin ? 1 : 0,
                 ':email' => $data['txtEmail'],
+                ':email_verification_token' => $data['email_verification_token'],
                 ':password' => $data['txtPassword']
             ));
             $userId = $this->dbconn->lastInsertId();
@@ -81,6 +82,14 @@ class User extends DatabaseConnetion
                 ':user_id' => $userId,
                 ':amount' => '0.00'
             ));
+
+            // prepare verification mail for the user
+            if(!$isAdmin){
+                $subject = Helpers::APPLICATION_NAME.' Registration Confirmation';
+                $message = '<b>Hello, '.$data['txtSurname'].'. </b><br>Your account have been created. Follow this link to verify your account: <a href="'.Helpers::APPLICATION_DOMAIN.'verify-account?email='.$data['txtEmail'].'&token='.$data['email_verification_token'].'" target="_blank">'.Helpers::APPLICATION_DOMAIN.'verify-account?email='.$data['txtEmail'].'&token='.$data['email_verification_token'].'</a>';
+                // send mail
+                Helpers::sendMail($data['txtEmail'], $subject, $message);
+            }
 
             return $userId;
         }
@@ -186,6 +195,30 @@ class User extends DatabaseConnetion
                 ':token' => null,
                 ':token_created_at' => null,
                 ':password' => $data['txtPassword'],
+                ':id' => $account['id']
+            ]);
+
+            return true;
+        } 
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
+
+    /**
+     * This function is used to verify a users account
+     * @param  array $account
+     * @return boolean
+     */
+    public function verifyUserAccount($account)
+    {
+        try {
+            $sql = "UPDATE users SET is_verified = :verified, updated_at = NOW() WHERE id = :id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':verified' => 1,
                 ':id' => $account['id']
             ]);
 
