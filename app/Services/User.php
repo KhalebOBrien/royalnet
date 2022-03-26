@@ -251,6 +251,19 @@ class User extends DatabaseConnetion
     public function deleteProfile($account)
     {
         try {
+            // delete wallet
+            $sql = "DELETE FROM wallets WHERE user_id = :id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':id' => $account['id']
+            ]);
+            // delete transactions
+            $sql = "DELETE FROM transactions WHERE user_id = :id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':id' => $account['id']
+            ]);
+            // delete user
             $sql = "DELETE FROM users WHERE id = :id";
             $q = $this->dbconn->prepare($sql);
             $q->execute([
@@ -508,6 +521,11 @@ class User extends DatabaseConnetion
         return $total['total'];
     }
 
+    /**
+     * This function is used to fetch a users wallet balance
+     * @param int $id
+     * @return string $amount
+     */
     public function getUserWalletBalance($id)
     {
         $sql = "SELECT amount FROM wallets WHERE user_id = ".$id;
@@ -515,6 +533,37 @@ class User extends DatabaseConnetion
         $result = $q->fetch(\PDO::FETCH_ASSOC);
 
         return $result['amount'];
+    }
+    
+    /**
+     * This function is used to prepare creditable users for daily ROI
+     */
+    public function fetchCreditableUsers()
+    {
+        $sql = "SELECT `id`, `email`, `package` FROM users WHERE is_admin = 0 AND is_super_admin = 0 AND is_approved = 1 AND is_suspended = 0";
+        $q = $this->dbconn->query($sql);
+        $users = $q->fetchAll(\PDO::FETCH_ASSOC);
+        $result = [];
+        if (!empty($users)) {
+            foreach ($users as $user) {
+                // get package commission
+                $sql = "SELECT `id`, `daily_commission` FROM packages WHERE id = ".$user['package'];
+                $q = $this->dbconn->query($sql);
+                $package = $q->fetch(\PDO::FETCH_ASSOC);
+                $user['package_commission'] = $package['daily_commission'];
+
+                // get wallet balance
+                $sql = "SELECT `id`, `amount` FROM wallets WHERE user_id = ".$user['id'];
+                $q = $this->dbconn->query($sql);
+                $wallet = $q->fetch(\PDO::FETCH_ASSOC);
+                $user['wallet_balance'] = $wallet['amount'];
+
+                // add to result
+                $result[] = $user;
+            }
+        }
+
+        return $result;
     }
 	
 }

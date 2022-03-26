@@ -283,6 +283,44 @@ class Transaction extends DatabaseConnetion
 
         return true;
     }
+    
+    /**
+     * This function is used to add daily commission to users wallet
+     * @param int $userId
+     * @param string $amount
+     * @return boolean
+     */
+    public function addDailyCommissionToUserWallet($userId, $addedAmount, $newBalance)
+    {
+		try {
+            // update the users's wallet balance
+            $sql = "UPDATE wallets SET amount = :amount, updated_at = NOW() WHERE user_id = :user_id";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute([
+                ':amount' => $newBalance,
+                ':user_id' => $userId,
+            ]);
+
+            // create transaction record
+            $sql = "INSERT INTO transactions (reference_code, user_id, amount, type, is_approved, is_revoked, created_at, updated_at) VALUES (:reference_code, :user_id, :amount, :type, :is_approved, :is_revoked, NOW(), NOW())";
+            $q = $this->dbconn->prepare($sql);
+            $q->execute(array(
+                ':reference_code' => $token = Helpers::randomString(12),
+                ':user_id' => $userId,
+                ':amount' => $addedAmount,
+                ':type' => 'daily commission',
+                ':is_approved' => 1,
+                ':is_revoked' => 0
+            ));
+
+            return true;
+        }
+        catch (\PDOException $ex)
+        {
+            echo ($ex->getMessage() . ' ' . $ex->getCode() . ' ' . $ex->getFile() . ' ' . $ex->getLine());
+            exit();
+        }
+    }
 
 }
 
