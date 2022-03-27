@@ -97,10 +97,16 @@
                       Useful links
                     </h6>
                     <p class="d-flex justify-content-center">
-                      <a href="register.php" class="text-reset footer-link">Sign Up</a>
+                      <a href="register" class="text-reset footer-link">Sign Up</a>
                     </p>
                     <p class="d-flex justify-content-center">
-                      <a href="login.php" class="text-reset footer-link">Sign In</a>
+                      <a href="login" class="text-reset footer-link">Sign In</a>
+                    </p>
+                    <p class="d-flex justify-content-center">
+                      <a href="how-to-make-payment" class="text-reset footer-link">How to Make Payment</a>
+                    </p>
+                    <p class="d-flex justify-content-center">
+                      <a href="privacy-policy" class="text-reset footer-link">Privacy Policy</a>
                     </p>
                   </div>
           

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="icon" href="/images/logo.png">
     <link rel="stylesheet" href="css/style.css">
-    <title>Home - Royal Network</title>
+    <title>Home - <?= Helpers::APPLICATION_NAME ?></title>
 </head>
 <body>
 
@@ -277,6 +277,12 @@
           </p>
           <p class="d-flex justify-content-center">
             <a href="login" class="text-reset footer-link">Sign In</a>
+          </p>
+          <p class="d-flex justify-content-center">
+            <a href="how-to-make-payment" class="text-reset footer-link">How to Make Payment</a>
+          </p>
+          <p class="d-flex justify-content-center">
+            <a href="privacy-policy" class="text-reset footer-link">Privacy Policy</a>
           </p>
         </div>
 
