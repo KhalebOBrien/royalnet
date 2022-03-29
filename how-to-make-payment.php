@@ -1,3 +1,8 @@
+<?php
+  require_once './app/Services/Helpers.php';
+  use App\Services\Helpers;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="/images/logo.png">
-    <title>How to make payment - Royal Network</title>
+    <title>How to make payment - <?= Helpers::APPLICATION_NAME ?></title>
 </head>
 <body>
     
@@ -19,7 +24,7 @@
     <div class="container">
         <div class="privacy pt-4 col-sm-12 col-md-10 col-lg-8">
             <div class="text-center ">
-                <h2>Royal Network</h2>
+                <h2><?= Helpers::APPLICATION_NAME ?></h2>
             </div>
             <div class="p-4">
                 <div class="mb-2">
@@ -72,71 +77,7 @@
     </div>
 
     <!-- footer -->
-
-        <footer class="text-center text-lg-start bg-light container-fluid">
-  
-            <section class="">
-              <div class="container text-center text-md-start mt-5 pt-4">
-               
-                <div class="row mt-3">
-                  
-                  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                 
-                    <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
-                      Royal Network
-                    </h6>
-                    <p class="d-flex justify-content-center">
-                    Our Earn Daily platform gives you the opportunity to perform simple tasks while you earn from the comfort of your home.
-                    </p>
-                  </div>
-               
-          
-                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                    
-                    <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
-                      Useful links
-                    </h6>
-                    <p class="d-flex justify-content-center">
-                      <a href="register" class="text-reset footer-link">Sign Up</a>
-                    </p>
-                    <p class="d-flex justify-content-center">
-                      <a href="login" class="text-reset footer-link">Sign In</a>
-                    </p>
-                    <p class="d-flex justify-content-center">
-                      <a href="how-to-make-payment" class="text-reset footer-link">How to Make Payment</a>
-                    </p>
-                    <p class="d-flex justify-content-center">
-                      <a href="privacy-policy" class="text-reset footer-link">Privacy Policy</a>
-                    </p>
-                  </div>
-          
-          
-                  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
-                   
-                    <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
-                      Contact out customer care
-                    </h6>
-                    <!-- company's email -->
-                    <p class="d-flex justify-content-center">
-                      <i class="fas fa-envelope me-3"></i>
-                      website@email
-                    </p>
-                    <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 909 616 7191</p>
-                    <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 909 616 7191</p>
-                    
-                  </div>
-                 
-                </div>
-               
-              </div>
-            </section>
-           
-          
-            <!-- Copyright -->
-            <div class="text-center" style="background-color: rgba(0, 0, 0, 0.05);">
-                <div class="text-center mt-5" id="cpright">© <span id="copyrightYear">2022</span> Royal Net </div>
-            </div>
-          </footer>
+    <?php include_once './partials/__site-footer.php' ?>
     
 
     <script>
