@@ -20,7 +20,7 @@
     <div class="container-fluod">
 
         <marquee width="100%" scrollamount="5" class="bg-info">
-            Do you want us to influence or advertise your brand, business or promote your contents? Contact our Customer Care Rep: +234 703 349 9876
+            Do you want us to influence or advertise your brand, business or promote your contents? Contact our Customer Care Rep: +234 909 616 7191
         </marquee>
 
         <a href="https://wa.me/2349096167191?text=Hi, my name is..." class="float" target="_blank">
@@ -290,7 +290,7 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
          
           <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
-            Contact out customer care
+            Contact our customer care
           </h6>
           <!-- company's email -->
           <p class="d-flex justify-content-center"><i class="bi bi-envelope"></i>  <?= Helpers::APPLICATION_MAIL?></p>

@@ -96,13 +96,10 @@
                   <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
                    
                     <h6 class="text-uppercase fw-bold mb-4 d-flex justify-content-center">
-                      Contact out customer care
+                      Contact our customer care
                     </h6>
                     <!-- company's email -->
-                    <p class="d-flex justify-content-center">
-                      <i class="fas fa-envelope me-3"></i>
-                      website@email
-                    </p>
+                     <p class="d-flex justify-content-center"><i class="bi bi-envelope"></i>   info@royalnet.com.ng</p>
                     <p class="d-flex justify-content-center"><i class="bi bi-telephone"></i> +234 909 616 7191</p>
                     <p class="d-flex justify-content-center"><i class="bi bi-whatsapp"></i> +234 909 616 7191</p>
                   </div>
