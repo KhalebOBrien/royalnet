@@ -17,9 +17,7 @@
 </head>
 <body>
     
-         <a href="https://wa.me/2349096167191?text=Hi, my name is..." class="float" target="_blank">
-          <i class="bi bi-whatsapp my-float"></i>
-          </a>
+    <?php include_once './partials/__whatsapp-button.php' ?>
 
     <div class="container">
         <div class="privacy pt-4 col-sm-12 col-md-10 col-lg-8">
@@ -79,12 +77,5 @@
     <!-- footer -->
     <?php include_once './partials/__site-footer.php' ?>
     
-
-    <script>
-        let copyrightYear = document.querySelector('#copyrightYear')
-        let Y = new Date().getFullYear()
-      
-        copyrightYear.innerHTML = Y;
-      </script>
 </body>
 </html>

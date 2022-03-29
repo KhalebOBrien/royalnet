@@ -22,10 +22,8 @@
         <marquee width="100%" scrollamount="5" class="bg-info">
             Do you want us to influence or advertise your brand, business or promote your contents? Contact our Customer Care Rep: +234 909 616 7191
         </marquee>
-
-        <a href="https://wa.me/2349096167191?text=Hi, my name is..." class="float" target="_blank">
-          <i class="bi bi-whatsapp my-float"></i>
-        </a>
+    
+          <?php include_once './partials/__whatsapp-button.php' ?>
 
           <nav class="navbar">
             <div class="container">
